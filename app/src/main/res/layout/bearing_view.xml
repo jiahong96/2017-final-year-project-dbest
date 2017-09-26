@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/bearingLayout"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/layout_bg"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/bearingDisplay"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/formCardView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:elevation="5dp"
+        app:cardCornerRadius="5dp"
+        android:innerRadius="0dp"
+        android:shape="ring"
+        android:thicknessRatio="1.9">
+
+        <ImageView
+            android:id="@+id/imgView"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bearings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:layout_width="60dp"
+            android:layout_height="60dp" />
+
+    </android.support.v7.widget.CardView>
+
+
+
+    <!--<ImageView-->
+        <!--android:src="@drawable/expand_collapse"-->
+        <!--android:id="@+id/expand_collapse"-->
+        <!--android:layout_alignTop="@+id/frameLayout"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_width="27dp"-->
+        <!--android:layout_height="27dp" />-->
+    <TextView
+        android:id="@+id/code"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_large"
+        android:textStyle="bold"
+        android:layout_toRightOf="@id/formCardView"
+        android:text="Serial No"
+        android:layout_marginTop="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    <LinearLayout
+        android:id="@+id/measurementLinear"
+        android:layout_below="@+id/code"
+        android:layout_toRightOf="@id/formCardView"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/height"
+            android:layout_weight="1"
+            android:textColor="@color/subTextColor"
+            android:text="height"
+            android:textSize="@dimen/text_medium"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:id="@+id/diameterI"
+            android:layout_weight="1"
+            android:text="Diameter(I)"
+            android:textColor="@color/subTextColor"
+            android:textSize="@dimen/text_medium"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/height"
+            />
+
+        <TextView
+            android:id="@+id/diameterO"
+            android:layout_weight="1"
+            android:text="Diameter(O)"
+            android:textColor="@color/subTextColor"
+            android:textSize="@dimen/text_medium"
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/diameterI"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/extraComment"
+        android:text="Extra Comment: 10 more please kappa"
+        android:textColor="@color/subTextColor"
+        android:textSize="@dimen/text_medium"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/formCardView"
+        android:layout_below="@+id/measurementLinear"
+        />
+
+</RelativeLayout>

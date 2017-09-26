@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">KuchingBearings</string>
+    <string name="title_activity_main">KuchingBearings</string>
+    <string name="action_logout">Logout</string>
+    <string name="action_search">Search</string>
+    <string name="action_font">Font Size</string>
+    <string name="action_feedback">Send Us Feedback</string>
+    <string name="progress_uploading">uploading..</string>
+    <string name="upload_success">uploaded successfully!</string>
+    <string name="upload_failure">upload failed</string>
+    <string name="progress_auth">signing in..</string>
+    <string-array name="menu">
+        <item>Delete</item>
+    </string-array>
+    <string-array name="font">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+    <string-array name="chat_menu">
+        <item>Copy</item>
+        <item>Paste</item>
+    </string-array>
+</resources>
