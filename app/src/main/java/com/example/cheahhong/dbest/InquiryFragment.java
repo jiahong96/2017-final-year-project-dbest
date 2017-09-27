@@ -1,4 +1,4 @@
-package com.example.cheahhong.chatapp;
+package com.example.cheahhong.dbest;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -42,8 +42,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static com.example.cheahhong.chatapp.LoginActivity.calledPersistance;
-import static com.example.cheahhong.chatapp.LoginActivity.database;
+import static com.example.cheahhong.dbest.LoginActivity.calledPersistance;
+import static com.example.cheahhong.dbest.LoginActivity.database;
 
 public class InquiryFragment extends Fragment {
 

@@ -1,4 +1,4 @@
-package com.example.cheahhong.chatapp;
+package com.example.cheahhong.dbest;
 
 import org.junit.Test;
 

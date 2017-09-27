@@ -1,15 +1,10 @@
-package com.example.cheahhong.chatapp;
+package com.example.cheahhong.dbest;
 
 import android.animation.ObjectAnimator;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -17,7 +12,6 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,8 +43,8 @@ import org.json.JSONObject;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import static com.example.cheahhong.chatapp.LoginActivity.calledPersistance;
-import static com.example.cheahhong.chatapp.LoginActivity.database;
+import static com.example.cheahhong.dbest.LoginActivity.calledPersistance;
+import static com.example.cheahhong.dbest.LoginActivity.database;
 
 
 public class QuotationFragment extends Fragment {

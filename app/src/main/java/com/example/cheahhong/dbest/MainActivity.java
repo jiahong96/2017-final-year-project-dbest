@@ -1,10 +1,5 @@
-package com.example.cheahhong.chatapp;
+package com.example.cheahhong.dbest;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ArgbEvaluator;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.NotificationManager;
@@ -19,7 +14,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.animation.ValueAnimatorCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,18 +22,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateFormat;
-import android.transition.Slide;
-import android.transition.TransitionInflater;
 import android.util.Log;
-import android.util.TypedValue;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,8 +48,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import static com.example.cheahhong.chatapp.LoginActivity.calledPersistance;
-import static com.example.cheahhong.chatapp.LoginActivity.database;
+import static com.example.cheahhong.dbest.LoginActivity.calledPersistance;
+import static com.example.cheahhong.dbest.LoginActivity.database;
 
 public class MainActivity extends AppCompatActivity{
 

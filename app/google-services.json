@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1033971329142",
-    "firebase_url": "https://kuchingbearings.firebaseio.com",
-    "project_id": "kuchingbearings",
-    "storage_bucket": "kuchingbearings.appspot.com"
+    "project_number": "642003666233",
+    "firebase_url": "https://dbest-7485e.firebaseio.com",
+    "project_id": "dbest-7485e",
+    "storage_bucket": "dbest-7485e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1033971329142:android:4e860b058e8713cf",
+        "mobilesdk_app_id": "1:642003666233:android:02d47ab9e85b6175",
         "android_client_info": {
-          "package_name": "com.example.cheahhong.chatapp"
+          "package_name": "com.example.cheahhong.dbest"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1033971329142-9k3ashb4bandmjoqou751kr4hehfmsqd.apps.googleusercontent.com",
+          "client_id": "642003666233-ks29pc4t3djpki6v1s0i75vtfaj6s4af.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDIiHGHe3s3tW7NTsugRG03zFxkKSHv9-A"
+          "current_key": "AIzaSyAvFm-gK6kaDXYoe6vdMrByF3VOaASQJ20"
         }
       ],
       "services": {

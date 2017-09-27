@@ -1,9 +1,7 @@
-package com.example.cheahhong.chatapp;
+package com.example.cheahhong.dbest;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.util.Date;
 
 /**
  * Created by User on 8/5/2017.

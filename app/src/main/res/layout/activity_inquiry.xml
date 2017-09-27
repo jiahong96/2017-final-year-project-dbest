@@ -16,7 +16,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.example.cheahhong.chatapp.InquiryActivity">
+        tools:context="com.example.cheahhong.dbest.InquiryActivity">
 
         <!-- :nextFocusUp and :nextFocusLeft have been set to the id of this component
         to prevent the dummy from receiving focus again -->

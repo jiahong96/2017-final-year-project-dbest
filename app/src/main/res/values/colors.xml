@@ -14,7 +14,7 @@
     <!--<color name="colorEditTextBorder">#808080</color>-->
 
     <color name="colorSelector">#FFCCBC</color>
-    <color name="colorBackground">#FBE9E7</color>
+    <color name="colorBackground">#FFFFFF</color>
     <color name="colorMainElement">#FF7043</color>
     <color name="colorSubElement">#E64A19</color>
     <color name="colorEditTextBorder">#40C4FF</color>

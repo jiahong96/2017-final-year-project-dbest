@@ -1,4 +1,4 @@
-package com.example.cheahhong.chatapp;
+package com.example.cheahhong.dbest;
 
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
@@ -59,16 +59,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.ClipDescription.MIMETYPE_TEXT_PLAIN;
 import static android.content.Context.NOTIFICATION_SERVICE;
-import static com.example.cheahhong.chatapp.LoginActivity.calledPersistance;
-import static com.example.cheahhong.chatapp.LoginActivity.database;
-import static com.example.cheahhong.chatapp.MainActivity.NotificationID;
+import static com.example.cheahhong.dbest.LoginActivity.calledPersistance;
+import static com.example.cheahhong.dbest.LoginActivity.database;
+import static com.example.cheahhong.dbest.MainActivity.NotificationID;
 
 public class ChatFragment extends Fragment {
     private static final String ARG_PARAM_ID = "inquiryID";

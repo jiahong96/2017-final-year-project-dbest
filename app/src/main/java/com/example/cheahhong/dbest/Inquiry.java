@@ -1,9 +1,7 @@
-package com.example.cheahhong.chatapp;
+package com.example.cheahhong.dbest;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.id.list;
 
 /**
  * Created by CheahHong on 4/3/2017.

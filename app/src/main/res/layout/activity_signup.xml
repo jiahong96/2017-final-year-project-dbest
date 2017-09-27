@@ -2,9 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+                                             android:background="@color/colorBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.cheahhong.chatapp.SignupActivity">
+    tools:context="com.example.cheahhong.dbest.SignupActivity">
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -21,8 +22,8 @@
             android:paddingRight="24dp">
 
             <ImageView android:src="@mipmap/ic_launcher"
-                android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_marginBottom="24dp"
                 android:layout_gravity="center_horizontal" />
 
@@ -91,6 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
+                android:theme="@style/AppTheme.Button"
                 android:padding="12dp"
                 android:text="Create Account"/>
 

@@ -1,6 +1,4 @@
-package com.example.cheahhong.chatapp;
-
-import java.util.Date;
+package com.example.cheahhong.dbest;
 
 /**
  * Created by CheahHong on 3/24/2017.

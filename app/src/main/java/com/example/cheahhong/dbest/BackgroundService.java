@@ -1,4 +1,4 @@
-package com.example.cheahhong.chatapp;
+package com.example.cheahhong.dbest;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -29,14 +29,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.cheahhong.chatapp.ChatFragment.isInFront;
-import static com.example.cheahhong.chatapp.LoginActivity.calledPersistance;
-import static com.example.cheahhong.chatapp.LoginActivity.database;
-import static com.example.cheahhong.chatapp.MainActivity.NotificationID;
+import static com.example.cheahhong.dbest.ChatFragment.isInFront;
+import static com.example.cheahhong.dbest.LoginActivity.calledPersistance;
+import static com.example.cheahhong.dbest.LoginActivity.database;
+import static com.example.cheahhong.dbest.MainActivity.NotificationID;
 
 /**
  * Created by lesgo on 4/21/2017.
