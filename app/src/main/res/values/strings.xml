@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">D\'Best</string>
-    <string name="title_activity_main">D\'Best</string>
+    <string name="app_name">D\'BEST</string>
+    <string name="title_activity_main">D\'BEST</string>
     <string name="action_logout">Logout</string>
     <string name="action_search">Search</string>
     <string name="action_font">Font Size</string>
