@@ -35,12 +35,12 @@ public class BearingAdapter extends RecyclerView.Adapter<BearingAdapter.MyViewHo
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout form;
-        FrameLayout frame,hiddenFrame;
-        CardView card,hiddenCard;
+        FrameLayout frame;
+        CardView card;
         int count, rotationAngle;
-        TextView bearingDisplay,multiply;
-        ImageView bearingImage,hiddenImage,imgTakePhoto,expandIcon;
-        EditText editTxtCode,editTxtHeight,editTxtDiameterI,editTxtDiameterO,editTxtComment;
+        TextView itemDisplay;
+        ImageView itemImage,imgTakePhoto,expandIcon;
+        EditText editTxtCode,editTxtQuantity,editTxtComment;
         TextInputLayout txtLayoutCode,txtLayoutHeight,txtLayoutDiameterI,txtLayoutDiameterO, txtLayoutComment;
 
 
@@ -50,27 +50,20 @@ public class BearingAdapter extends RecyclerView.Adapter<BearingAdapter.MyViewHo
             count = 1;
             form = (RelativeLayout) view.findViewById(R.id.bearingLayout);
             frame = (FrameLayout) view.findViewById(R.id.frameLayout);
-            //hiddenFrame = (FrameLayout) view.findViewById(R.id.hiddenFrameLayout);
             card = (CardView)view.findViewById(R.id.formCardView);
-            //hiddenCard = (CardView)view.findViewById(R.id.hiddenFormCardView);
 
-            bearingDisplay = (TextView)view.findViewById(R.id.bearingDisplay);
+            itemDisplay = (TextView)view.findViewById(R.id.bearingDisplay);
 
-            bearingImage = (ImageView)view.findViewById(R.id.imgView);
-            //hiddenImage = (ImageView)view.findViewById(R.id.hiddenImgView);
+            itemImage = (ImageView)view.findViewById(R.id.imgView);
             imgTakePhoto = (ImageView)view.findViewById(R.id.imgIcon);
             expandIcon = (ImageView)view.findViewById(R.id.expand_collapse);
 
             editTxtCode = (EditText)view.findViewById(R.id.code);
-            editTxtHeight = (EditText)view.findViewById(R.id.height);
-            editTxtDiameterI = (EditText)view.findViewById(R.id.diameterI);
-            editTxtDiameterO = (EditText)view.findViewById(R.id.diameterO);
+            editTxtQuantity = (EditText)view.findViewById(R.id.quantity);
             editTxtComment = (EditText)view.findViewById(R.id.extraComment);
 
             txtLayoutCode = (TextInputLayout) view.findViewById(R.id.codeLayout);
-            txtLayoutHeight = (TextInputLayout) view.findViewById(R.id.heightLayout);
-            txtLayoutDiameterI = (TextInputLayout) view.findViewById(R.id.dILayout);
-            txtLayoutDiameterO = (TextInputLayout) view.findViewById(R.id.dOLayout);
+            txtLayoutHeight = (TextInputLayout) view.findViewById(R.id.quantityLayout);
             txtLayoutComment = (TextInputLayout) view.findViewById(R.id.commentLayout);
 
             rotateIcon();
@@ -84,7 +77,7 @@ public class BearingAdapter extends RecyclerView.Adapter<BearingAdapter.MyViewHo
             });
 
             //select photo
-            bearingImage.setOnClickListener(new View.OnClickListener() {
+            itemImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     clickListener.onSelectImgClick(bearingsList.get(getAdapterPosition()),view,getAdapterPosition());
@@ -133,40 +126,36 @@ public class BearingAdapter extends RecyclerView.Adapter<BearingAdapter.MyViewHo
         public void hideBearingForm(){
             card.setVisibility(View.GONE);
             frame.setVisibility(View.GONE);
-            bearingImage.setVisibility(View.GONE);
+            itemImage.setVisibility(View.GONE);
             imgTakePhoto.setVisibility(View.GONE);
-            editTxtHeight.setVisibility(View.GONE);
+            editTxtQuantity.setVisibility(View.GONE);
             editTxtCode.setVisibility(View.GONE);
-            editTxtDiameterI.setVisibility(View.GONE);
-            editTxtDiameterO.setVisibility(View.GONE);
+            //editTxtDiameterI.setVisibility(View.GONE);
+            //editTxtDiameterO.setVisibility(View.GONE);
             editTxtComment.setVisibility(View.GONE);
             txtLayoutCode.setVisibility(View.GONE);
-            txtLayoutDiameterI.setVisibility(View.GONE);
-            txtLayoutDiameterO.setVisibility(View.GONE);
+            //txtLayoutDiameterI.setVisibility(View.GONE);
+            //txtLayoutDiameterO.setVisibility(View.GONE);
             txtLayoutComment.setVisibility(View.GONE);
             txtLayoutHeight.setVisibility(View.GONE);
 
-            bearingDisplay.setText("Bearing #"+(getAdapterPosition()+1));
-            bearingDisplay.setVisibility(View.VISIBLE);
+            itemDisplay.setText("Item #"+(getAdapterPosition()+1));
+            itemDisplay.setVisibility(View.VISIBLE);
         }
 
         public void expandBearingForm(){
             card.setVisibility(View.VISIBLE);
             frame.setVisibility(View.VISIBLE);
-            bearingImage.setVisibility(View.VISIBLE);
+            itemImage.setVisibility(View.VISIBLE);
             imgTakePhoto.setVisibility(View.VISIBLE);
-            editTxtHeight.setVisibility(View.VISIBLE);
+            editTxtQuantity.setVisibility(View.VISIBLE);
             editTxtCode.setVisibility(View.VISIBLE);
-            editTxtDiameterI.setVisibility(View.VISIBLE);
-            editTxtDiameterO.setVisibility(View.VISIBLE);
             editTxtComment.setVisibility(View.VISIBLE);
             txtLayoutCode.setVisibility(View.VISIBLE);
-            txtLayoutDiameterI.setVisibility(View.VISIBLE);
-            txtLayoutDiameterO.setVisibility(View.VISIBLE);
             txtLayoutComment.setVisibility(View.VISIBLE);
             txtLayoutHeight.setVisibility(View.VISIBLE);
 
-            bearingDisplay.setVisibility(View.GONE);
+            itemDisplay.setVisibility(View.GONE);
         }
     }
 
@@ -182,12 +171,8 @@ public class BearingAdapter extends RecyclerView.Adapter<BearingAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Bearing bearing = bearingsList.get(position);
-        holder.bearingDisplay.setText("");
-        holder.bearingDisplay.setVisibility(View.GONE);
-        //holder.hiddenCard.setVisibility(View.GONE);
-        //holder.hiddenFrame.setVisibility(View.GONE);
-        //holder.hiddenImage.setVisibility(View.GONE);
+        holder.itemDisplay.setText("");
+        holder.itemDisplay.setVisibility(View.GONE);
     }
 
     @Override

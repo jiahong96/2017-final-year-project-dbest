@@ -53,7 +53,7 @@ public class InquiryActivity extends AppCompatActivity {
 
     TextInputLayout lay_InqTitle;
     ImageView imgBearing,imgBearing2;
-    EditText editTxtCode,editTxtHeight,editTxtDiameterI,editTxtDiameterO,editTxtComment,editTxtTitle;
+    EditText editTxtCode,editTxtHeight,editTxtComment,editTxtTitle;
     Button btnAddBearing,btnCreateBearing;
 
     private String selectedImagePath = "",captureImagePath="";
@@ -396,16 +396,15 @@ public class InquiryActivity extends AppCompatActivity {
             previousView = mLayoutManager.findViewByPosition(i);
  
             editTxtCode = (EditText)previousView.findViewById(R.id.code);
-            editTxtHeight = (EditText)previousView.findViewById(R.id.height);
-            editTxtDiameterI = (EditText)previousView.findViewById(R.id.diameterI);
-            editTxtDiameterO = (EditText)previousView.findViewById(R.id.diameterO);
+            editTxtHeight = (EditText)previousView.findViewById(R.id.quantity);
+            //editTxtDiameterI = (EditText)previousView.findViewById(R.id.diameterI);
+            //editTxtDiameterO = (EditText)previousView.findViewById(R.id.diameterO);
             editTxtComment = (EditText)previousView.findViewById(R.id.extraComment);
 
             imgBearing2 = (ImageView)previousView.findViewById(R.id.imgView);
 
-            if(editTxtHeight.getText().toString().equals("") || editTxtDiameterO.getText().toString().equals("")
-                    || editTxtDiameterI.getText().toString().equals("")){
-                Toast.makeText(InquiryActivity.this, "Please provide bearing measurements at form "+(i+1), Toast.LENGTH_LONG).show();
+            if(editTxtHeight.getText().toString().equals("")){
+                Toast.makeText(InquiryActivity.this, "Please provide item quantity at form "+(i+1), Toast.LENGTH_LONG).show();
                 errorCount++;
                 break;
             }else{
@@ -415,8 +414,8 @@ public class InquiryActivity extends AppCompatActivity {
                     break;
                 }else{
                     bearingList.get(i).setSerialNo(editTxtCode.getText().toString());
-                    bearingList.get(i).setDiameterO(editTxtDiameterO.getText().toString());
-                    bearingList.get(i).setDiameterI(editTxtDiameterI.getText().toString());
+                    //bearingList.get(i).setDiameterO(editTxtDiameterO.getText().toString());
+                    //bearingList.get(i).setDiameterI(editTxtDiameterI.getText().toString());
                     bearingList.get(i).setHeight(editTxtHeight.getText().toString());
                     bearingList.get(i).setExtraComment(editTxtComment.getText().toString());
                 }

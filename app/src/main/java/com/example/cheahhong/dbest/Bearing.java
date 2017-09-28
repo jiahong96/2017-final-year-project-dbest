@@ -9,19 +9,17 @@ import android.os.Parcelable;
 
 public class Bearing implements Parcelable{
     private String serialNo="";
-    private String height="";
-    private String diameterI="";
-    private String diameterO="";
+    private String quantity="";
     private String extraComment="";
     private String imageDownloadUrl="";
     private String imageFileUri="";
     private String imageFileUrl="";
 
-    public Bearing(String serialNo, String height, String diameterI, String diameterO, String extraComment,String imageUrl, String imageFileUri, String imageFileUrl) {
+    public Bearing(String serialNo, String quantity, String extraComment,String imageUrl, String imageFileUri, String imageFileUrl) {
         this.serialNo = serialNo;
-        this.height = height;
-        this.diameterI = diameterI;
-        this.diameterO = diameterO;
+        this.quantity = quantity;
+        //this.diameterI = diameterI;
+        //this.diameterO = diameterO;
         this.extraComment = extraComment;
         this.imageDownloadUrl = imageUrl;
         this.imageFileUri = imageFileUri;
@@ -42,27 +40,11 @@ public class Bearing implements Parcelable{
     }
 
     public String getHeight() {
-        return height;
+        return quantity;
     }
 
-    public void setHeight(String height) {
-        this.height = height;
-    }
-
-    public String getDiameterI() {
-        return diameterI;
-    }
-
-    public void setDiameterI(String diameterI) {
-        this.diameterI = diameterI;
-    }
-
-    public String getDiameterO() {
-        return diameterO;
-    }
-
-    public void setDiameterO(String diameterO) {
-        this.diameterO = diameterO;
+    public void setHeight(String quantity) {
+        this.quantity = quantity;
     }
 
     public String getExtraComment() {
@@ -105,9 +87,7 @@ public class Bearing implements Parcelable{
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(this.serialNo);
-        parcel.writeString(this.height);
-        parcel.writeString(this.diameterI);
-        parcel.writeString(this.diameterO);
+        parcel.writeString(this.quantity);
         parcel.writeString(this.extraComment);
         parcel.writeString(this.imageDownloadUrl);
         parcel.writeString(this.imageFileUri);
@@ -116,9 +96,7 @@ public class Bearing implements Parcelable{
 
     protected Bearing(Parcel in) {
         serialNo = in.readString();
-        height = in.readString();
-        diameterI = in.readString();
-        diameterO = in.readString();
+        quantity = in.readString();
         extraComment = in.readString();
         imageDownloadUrl = in.readString();
         imageFileUri = in.readString();

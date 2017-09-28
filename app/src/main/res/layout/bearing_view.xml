@@ -69,55 +69,67 @@
         android:textSize="@dimen/text_large"
         android:textStyle="bold"
         android:layout_toRightOf="@id/formCardView"
-        android:text="Serial No"
+        android:text="Item Name"
         android:layout_marginTop="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
 
-    <LinearLayout
-        android:id="@+id/measurementLinear"
+    <TextView
+        android:id="@+id/quantity"
         android:layout_below="@+id/code"
         android:layout_toRightOf="@id/formCardView"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/height"
-            android:layout_weight="1"
-            android:textColor="@color/subTextColor"
-            android:text="height"
-            android:textSize="@dimen/text_medium"
-            android:layout_marginTop="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
+        android:textColor="@color/subTextColor"
+        android:text="quantity"
+        android:textSize="@dimen/text_medium"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
 
-        <TextView
-            android:id="@+id/diameterI"
-            android:layout_weight="1"
-            android:text="Diameter(I)"
-            android:textColor="@color/subTextColor"
-            android:textSize="@dimen/text_medium"
-            android:layout_marginTop="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/height"
-            />
+    <!--<LinearLayout-->
+        <!--android:id="@+id/measurementLinear"-->
+        <!--android:layout_below="@+id/code"-->
+        <!--android:layout_toRightOf="@id/formCardView"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+            <!--android:id="@+id/height"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textColor="@color/subTextColor"-->
+            <!--android:text="height"-->
+            <!--android:textSize="@dimen/text_medium"-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--/>-->
 
-        <TextView
-            android:id="@+id/diameterO"
-            android:layout_weight="1"
-            android:text="Diameter(O)"
-            android:textColor="@color/subTextColor"
-            android:textSize="@dimen/text_medium"
-            android:layout_marginTop="3dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/diameterI"
-            />
+        <!--<TextView-->
+            <!--android:id="@+id/diameterI"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Diameter(I)"-->
+            <!--android:textColor="@color/subTextColor"-->
+            <!--android:textSize="@dimen/text_medium"-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/height"-->
+            <!--/>-->
 
-    </LinearLayout>
+        <!--<TextView-->
+            <!--android:id="@+id/diameterO"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="Diameter(O)"-->
+            <!--android:textColor="@color/subTextColor"-->
+            <!--android:textSize="@dimen/text_medium"-->
+            <!--android:layout_marginTop="3dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/diameterI"-->
+            <!--/>-->
+
+    <!--</LinearLayout>-->
 
     <TextView
         android:id="@+id/extraComment"
@@ -128,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/formCardView"
-        android:layout_below="@+id/measurementLinear"
+        android:layout_below="@+id/quantity"
         />
 
 </RelativeLayout>

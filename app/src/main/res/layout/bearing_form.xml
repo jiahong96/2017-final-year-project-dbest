@@ -87,75 +87,75 @@
             android:layout_height="wrap_content"
             android:background="@drawable/edit_txt_selector"
             android:inputType="text"
-            android:hint="Serial No" />
+            android:hint="Item Name" />
     </android.support.design.widget.TextInputLayout>
 
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/heightLayout"
+        android:id="@+id/quantityLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/codeLayout"
         android:layout_marginTop="3dp"
         >
         <EditText
-            android:id="@+id/height"
+            android:id="@+id/quantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_txt_selector"
             android:inputType="number"
-            android:hint="Height"
+            android:hint="Quantity"
             />
     </android.support.design.widget.TextInputLayout>
 
 
 
-    <LinearLayout
-        android:id="@+id/measurementLayout"
-        android:layout_below="@+id/heightLayout"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <!--<LinearLayout-->
+        <!--android:id="@+id/measurementLayout"-->
+        <!--android:layout_below="@+id/heightLayout"-->
+        <!--android:layout_marginTop="3dp"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/dILayout"
-            android:layout_width="match_parent"
-            android:layout_marginRight="1dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            >
-            <EditText
-                android:id="@+id/diameterI"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_txt_selector"
-                android:inputType="number"
-                android:hint="Diameter(I)" />
-        </android.support.design.widget.TextInputLayout>
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/dILayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_marginRight="1dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="2"-->
+            <!--&gt;-->
+            <!--<EditText-->
+                <!--android:id="@+id/diameterI"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/edit_txt_selector"-->
+                <!--android:inputType="number"-->
+                <!--android:hint="Diameter(I)" />-->
+        <!--</android.support.design.widget.TextInputLayout>-->
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/dOLayout"
-            android:layout_width="match_parent"
-            android:layout_marginLeft="1dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            >
-            <EditText
-                android:id="@+id/diameterO"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edit_txt_selector"
-                android:inputType="number"
-                android:hint="Diameter(O)" />
-        </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
+        <!--<android.support.design.widget.TextInputLayout-->
+            <!--android:id="@+id/dOLayout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_marginLeft="1dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="2"-->
+            <!--&gt;-->
+            <!--<EditText-->
+                <!--android:id="@+id/diameterO"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/edit_txt_selector"-->
+                <!--android:inputType="number"-->
+                <!--android:hint="Diameter(O)" />-->
+        <!--</android.support.design.widget.TextInputLayout>-->
+    <!--</LinearLayout>-->
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/commentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/measurementLayout"
+        android:layout_below="@+id/quantityLayout"
         android:layout_marginTop="3dp"
         >
         <EditText
