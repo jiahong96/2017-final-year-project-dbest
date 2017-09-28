@@ -3,7 +3,6 @@ package com.example.cheahhong.dbest;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.animation.Animation;

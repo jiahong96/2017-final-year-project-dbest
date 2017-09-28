@@ -13,6 +13,5 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:id="@+id/splash"
-        android:background="@drawable/dbest" />
-
+        android:src="@drawable/dbest" />
 </LinearLayout>
