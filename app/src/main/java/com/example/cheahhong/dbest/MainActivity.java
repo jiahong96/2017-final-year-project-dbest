@@ -142,14 +142,14 @@ public class MainActivity extends AppCompatActivity{
         displayInquiries();
 
         //initialize and listen to add inquiry button
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent inquiry = new Intent(MainActivity.this,InquiryActivity.class);
-                startActivityForResult(inquiry, 1);
-            }
-        });
+        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //fab.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View view) {
+         //       Intent inquiry = new Intent(MainActivity.this,InquiryActivity.class);
+         //       startActivityForResult(inquiry, 1);
+         //   }
+       // });
     }
 
     @Override
@@ -179,31 +179,35 @@ public class MainActivity extends AppCompatActivity{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_logout) {
-            Log.d("logout","yes");
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-            builder.setMessage("Are you sure you want to Logout?")
-                    .setCancelable(false)
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            mAuth.signOut();
-                            updateUI();
-                        }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                        }
-                    });
-            AlertDialog logoutDialog = builder.create();
-            logoutDialog.show();
-
-            return true;
-        }else if(id == R.id.action_font){
-            fontDialog();
-        }else if(id == R.id.action_feedback){
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://goo.gl/ZXEum8"));
-            startActivity(browserIntent);
+        if (id == R.id.action_add) {
+            Intent inquiry = new Intent(MainActivity.this,InquiryActivity.class);
+            startActivityForResult(inquiry, 1);
         }
+//        if (id == R.id.action_logout) {
+//            Log.d("logout","yes");
+//            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//            builder.setMessage("Are you sure you want to Logout?")
+//                    .setCancelable(false)
+//                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                            mAuth.signOut();
+//                            updateUI();
+//                        }
+//                    })
+//                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int id) {
+//                        }
+//                    });
+//            AlertDialog logoutDialog = builder.create();
+//            logoutDialog.show();
+//
+//            return true;
+//        }else if(id == R.id.action_font){
+//            fontDialog();
+//        }else if(id == R.id.action_feedback){
+//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://goo.gl/ZXEum8"));
+//            startActivity(browserIntent);
+//        }
 
         return super.onOptionsItemSelected(item);
     }

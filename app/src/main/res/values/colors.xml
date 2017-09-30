@@ -3,8 +3,8 @@
     <!--<color name="colorPrimary">#607D8B</color>-->
     <!--<color name="colorPrimaryDark">#37474F</color>-->
     <!--<color name="colorAccent">#40C4FF</color>-->
-    <color name="colorPrimary">#FF5722</color>
-    <color name="colorPrimaryDark">#E64A19</color>
+    <color name="colorPrimary">#D50000</color>
+    <color name="colorPrimaryDark">#B71C1C</color>
     <color name="colorAccent">#40C4FF</color>
 
     <!--<color name="colorSelector">#ECEFF1</color>-->
@@ -13,10 +13,10 @@
     <!--<color name="colorSubElement">#546E7A</color>-->
     <!--<color name="colorEditTextBorder">#808080</color>-->
 
-    <color name="colorSelector">#FFCCBC</color>
-    <color name="colorBackground">#FBE9E7</color>
-    <color name="colorMainElement">#FF7043</color>
-    <color name="colorSubElement">#E64A19</color>
+    <color name="colorSelector">#FFCDD2</color>
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorMainElement">#EF5350</color>
+    <color name="colorSubElement">#D32F2F</color>
     <color name="colorEditTextBorder">#40C4FF</color>
 
     <color name="subTextColor">#424242</color>
