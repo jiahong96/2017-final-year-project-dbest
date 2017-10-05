@@ -11,13 +11,13 @@ public class ItemQuote implements Parcelable{
 
     String itemName     ="";
     double pricePerUnit =0.0;
-    double totalPrice   =0.0;
+    double total   =0.0;
     int    quantity     =0;
 
-    public ItemQuote(String itemName, double pricePerUnit, double totalPrice, int quantity) {
+    public ItemQuote(String itemName, double pricePerUnit, double total, int quantity) {
         this.itemName = itemName;
         this.pricePerUnit = pricePerUnit;
-        this.totalPrice = totalPrice;
+        this.total = total;
         this.quantity = quantity;
     }
 
@@ -31,14 +31,6 @@ public class ItemQuote implements Parcelable{
         this.itemName = itemName;
     }
 
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
     public double getPricePerUnit() {
         return pricePerUnit;
     }
@@ -48,11 +40,11 @@ public class ItemQuote implements Parcelable{
     }
 
     public double getTotal() {
-        return totalPrice;
+        return total;
     }
 
-    public void setTotal(double totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public int getQuantity() {
@@ -71,7 +63,7 @@ public class ItemQuote implements Parcelable{
     protected ItemQuote(Parcel in) {
         itemName = in.readString();
         pricePerUnit = in.readDouble();
-        totalPrice = in.readDouble();
+        total = in.readDouble();
         quantity = in.readInt();
     }
 
@@ -79,7 +71,7 @@ public class ItemQuote implements Parcelable{
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(itemName);
         parcel.writeDouble(pricePerUnit);
-        parcel.writeDouble(totalPrice);
+        parcel.writeDouble(total);
         parcel.writeInt(quantity);
     }
 

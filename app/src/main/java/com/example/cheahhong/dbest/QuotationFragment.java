@@ -205,7 +205,7 @@ public class QuotationFragment extends Fragment {
                         defaultPic.setVisibility(View.GONE);
                     }
 
-                    ItemQuoteAdapter qAdapter = new ItemQuoteAdapter(model.getQuoteBearings());
+                    ItemQuoteAdapter qAdapter = new ItemQuoteAdapter(model.getQuoteItems());
                     LinearLayoutManager layoutManager2 = new LinearLayoutManager(getActivity().getBaseContext());
                     viewHolder.quoteBearings.setHasFixedSize(true);
                     viewHolder.quoteBearings.setLayoutManager(layoutManager2);

@@ -11,37 +11,37 @@ import java.util.ArrayList;
 
 public class Quotation implements Parcelable {
 
-    ArrayList<ItemQuote> quoteBearings;
-    double gTotal=0;
+    ArrayList<ItemQuote> quoteItems;
+    double       discountPercent = 0.0;
+    double       discountAmount  = 0.0;
+    double       gTotal          = 0.0;
+    double       rTotal          = 0.0;
     Payment payment=null;
-
-    public Quotation(ArrayList<ItemQuote> itemQuotes, double gTotal) {
-        this.quoteBearings = itemQuotes;
-        this.gTotal = gTotal;
-    }
-
-    public Quotation(ArrayList<ItemQuote> quoteBearings, double gTotal, Payment payment) {
-        this.quoteBearings = quoteBearings;
-        this.gTotal = gTotal;
-        this.payment = payment;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
 
     public Quotation(){}
 
-    public ArrayList<ItemQuote> getQuoteBearings() {
-        return quoteBearings;
+    public ArrayList<ItemQuote> getQuoteItems() {
+        return quoteItems;
     }
 
-    public void setQuoteBearings(ArrayList<ItemQuote> itemQuotes) {
-        this.quoteBearings = itemQuotes;
+    public void setQuoteItems(ArrayList<ItemQuote> quoteItems) {
+        this.quoteItems = quoteItems;
+    }
+
+    public double getDiscountPercent() {
+        return discountPercent;
+    }
+
+    public void setDiscountPercent(double discountPercent) {
+        this.discountPercent = discountPercent;
+    }
+
+    public double getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(double discountAmount) {
+        this.discountAmount = discountAmount;
     }
 
     public double getgTotal() {
@@ -52,6 +52,22 @@ public class Quotation implements Parcelable {
         this.gTotal = gTotal;
     }
 
+    public double getrTotal() {
+        return rTotal;
+    }
+
+    public void setrTotal(double rTotal) {
+        this.rTotal = rTotal;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -59,14 +75,20 @@ public class Quotation implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(this.quoteBearings);
+        dest.writeTypedList(this.quoteItems);
+        dest.writeDouble(this.rTotal);
         dest.writeDouble(this.gTotal);
+        dest.writeDouble(this.discountAmount);
+        dest.writeDouble(this.discountPercent);
         dest.writeParcelable(this.payment, flags);
     }
 
     protected Quotation(Parcel in) {
-        this.quoteBearings = in.createTypedArrayList(ItemQuote.CREATOR);
+        this.quoteItems = in.createTypedArrayList(ItemQuote.CREATOR);
         this.gTotal = in.readDouble();
+        this.rTotal = in.readDouble();
+        this.discountAmount = in.readDouble();
+        this.discountPercent = in.readDouble();
         this.payment = in.readParcelable(Payment.class.getClassLoader());
     }
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ItemQuoteAdapter extends RecyclerView.Adapter<ItemQuoteAdapter.MyViewHolder>{
 
-    private ArrayList<ItemQuote> quoteBearingsList = new ArrayList<>();
+    private ArrayList<ItemQuote> quoteItemList = new ArrayList<>();
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -37,13 +37,13 @@ public class ItemQuoteAdapter extends RecyclerView.Adapter<ItemQuoteAdapter.MyVi
         }
     }
 
-    public ItemQuoteAdapter(ArrayList<ItemQuote> bearingsList) {
-        this.quoteBearingsList = bearingsList;
+    public ItemQuoteAdapter(ArrayList<ItemQuote> itemList) {
+        this.quoteItemList = itemList;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        ItemQuote quoteBearing = quoteBearingsList.get(position);
+        ItemQuote quoteBearing = quoteItemList.get(position);
         if(quoteBearing.getItemName()== null || quoteBearing.getItemName().isEmpty()){
             holder.serialNo.setText("Item #"+(position+1));
         }else{
@@ -57,7 +57,7 @@ public class ItemQuoteAdapter extends RecyclerView.Adapter<ItemQuoteAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return quoteBearingsList.size();
+        return quoteItemList.size();
     }
 
 }
