@@ -398,12 +398,12 @@ public class InquiryActivity extends AppCompatActivity {
             imgItem2 = (ImageView)previousView.findViewById(R.id.imgView);
 
             if(editTxtHeight.getText().toString().equals("")){
-                Toast.makeText(InquiryActivity.this, "Please provide item quantity at form "+(i+1), Toast.LENGTH_LONG).show();
+                Toast.makeText(InquiryActivity.this, "Please provide Item Quantity at item "+(i+1), Toast.LENGTH_LONG).show();
                 errorCount++;
                 break;
             }else{
                 if(editTxtCode.getText().toString().equals("") && imgItem2.getDrawable() == null ){
-                    Toast.makeText(InquiryActivity.this, "Please provide Serial No or Image at form "+(i+1), Toast.LENGTH_LONG).show();
+                    Toast.makeText(InquiryActivity.this, "Please provide Item Name at item "+(i+1), Toast.LENGTH_LONG).show();
                     errorCount++;
                     break;
                 }else{
