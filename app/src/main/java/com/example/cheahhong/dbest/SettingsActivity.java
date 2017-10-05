@@ -11,12 +11,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.w3c.dom.Text;
 
 public class SettingsActivity extends BaseActivity {
 
@@ -25,6 +29,7 @@ public class SettingsActivity extends BaseActivity {
     public static final String URL_CONTACT = "dbestkchonline@gmail.com";
 
     Button   logout;
+    TextView txtPoint;
     LinearLayout layoutFeedback,layoutFont,layoutAbout,layoutContact;
     String[] fontItems;
     FirebaseAuth mAuth;
@@ -40,12 +45,20 @@ public class SettingsActivity extends BaseActivity {
         updateUI();
 
         fontItems = getResources().getStringArray(R.array.font);
-        
+
+        txtPoint = (TextView)findViewById(R.id.txt_point);
         logout = (Button)findViewById(R.id.btn_logout);
         layoutFeedback = (LinearLayout) findViewById(R.id.layout_feedback);
         layoutFont = (LinearLayout) findViewById(R.id.layout_font);
         layoutAbout = (LinearLayout) findViewById(R.id.layout_about);
         layoutContact = (LinearLayout) findViewById(R.id.layout_contact);
+
+        Animation anim = new AlphaAnimation(0.05f, 1.0f);
+        anim.setDuration(1500); //You can manage the time of the blink with this parameter
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        txtPoint.startAnimation(anim);
 
         layoutFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
