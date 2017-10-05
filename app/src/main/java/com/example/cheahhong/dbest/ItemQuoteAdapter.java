@@ -12,14 +12,14 @@ import java.util.ArrayList;
  * Created by CheahHong on 4/30/2017.
  */
 
-public class QuoteBearingAdapter extends RecyclerView.Adapter<QuoteBearingAdapter.MyViewHolder>{
+public class ItemQuoteAdapter extends RecyclerView.Adapter<ItemQuoteAdapter.MyViewHolder>{
 
-    private ArrayList<BearingQuote> quoteBearingsList = new ArrayList<>();
+    private ArrayList<ItemQuote> quoteBearingsList = new ArrayList<>();
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.bearingquote, parent, false);
+                .inflate(R.layout.item_quote, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -37,17 +37,17 @@ public class QuoteBearingAdapter extends RecyclerView.Adapter<QuoteBearingAdapte
         }
     }
 
-    public QuoteBearingAdapter(ArrayList<BearingQuote> bearingsList) {
+    public ItemQuoteAdapter(ArrayList<ItemQuote> bearingsList) {
         this.quoteBearingsList = bearingsList;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        BearingQuote quoteBearing = quoteBearingsList.get(position);
-        if(quoteBearing.getSerialNo()== null || quoteBearing.getSerialNo().isEmpty()){
-            holder.serialNo.setText("Bearing #"+(position+1));
+        ItemQuote quoteBearing = quoteBearingsList.get(position);
+        if(quoteBearing.getItemName()== null || quoteBearing.getItemName().isEmpty()){
+            holder.serialNo.setText("Item #"+(position+1));
         }else{
-            holder.serialNo.setText(quoteBearing.getSerialNo());
+            holder.serialNo.setText(quoteBearing.getItemName());
         }
 
         holder.quantity.setText("Quantity: "+String.valueOf(quoteBearing.getQuantity()));

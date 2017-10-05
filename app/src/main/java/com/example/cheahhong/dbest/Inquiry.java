@@ -9,23 +9,23 @@ import java.util.List;
 
 public class Inquiry {
 
-    private List<String> inquiryPeoples =null;
-    private ArrayList<Bearing> bearings = new ArrayList<>();
-    private ArrayList<Quotation> quotations = new ArrayList<>();
-    private String inquiryID=null;
-    private String inquiryName=null;
-    private String inquiryOwner=null;
-    private String status=null;
-    private long inquiryTime=0;
-    private ChatMessage lastMessage=null;
-    private int msgUnreadCountForMobile=0;
+    private List<String>         inquiryPeoples          =null;
+    private ArrayList<Item>      items                   = new ArrayList<>();
+    private ArrayList<Quotation> quotations              = new ArrayList<>();
+    private String               inquiryID               =null;
+    private String               inquiryName             =null;
+    private String               inquiryOwner            =null;
+    private String               status                  =null;
+    private long                 inquiryTime             =0;
+    private ChatMessage          lastMessage             =null;
+    private int                  msgUnreadCountForMobile =0;
 
-    public Inquiry(List<String> inquiryPeoples, ArrayList<Bearing> bearings, ArrayList<Quotation> quotations, String inquiryID, String inquiryName, String inquiryOwner,ChatMessage lastMessage, long time,int msgUnreadCountForMobile,String status) {
+    public Inquiry(List<String> inquiryPeoples, ArrayList<Item> items, ArrayList<Quotation> quotations, String inquiryID, String inquiryName, String inquiryOwner, ChatMessage lastMessage, long time, int msgUnreadCountForMobile, String status) {
         this.inquiryID = inquiryID;
         this.inquiryName = inquiryName;
         this.inquiryOwner = inquiryOwner;
         this.inquiryPeoples = inquiryPeoples;
-        this.bearings = bearings;
+        this.items = items;
         this.quotations = quotations;
         this.lastMessage = lastMessage;
         this.msgUnreadCountForMobile=msgUnreadCountForMobile;
@@ -84,12 +84,12 @@ public class Inquiry {
         this.msgUnreadCountForMobile = msgUnreadCountForMobile;
     }
 
-    public ArrayList<Bearing> getBearings() {
-        return bearings;
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
-    public void setBearings(ArrayList<Bearing> bearings) {
-        this.bearings = bearings;
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 
     public ArrayList<Quotation> getQuotations() {

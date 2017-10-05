@@ -1,15 +1,10 @@
 package com.example.cheahhong.dbest;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.ExifInterface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,9 +34,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.IOException;
-import java.io.InputStream;
-
 import static com.example.cheahhong.dbest.LoginActivity.calledPersistance;
 import static com.example.cheahhong.dbest.LoginActivity.database;
 
@@ -54,7 +46,7 @@ public class InquiryFragment extends Fragment {
     private FirebaseAuth mAuth;
     FirebaseUser      user;
     DatabaseReference ref;
-    static FirebaseRecyclerAdapter<Bearing, InquiryViewHolder> adapter;
+    static FirebaseRecyclerAdapter<Item, InquiryViewHolder> adapter;
     RecyclerView        mRecyclerView;
     LinearLayoutManager layoutManager;
 
@@ -134,21 +126,21 @@ public class InquiryFragment extends Fragment {
 
     private void displayInquiries() {
 
-        adapter = new FirebaseRecyclerAdapter<Bearing, InquiryViewHolder>(
-                Bearing.class,
-                R.layout.bearing_view,
+        adapter = new FirebaseRecyclerAdapter<Item, InquiryViewHolder>(
+                Item.class,
+                R.layout.item_history_view,
                 InquiryViewHolder.class,
                 ref
         ) {
             @Override
-            protected void populateViewHolder(final InquiryViewHolder viewHolder, final Bearing model, int position) {
+            protected void populateViewHolder(final InquiryViewHolder viewHolder, final Item model, int position) {
 
                 viewHolder.txtHiddenName.setVisibility(View.GONE);
 
-                if (model.getSerialNo() == null || model.getSerialNo().isEmpty()) {
+                if (model.getItemName() == null || model.getItemName().isEmpty()) {
                     viewHolder.txtItemName.setText("Item #" + (position + 1));
                 } else {
-                    viewHolder.txtItemName.setText(model.getSerialNo());
+                    viewHolder.txtItemName.setText(model.getItemName());
                 }
 
                 if (model.getExtraComment() == null || model.getExtraComment().isEmpty()) {
@@ -158,7 +150,7 @@ public class InquiryFragment extends Fragment {
                 }
 
                 //compulsory
-                viewHolder.txtQuantity.setText("Quantity: " + model.getHeight());
+                viewHolder.txtQuantity.setText("Quantity: " + model.getQuantity());
                 //viewHolder.txtDiameterI.setText("Diameter(In): " + model.getDiameterI());
                 //viewHolder.txtDiameterO.setText("Diameter(Out): " + model.getDiameterO());
 

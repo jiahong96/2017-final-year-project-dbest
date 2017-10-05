@@ -11,16 +11,16 @@ import java.util.ArrayList;
 
 public class Quotation implements Parcelable {
 
-    ArrayList<BearingQuote> quoteBearings;
+    ArrayList<ItemQuote> quoteBearings;
     double gTotal=0;
     Payment payment=null;
 
-    public Quotation(ArrayList<BearingQuote> bearingQuotes, double gTotal) {
-        this.quoteBearings = bearingQuotes;
+    public Quotation(ArrayList<ItemQuote> itemQuotes, double gTotal) {
+        this.quoteBearings = itemQuotes;
         this.gTotal = gTotal;
     }
 
-    public Quotation(ArrayList<BearingQuote> quoteBearings, double gTotal, Payment payment) {
+    public Quotation(ArrayList<ItemQuote> quoteBearings, double gTotal, Payment payment) {
         this.quoteBearings = quoteBearings;
         this.gTotal = gTotal;
         this.payment = payment;
@@ -36,12 +36,12 @@ public class Quotation implements Parcelable {
 
     public Quotation(){}
 
-    public ArrayList<BearingQuote> getQuoteBearings() {
+    public ArrayList<ItemQuote> getQuoteBearings() {
         return quoteBearings;
     }
 
-    public void setQuoteBearings(ArrayList<BearingQuote> bearingQuotes) {
-        this.quoteBearings = bearingQuotes;
+    public void setQuoteBearings(ArrayList<ItemQuote> itemQuotes) {
+        this.quoteBearings = itemQuotes;
     }
 
     public double getgTotal() {
@@ -65,7 +65,7 @@ public class Quotation implements Parcelable {
     }
 
     protected Quotation(Parcel in) {
-        this.quoteBearings = in.createTypedArrayList(BearingQuote.CREATOR);
+        this.quoteBearings = in.createTypedArrayList(ItemQuote.CREATOR);
         this.gTotal = in.readDouble();
         this.payment = in.readParcelable(Payment.class.getClassLoader());
     }

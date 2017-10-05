@@ -7,28 +7,36 @@ import android.os.Parcelable;
  * Created by CheahHong on 5/5/2017.
  */
 
-public class BearingQuote implements Parcelable{
+public class ItemQuote implements Parcelable{
 
-    String serialNo="";
-    double pricePerUnit=0.0;
-    double totalPrice=0.0;
-    int quantity=0;
+    String itemName     ="";
+    double pricePerUnit =0.0;
+    double totalPrice   =0.0;
+    int    quantity     =0;
 
-    public BearingQuote(String serialNo, double pricePerUnit, double totalPrice, int quantity) {
-        this.serialNo = serialNo;
+    public ItemQuote(String itemName, double pricePerUnit, double totalPrice, int quantity) {
+        this.itemName = itemName;
         this.pricePerUnit = pricePerUnit;
         this.totalPrice = totalPrice;
         this.quantity = quantity;
     }
 
-    public BearingQuote(){}
+    public ItemQuote(){}
 
-    public String getSerialNo() {
-        return serialNo;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setSerialNo(String serialNo) {
-        this.serialNo = serialNo;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public double getPricePerUnit() {
@@ -60,8 +68,8 @@ public class BearingQuote implements Parcelable{
         return 0;
     }
 
-    protected BearingQuote(Parcel in) {
-        serialNo = in.readString();
+    protected ItemQuote(Parcel in) {
+        itemName = in.readString();
         pricePerUnit = in.readDouble();
         totalPrice = in.readDouble();
         quantity = in.readInt();
@@ -69,21 +77,21 @@ public class BearingQuote implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(serialNo);
+        parcel.writeString(itemName);
         parcel.writeDouble(pricePerUnit);
         parcel.writeDouble(totalPrice);
         parcel.writeInt(quantity);
     }
 
-    public static final Creator<BearingQuote> CREATOR = new Creator<BearingQuote>() {
+    public static final Creator<ItemQuote> CREATOR = new Creator<ItemQuote>() {
         @Override
-        public BearingQuote createFromParcel(Parcel in) {
-            return new BearingQuote(in);
+        public ItemQuote createFromParcel(Parcel in) {
+            return new ItemQuote(in);
         }
 
         @Override
-        public BearingQuote[] newArray(int size) {
-            return new BearingQuote[size];
+        public ItemQuote[] newArray(int size) {
+            return new ItemQuote[size];
         }
     };
 }

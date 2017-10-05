@@ -21,15 +21,15 @@ import java.util.ArrayList;
  * Created by CheahHong on 4/30/2017.
  */
 
-public class BearingAdapter extends RecyclerView.Adapter<BearingAdapter.MyViewHolder>{
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
 
-    private ArrayList<Bearing> bearingsList = new ArrayList<>();
+    private ArrayList<Item> bearingsList = new ArrayList<>();
     private static ClickListener clickListener;
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.bearing_form, parent, false);
+                .inflate(R.layout.item_form, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -160,13 +160,13 @@ public class BearingAdapter extends RecyclerView.Adapter<BearingAdapter.MyViewHo
     }
 
 
-    public BearingAdapter(ArrayList<Bearing> bearingsList) {
+    public ItemAdapter(ArrayList<Item> bearingsList) {
         this.bearingsList = bearingsList;
     }
 
 
     public void setOnItemClickListener(ClickListener clickListener) {
-        BearingAdapter.clickListener = clickListener;
+        ItemAdapter.clickListener = clickListener;
     }
 
     @Override
@@ -181,8 +181,8 @@ public class BearingAdapter extends RecyclerView.Adapter<BearingAdapter.MyViewHo
     }
 
     public interface ClickListener {
-        void onTakeImgClick(Bearing bearing, View v, int position);
-        void onSelectImgClick(Bearing bearing, View v, int position);
+        void onTakeImgClick(Item item, View v, int position);
+        void onSelectImgClick(Item item, View v, int position);
         void onViewLongClick(View v, int position);
     }
 }

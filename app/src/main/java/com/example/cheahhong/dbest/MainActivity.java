@@ -10,13 +10,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -350,15 +347,15 @@ public class MainActivity extends BaseActivity{
 
 //                int countBreak = 0;
 //                File imgFile;
-//                for(int i=0;i<model.getBearings().size();i++){
+//                for(int i=0;i<model.getItems().size();i++){
 //                    Log.d("imgpath","count");
-//                    imgFile = new File(model.getBearings().get(i).getImageFileUrl());
+//                    imgFile = new File(model.getItems().get(i).getImageFileUrl());
 //                    Log.d("imgpath",imgFile.toString());
 //                    if(imgFile.exists()){
 //                        Log.d("imgpath","exist");
 //                        countBreak++;
 //                        try {
-//                            viewHolder.img.setImageBitmap(handleSamplingAndRotationBitmap(getApplicationContext(),Uri.parse(model.getBearings().get(0).getImageFileUri()),model.getBearings().get(0).getImageFileUrl()));
+//                            viewHolder.img.setImageBitmap(handleSamplingAndRotationBitmap(getApplicationContext(),Uri.parse(model.getItems().get(0).getImageFileUri()),model.getItems().get(0).getImageFileUrl()));
 //                        } catch (IOException e) {
 //                            e.printStackTrace();
 //                        }
@@ -451,14 +448,14 @@ public class MainActivity extends BaseActivity{
 
                 //bearings
                 Bundle bundle = data.getExtras();
-                ArrayList<Bearing> arraylist = new ArrayList<>();
+                ArrayList<Item> arraylist = new ArrayList<>();
                 arraylist = bundle.getParcelableArrayList("bearingList");
 
                 //quotes
                 //ArrayList<Quotation> quotelist = new ArrayList<>();
-                //ArrayList<BearingQuote> bearingQuotes = new ArrayList<>();
+                //ArrayList<ItemQuote> bearingQuotes = new ArrayList<>();
                 //quotelist.add(new Quotation());
-                //bearingQuotes.add(new BearingQuote());
+                //bearingQuotes.add(new ItemQuote());
                 //quotelist.get(0).setQuoteBearings(bearingQuotes);
 
                 String messageID = UUID.randomUUID().toString();
@@ -474,7 +471,7 @@ public class MainActivity extends BaseActivity{
                 inquiry.setInquiryPeoples(inquiryPeoples);
                 inquiry.setLastMessage(new ChatMessage(messageID,"I have sent you an inquiry",user.getUid(),negativeNow,user.getUid(),"inquiry",""));
                 inquiry.setMsgUnreadCountForMobile(0);
-                inquiry.setBearings(arraylist);
+                inquiry.setItems(arraylist);
                 //inquiry.setQuotations(quotelist);
                 inquiry.setStatus("none");
 

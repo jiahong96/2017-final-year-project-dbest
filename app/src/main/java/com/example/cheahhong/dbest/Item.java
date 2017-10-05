@@ -7,43 +7,39 @@ import android.os.Parcelable;
  * Created by CheahHong on 4/24/2017.
  */
 
-public class Bearing implements Parcelable{
-    private String serialNo="";
-    private String quantity="";
-    private String extraComment="";
-    private String imageDownloadUrl="";
-    private String imageFileUri="";
-    private String imageFileUrl="";
+public class Item implements Parcelable{
+    private String itemName         ="";
+    private String quantity         ="";
+    private String extraComment     ="";
+    private String imageDownloadUrl ="";
+    private String imageFileUri     ="";
+    private String imageFileUrl     ="";
 
-    public Bearing(String serialNo, String quantity, String extraComment,String imageUrl, String imageFileUri, String imageFileUrl) {
-        this.serialNo = serialNo;
+    public Item(String itemName, String quantity, String extraComment, String imageUrl, String imageFileUri, String imageFileUrl) {
+        this.itemName = itemName;
         this.quantity = quantity;
-        //this.diameterI = diameterI;
-        //this.diameterO = diameterO;
         this.extraComment = extraComment;
         this.imageDownloadUrl = imageUrl;
         this.imageFileUri = imageFileUri;
         this.imageFileUrl = imageFileUrl;
     }
 
-    public Bearing(){
+    public Item(){
     }
 
-
-
-    public String getSerialNo() {
-        return serialNo;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setSerialNo(String serialNo) {
-        this.serialNo = serialNo;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
     }
 
-    public String getHeight() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setHeight(String quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
@@ -79,6 +75,14 @@ public class Bearing implements Parcelable{
         this.imageFileUri = imageFileUri;
     }
 
+    public String getImageDownloadUrl() {
+        return imageDownloadUrl;
+    }
+
+    public void setImageDownloadUrl(String imageDownloadUrl) {
+        this.imageDownloadUrl = imageDownloadUrl;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -86,7 +90,7 @@ public class Bearing implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.serialNo);
+        parcel.writeString(this.itemName);
         parcel.writeString(this.quantity);
         parcel.writeString(this.extraComment);
         parcel.writeString(this.imageDownloadUrl);
@@ -94,8 +98,8 @@ public class Bearing implements Parcelable{
         parcel.writeString(this.imageFileUrl);
     }
 
-    protected Bearing(Parcel in) {
-        serialNo = in.readString();
+    protected Item(Parcel in) {
+        itemName = in.readString();
         quantity = in.readString();
         extraComment = in.readString();
         imageDownloadUrl = in.readString();
@@ -103,15 +107,15 @@ public class Bearing implements Parcelable{
         imageFileUrl = in.readString();
     }
 
-    public static final Creator<Bearing> CREATOR = new Creator<Bearing>() {
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
         @Override
-        public Bearing createFromParcel(Parcel in) {
-            return new Bearing(in);
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
         }
 
         @Override
-        public Bearing[] newArray(int size) {
-            return new Bearing[size];
+        public Item[] newArray(int size) {
+            return new Item[size];
         }
     };
 }

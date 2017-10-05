@@ -42,9 +42,9 @@ import java.util.Date;
 
 public class InquiryActivity extends AppCompatActivity {
 
-    static ArrayList<Bearing> bearingList;
-    private RecyclerView recyclerView;
-    private BearingAdapter mAdapter;
+    static  ArrayList<Item> itemList;
+    private RecyclerView    recyclerView;
+    private ItemAdapter     mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
 
     View previousView;
@@ -85,14 +85,14 @@ public class InquiryActivity extends AppCompatActivity {
         utility = new Utility();
         imgProcessor = new ImageProcessing();
 
-        bearingList = new ArrayList<>();
-        bearingList.add(new Bearing());
+        itemList = new ArrayList<>();
+        itemList.add(new Item());
         lay_InqTitle = (TextInputLayout) findViewById(R.id.inqLayout);
         btnAddBearing = (Button) findViewById(R.id.btn_add);
         btnCreateBearing = (Button) findViewById(R.id.btn_create);
         editTxtTitle = (EditText) findViewById(R.id.inquiryTitle);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        mAdapter = new BearingAdapter(bearingList);
+        mAdapter = new ItemAdapter(itemList);
 
         recyclerView.setHasFixedSize(false);
         mLayoutManager = new LinearLayoutManager(getBaseContext());
@@ -154,15 +154,15 @@ public class InquiryActivity extends AppCompatActivity {
                 validateBearings();
 
                 if(errorCount == 0) {
-                    if(bearingList.size()<5){
-                        bearingList.add(bearingList.size(),new Bearing());
-                        mAdapter.notifyItemInserted(bearingList.size()-1);
+                    if(itemList.size()<5){
+                        itemList.add(itemList.size(),new Item());
+                        mAdapter.notifyItemInserted(itemList.size()-1);
                     }else{
                         Toast.makeText(InquiryActivity.this, "Cannot exceed maximum amount of 5 bearings", Toast.LENGTH_LONG).show();
                     }
                 }
 
-                Log.d("bearingSize", String.valueOf(bearingList.size()));
+                Log.d("bearingSize", String.valueOf(itemList.size()));
             }
         });
 
@@ -183,16 +183,16 @@ public class InquiryActivity extends AppCompatActivity {
             }
         });
 
-        mAdapter.setOnItemClickListener(new BearingAdapter.ClickListener() {
+        mAdapter.setOnItemClickListener(new ItemAdapter.ClickListener() {
             @Override
-            public void onTakeImgClick(Bearing bearing, View v, int position) {
+            public void onTakeImgClick(Item item, View v, int position) {
                 savedPosition = position;
                 Log.d("Takepicposition", String.valueOf(savedPosition));
                 takePicture();
             }
 
             @Override
-            public void onSelectImgClick(Bearing bearing, View v, int position) {
+            public void onSelectImgClick(Item item, View v, int position) {
                 savedPosition = position;
                 Log.d("selectPIcposition", String.valueOf(savedPosition));
                 launchPhotoStorage();
@@ -284,9 +284,9 @@ public class InquiryActivity extends AppCompatActivity {
                 Log.d("PhotoSelected", "resultok");
                 Log.d("savedBearingPosition", String.valueOf(savedPosition));
                 if (imgFileUri != null) {
-                    bearingList.get(savedPosition).setImageFileUri(imgFileUri.toString());
+                    itemList.get(savedPosition).setImageFileUri(imgFileUri.toString());
                     selectedImagePath = getAbsolutePath(imgFileUri);
-                    bearingList.get(savedPosition).setImageFileUrl(selectedImagePath);
+                    itemList.get(savedPosition).setImageFileUrl(selectedImagePath);
                     try {
                         imgBearing.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(this,imgFileUri,selectedImagePath));
                         //hiddenImgBearing.setImageBitmap(handleSamplingAndRotationBitmap(this,imgFileUri,selectedImagePath));
@@ -308,8 +308,8 @@ public class InquiryActivity extends AppCompatActivity {
                 imgBearing = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.imgView);
                 //hiddenImgBearing = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.hiddenImgView);
                 if (imgFileUri != null) {
-                    bearingList.get(savedPosition).setImageFileUri(imgFileUri.toString());
-                    bearingList.get(savedPosition).setImageFileUrl(captureImagePath);
+                    itemList.get(savedPosition).setImageFileUri(imgFileUri.toString());
+                    itemList.get(savedPosition).setImageFileUrl(captureImagePath);
                     Log.d("imgFIleURI", String.valueOf(imgFileUri));
                     try {
                         imgBearing.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(this,imgFileUri,captureImagePath));
@@ -391,7 +391,7 @@ public class InquiryActivity extends AppCompatActivity {
     }
 
     public void validateBearings(){
-        for(int i=0;i<bearingList.size();i++){
+        for(int i=0;i<itemList.size();i++){
 
             previousView = mLayoutManager.findViewByPosition(i);
  
@@ -413,11 +413,9 @@ public class InquiryActivity extends AppCompatActivity {
                     errorCount++;
                     break;
                 }else{
-                    bearingList.get(i).setSerialNo(editTxtCode.getText().toString());
-                    //bearingList.get(i).setDiameterO(editTxtDiameterO.getText().toString());
-                    //bearingList.get(i).setDiameterI(editTxtDiameterI.getText().toString());
-                    bearingList.get(i).setHeight(editTxtHeight.getText().toString());
-                    bearingList.get(i).setExtraComment(editTxtComment.getText().toString());
+                    itemList.get(i).setItemName(editTxtCode.getText().toString());
+                    itemList.get(i).setQuantity(editTxtHeight.getText().toString());
+                    itemList.get(i).setExtraComment(editTxtComment.getText().toString());
                 }
             }
         }
@@ -429,7 +427,7 @@ public class InquiryActivity extends AppCompatActivity {
 
         // Start MyUploadService to upload the file, so that the file is uploaded
         // even if this Activity is killed or put in the background
-        for(int i=0;i<bearingList.size();i++){
+        for(int i=0;i<itemList.size();i++){
             previousView = mLayoutManager.findViewByPosition(i);
             imgBearing2 = (ImageView)previousView.findViewById(R.id.imgView);
             if(imgBearing2.getDrawable()!=null){
@@ -444,7 +442,7 @@ public class InquiryActivity extends AppCompatActivity {
                 count++;
                 startService(new Intent(this, MyUploadService.class)
                         .putExtra(MyUploadService.EXTRA_BEARING_POSITION, i)
-                        .putExtra(MyUploadService.EXTRA_FILE_URI, bearingList.get(i).getImageFileUri())
+                        .putExtra(MyUploadService.EXTRA_FILE_URI, itemList.get(i).getImageFileUri())
                         .setAction(MyUploadService.ACTION_UPLOAD_BEARING));
             }
 
@@ -459,7 +457,7 @@ public class InquiryActivity extends AppCompatActivity {
         // Got a new intent from MyUploadService with a success or failure
         Log.d("uploadSuccess", String.valueOf(intent.getIntExtra(MyUploadService.EXTRA_BEARING_POSITION,0)));
         imgDownloadUri = intent.getParcelableExtra(MyUploadService.EXTRA_DOWNLOAD_URL);
-        bearingList.get(intent.getIntExtra(MyUploadService.EXTRA_BEARING_POSITION,0)).setImageUrl(imgDownloadUri.toString());
+        itemList.get(intent.getIntExtra(MyUploadService.EXTRA_BEARING_POSITION,0)).setImageUrl(imgDownloadUri.toString());
         count2++;
         if(count==count2){
             Log.d("setActivityResult", "yes");
@@ -471,10 +469,10 @@ public class InquiryActivity extends AppCompatActivity {
 
     private void setActivityResult (){
         //data return
-        Log.d("bearingSizeSet", String.valueOf(bearingList.size()));
+        Log.d("bearingSizeSet", String.valueOf(itemList.size()));
         Intent returnIntent = new Intent();
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("bearingList", bearingList);
+        bundle.putParcelableArrayList("bearingList", itemList);
         returnIntent.putExtras(bundle);
         returnIntent.putExtra("inquiryTitle",editTxtTitle.getText().toString());
 
