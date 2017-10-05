@@ -41,7 +41,6 @@
         <ImageView
             android:id="@+id/imgView"
             android:scaleType="centerCrop"
-            android:src="@drawable/bearings"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
