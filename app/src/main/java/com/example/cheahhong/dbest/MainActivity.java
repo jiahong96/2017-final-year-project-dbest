@@ -12,6 +12,8 @@ import android.graphics.Color;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -139,14 +141,16 @@ public class MainActivity extends BaseActivity{
         displayInquiries();
 
         //initialize and listen to add inquiry button
-        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        //fab.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-         //       Intent inquiry = new Intent(MainActivity.this,InquiryActivity.class);
-         //       startActivityForResult(inquiry, 1);
-         //   }
-       // });
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent inquiry = new Intent(MainActivity.this,InquiryActivity.class);
+                startActivityForResult(inquiry, 1);
+            }
+        });
     }
 
     @Override
@@ -174,7 +178,7 @@ public class MainActivity extends BaseActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -186,82 +190,7 @@ public class MainActivity extends BaseActivity{
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_add) {
-            Intent inquiry = new Intent(MainActivity.this,InquiryActivity.class);
-            startActivityForResult(inquiry, 1);
-        }
-//        if (id == R.id.action_logout) {
-//            Log.d("logout","yes");
-//            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-//            builder.setMessage("Are you sure you want to Logout?")
-//                    .setCancelable(false)
-//                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                            mAuth.signOut();
-//                            updateUI();
-//                        }
-//                    })
-//                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                        }
-//                    });
-//            AlertDialog logoutDialog = builder.create();
-//            logoutDialog.show();
-//
-//            return true;
-//        }else if(id == R.id.action_font){
-//            fontDialog();
-//        }else if(id == R.id.action_feedback){
-//            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://goo.gl/ZXEum8"));
-//            startActivity(browserIntent);
-//        }
-
         return super.onOptionsItemSelected(item);
-    }
-
-    void fontDialog(){
-        SharedPreferences sp=getSharedPreferences("FontSize", 0);
-        final SharedPreferences.Editor Ed=sp.edit();
-
-        LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
-        View msgLayout= inflater.inflate(R.layout.message, null, false);
-        final TextView txtView = (TextView)msgLayout.findViewById(R.id.message_text);
-        int defaultSize = 1;
-
-        if(sp.getString("font",null)!=null){
-            if(sp.getString("font",null).equals("small")){
-                defaultSize = 0;
-            }else if(sp.getString("font",null).equals("medium")){
-                defaultSize = 1;
-            }else if(sp.getString("font",null).equals("large")){
-                defaultSize = 2;
-            }
-        }
-
-        AlertDialog.Builder alt_font = new AlertDialog.Builder(this);
-        //alt_bld.setIcon(R.drawable.icon);
-        alt_font.setTitle("Font Size for Chat");
-        alt_font.setSingleChoiceItems(fontItems, defaultSize, new DialogInterface
-                .OnClickListener() {
-            public void onClick(DialogInterface dialog, int item) {
-                if(item==0){
-                    Log.d("fontSize",fontItems[item]);
-                    Ed.putString("font","small");
-                    Ed.commit();
-                }else if(item==1){
-                    Log.d("fontSize",fontItems[item]);
-                    Ed.putString("font","medium");
-                    Ed.commit();
-                }else if(item==2){
-                    Log.d("fontSize",fontItems[item]);
-                    Ed.putString("font","large");
-                    Ed.commit();
-                }
-                dialog.dismiss();
-            }
-        });
-        AlertDialog alert = alt_font.create();
-        alert.show();
     }
 
     void updateUI(){
@@ -285,7 +214,6 @@ public class MainActivity extends BaseActivity{
         }
         return false;
     }
-
 
     private void startMessageActivity(int position){
         Intent message = new Intent(MainActivity.this,MessageActivity.class);
@@ -523,20 +451,5 @@ public class MainActivity extends BaseActivity{
 //                }
 //            });
         }
-    }
-
-    private void startColorAnimation(final View v,final int position){
-        v.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.main_inquiry_selector));
-        final TransitionDrawable background = (TransitionDrawable) v.getBackground();
-        background.startTransition(300);
-        background.reverseTransition(300);
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //Do something after
-                startMessageActivity(position);
-            }
-        }, 600);
     }
 }
