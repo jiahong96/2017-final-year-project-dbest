@@ -52,9 +52,9 @@ public class InquiryActivity extends AppCompatActivity {
     ImageProcessing imgProcessor;
 
     TextInputLayout lay_InqTitle;
-    ImageView imgBearing,imgBearing2;
+    ImageView imgItem,imgItem2;
     EditText editTxtCode,editTxtHeight,editTxtComment,editTxtTitle;
-    Button btnAddBearing,btnCreateBearing;
+    Button btnAddItem,btnCreateItem;
 
     private String selectedImagePath = "",captureImagePath="";
     private static final int RC_TAKE_PICTURE = 101,RC_CAPTURE_PICTURE = 102;
@@ -88,8 +88,8 @@ public class InquiryActivity extends AppCompatActivity {
         itemList = new ArrayList<>();
         itemList.add(new Item());
         lay_InqTitle = (TextInputLayout) findViewById(R.id.inqLayout);
-        btnAddBearing = (Button) findViewById(R.id.btn_add);
-        btnCreateBearing = (Button) findViewById(R.id.btn_create);
+        btnAddItem = (Button) findViewById(R.id.btn_add);
+        btnCreateItem = (Button) findViewById(R.id.btn_create);
         editTxtTitle = (EditText) findViewById(R.id.inquiryTitle);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapter = new ItemAdapter(itemList);
@@ -146,27 +146,27 @@ public class InquiryActivity extends AppCompatActivity {
             }
         });
 
-        btnAddBearing.setOnClickListener(new View.OnClickListener() {
+        btnAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 errorCount = 0;
 
-                validateBearings();
+                validateItems();
 
                 if(errorCount == 0) {
                     if(itemList.size()<5){
                         itemList.add(itemList.size(),new Item());
                         mAdapter.notifyItemInserted(itemList.size()-1);
                     }else{
-                        Toast.makeText(InquiryActivity.this, "Cannot exceed maximum amount of 5 bearings", Toast.LENGTH_LONG).show();
+                        Toast.makeText(InquiryActivity.this, "Cannot exceed maximum amount of 5 Items", Toast.LENGTH_LONG).show();
                     }
                 }
 
-                Log.d("bearingSize", String.valueOf(itemList.size()));
+                Log.d("itemSize", String.valueOf(itemList.size()));
             }
         });
 
-        btnCreateBearing.setOnClickListener(new View.OnClickListener() {
+        btnCreateItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 errorCount = 0;
@@ -174,7 +174,7 @@ public class InquiryActivity extends AppCompatActivity {
                 if(!validate()){
                     errorCount++;
                 }else{
-                    validateBearings();
+                    validateItems();
                 }
 
                 if(errorCount == 0){
@@ -279,17 +279,15 @@ public class InquiryActivity extends AppCompatActivity {
             Log.d("PhotoSelected", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
             if (resultCode == RESULT_OK) {
                 imgFileUri = data.getData();
-                imgBearing = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.imgView);
-                //hiddenImgBearing = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.hiddenImgView);
+                imgItem = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.imgView);
                 Log.d("PhotoSelected", "resultok");
-                Log.d("savedBearingPosition", String.valueOf(savedPosition));
+                Log.d("savedItemPosition", String.valueOf(savedPosition));
                 if (imgFileUri != null) {
                     itemList.get(savedPosition).setImageFileUri(imgFileUri.toString());
                     selectedImagePath = getAbsolutePath(imgFileUri);
                     itemList.get(savedPosition).setImageFileUrl(selectedImagePath);
                     try {
-                        imgBearing.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(this,imgFileUri,selectedImagePath));
-                        //hiddenImgBearing.setImageBitmap(handleSamplingAndRotationBitmap(this,imgFileUri,selectedImagePath));
+                        imgItem.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(this,imgFileUri,selectedImagePath));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -303,17 +301,15 @@ public class InquiryActivity extends AppCompatActivity {
             Log.d("PhotoCaptured", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
             if (resultCode == RESULT_OK) {
                 Log.d("PhotoCaptured", "resultok");
-                Log.d("savedBearingPosition", String.valueOf(savedPosition));
+                Log.d("savedItemPosition", String.valueOf(savedPosition));
 
-                imgBearing = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.imgView);
-                //hiddenImgBearing = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.hiddenImgView);
+                imgItem = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.imgView);
                 if (imgFileUri != null) {
                     itemList.get(savedPosition).setImageFileUri(imgFileUri.toString());
                     itemList.get(savedPosition).setImageFileUrl(captureImagePath);
                     Log.d("imgFIleURI", String.valueOf(imgFileUri));
                     try {
-                        imgBearing.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(this,imgFileUri,captureImagePath));
-                        //hiddenImgBearing.setImageBitmap(handleSamplingAndRotationBitmap(this,imgFileUri,captureImagePath));
+                        imgItem.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(this,imgFileUri,captureImagePath));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -390,25 +386,23 @@ public class InquiryActivity extends AppCompatActivity {
         return valid;
     }
 
-    public void validateBearings(){
+    public void validateItems(){
         for(int i=0;i<itemList.size();i++){
 
             previousView = mLayoutManager.findViewByPosition(i);
  
             editTxtCode = (EditText)previousView.findViewById(R.id.code);
             editTxtHeight = (EditText)previousView.findViewById(R.id.quantity);
-            //editTxtDiameterI = (EditText)previousView.findViewById(R.id.diameterI);
-            //editTxtDiameterO = (EditText)previousView.findViewById(R.id.diameterO);
             editTxtComment = (EditText)previousView.findViewById(R.id.extraComment);
 
-            imgBearing2 = (ImageView)previousView.findViewById(R.id.imgView);
+            imgItem2 = (ImageView)previousView.findViewById(R.id.imgView);
 
             if(editTxtHeight.getText().toString().equals("")){
                 Toast.makeText(InquiryActivity.this, "Please provide item quantity at form "+(i+1), Toast.LENGTH_LONG).show();
                 errorCount++;
                 break;
             }else{
-                if(editTxtCode.getText().toString().equals("") && imgBearing2.getDrawable() == null ){
+                if(editTxtCode.getText().toString().equals("") && imgItem2.getDrawable() == null ){
                     Toast.makeText(InquiryActivity.this, "Please provide Serial No or Image at form "+(i+1), Toast.LENGTH_LONG).show();
                     errorCount++;
                     break;
@@ -429,16 +423,16 @@ public class InquiryActivity extends AppCompatActivity {
         // even if this Activity is killed or put in the background
         for(int i=0;i<itemList.size();i++){
             previousView = mLayoutManager.findViewByPosition(i);
-            imgBearing2 = (ImageView)previousView.findViewById(R.id.imgView);
-            if(imgBearing2.getDrawable()!=null){
+            imgItem2 = (ImageView)previousView.findViewById(R.id.imgView);
+            if(imgItem2.getDrawable()!=null){
                 if(!utility.isNetworkAvailable(InquiryActivity.this)){
                     Toast.makeText(getApplicationContext(), "No internet connection", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 // Show loading spinner
                 showProgressDialog(getString(R.string.progress_uploading));
-                btnAddBearing.setEnabled(false);
-                btnCreateBearing.setEnabled(false);
+                btnAddItem.setEnabled(false);
+                btnCreateItem.setEnabled(false);
                 count++;
                 startService(new Intent(this, MyUploadService.class)
                         .putExtra(MyUploadService.EXTRA_BEARING_POSITION, i)

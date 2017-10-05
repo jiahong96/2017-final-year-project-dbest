@@ -82,7 +82,7 @@ public class InquiryFragment extends Fragment {
             calledPersistance = true;
         }
 
-        ref = database.getReference("adinquiries").child(user.getUid()).child(inquiryID).child("bearings");
+        ref = database.getReference("adinquiries").child(user.getUid()).child(inquiryID).child("items");
     }
 
     @Override
@@ -151,8 +151,6 @@ public class InquiryFragment extends Fragment {
 
                 //compulsory
                 viewHolder.txtQuantity.setText("Quantity: " + model.getQuantity());
-                //viewHolder.txtDiameterI.setText("Diameter(In): " + model.getDiameterI());
-                //viewHolder.txtDiameterO.setText("Diameter(Out): " + model.getDiameterO());
 
                 if (model.getImageUrl() != null && !model.getImageUrl().equals("")) {
                     viewHolder.progressBar.setVisibility(View.VISIBLE);
