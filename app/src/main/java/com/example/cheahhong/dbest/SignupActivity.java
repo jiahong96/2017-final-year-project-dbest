@@ -29,6 +29,7 @@ public class SignupActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private final String userType = "member";
 
     TextInputLayout layout_email,layout_password,layout_name,layout_repassword;
     EditText _nameText, _emailText,_passwordText,_reEnterPasswordText;
@@ -203,7 +204,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void saveUser(String email,String name,String uid){
-        User user = new User(email,name);
+        User user = new User(email,name,userType,322);
 
         mDatabase.child("users").child(uid).setValue(user, new DatabaseReference.CompletionListener(){
             @Override

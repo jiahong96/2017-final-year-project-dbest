@@ -19,8 +19,17 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import org.w3c.dom.Text;
+
+import static com.example.cheahhong.dbest.LoginActivity.calledPersistance;
+import static com.example.cheahhong.dbest.LoginActivity.database;
 
 public class SettingsActivity extends BaseActivity {
 
@@ -31,9 +40,11 @@ public class SettingsActivity extends BaseActivity {
     Button   logout;
     TextView txtPoint;
     LinearLayout layoutFeedback,layoutFont,layoutAbout,layoutContact;
-    String[] fontItems;
-    FirebaseAuth mAuth;
-    FirebaseUser user;
+    String[]          fontItems;
+    FirebaseAuth      mAuth;
+    FirebaseUser      user;
+    Query             queryUserRef;
+    User appUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +54,16 @@ public class SettingsActivity extends BaseActivity {
         //initialize auth and update UI
         mAuth = FirebaseAuth.getInstance();
         updateUI();
+        appUser = new User();
+
+        //initialize database
+        if (!calledPersistance) {
+            database = FirebaseDatabase.getInstance();
+            database.setPersistenceEnabled(true);
+            calledPersistance = true;
+        }
+
+        queryUserRef = database.getReference("users").orderByChild("email").equalTo(user.getEmail());
 
         fontItems = getResources().getStringArray(R.array.font);
 
@@ -59,6 +80,35 @@ public class SettingsActivity extends BaseActivity {
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
         txtPoint.startAnimation(anim);
+
+        queryUserRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                appUser = dataSnapshot.getValue(User.class);
+                txtPoint.setText(String.valueOf(appUser.getMemberPoint()));
+                Log.d("userData",dataSnapshot.toString());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         layoutFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
