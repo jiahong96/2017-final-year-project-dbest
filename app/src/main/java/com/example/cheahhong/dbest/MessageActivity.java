@@ -29,7 +29,7 @@ public class MessageActivity extends AppCompatActivity {
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setElevation(0);
+            //getSupportActionBar().setElevation(0);
             getSupportActionBar().setTitle(getIntent().getStringExtra("inquiry_Name"));
         }
 
