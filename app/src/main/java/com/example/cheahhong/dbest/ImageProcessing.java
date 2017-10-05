@@ -30,8 +30,8 @@ public class ImageProcessing {
      */
     public static Bitmap handleSamplingAndRotationBitmap(Context context, Uri selectedImage, String path)
             throws IOException {
-        int MAX_HEIGHT = 300;
-        int MAX_WIDTH = 300;
+        int MAX_HEIGHT = 500;
+        int MAX_WIDTH = 500;
 
         // First decode with inJustDecodeBounds=true to check dimensions
         final BitmapFactory.Options options = new BitmapFactory.Options();
