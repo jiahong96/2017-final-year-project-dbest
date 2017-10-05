@@ -48,18 +48,18 @@ public abstract class MyBaseTaskService extends Service {
             percentComplete = (int) (100 * completedUnits / totalUnits);
         }
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_check_white)
-                .setContentTitle(getString(R.string.app_name))
-                .setContentText(caption)
-                .setProgress(100, percentComplete, false)
-                .setOngoing(true)
-                .setAutoCancel(false);
-
-        NotificationManager manager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        manager.notify(PROGRESS_NOTIFICATION_ID, builder.build());
+//        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+//                .setSmallIcon(R.drawable.ic_check_white)
+//                .setContentTitle(getString(R.string.app_name))
+//                .setContentText(caption)
+//                .setProgress(100, percentComplete, false)
+//                .setOngoing(true)
+//                .setAutoCancel(false);
+//
+//        NotificationManager manager =
+//                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//        manager.notify(PROGRESS_NOTIFICATION_ID, builder.build());
     }
 
     /**
@@ -70,19 +70,19 @@ public abstract class MyBaseTaskService extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* requestCode */, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        int icon = success ? R.drawable.ic_check_white : R.drawable.ic_check_white;
+        //int icon = success ? R.drawable.ic_check_white : R.drawable.ic_check_white;
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setSmallIcon(icon)
-                .setContentTitle(getString(R.string.app_name))
-                .setContentText(caption)
-                .setAutoCancel(true)
-                .setContentIntent(pendingIntent);
+        //NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
+        //        .setSmallIcon(icon)
+        //        .setContentTitle(getString(R.string.app_name))
+        //        .setContentText(caption)
+        //        .setAutoCancel(true)
+        //        .setContentIntent(pendingIntent);
 
-        NotificationManager manager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        //NotificationManager manager =
+        //        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-        manager.notify(FINISHED_NOTIFICATION_ID, builder.build());
+        //manager.notify(FINISHED_NOTIFICATION_ID, builder.build());
     }
 
     /**

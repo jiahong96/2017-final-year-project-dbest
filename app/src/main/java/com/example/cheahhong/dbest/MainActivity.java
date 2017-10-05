@@ -51,7 +51,7 @@ import java.util.UUID;
 import static com.example.cheahhong.dbest.LoginActivity.calledPersistance;
 import static com.example.cheahhong.dbest.LoginActivity.database;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends BaseActivity{
 
     private FirebaseAuth mAuth;
     static String[] fontItems;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
 
         //initialize menu tools
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -162,6 +162,16 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    @Override
+    int getContentViewId() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    int getNavigationMenuItemId() {
+        return R.id.action_inquiry;
     }
 
     @Override
