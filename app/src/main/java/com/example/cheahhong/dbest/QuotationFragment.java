@@ -88,6 +88,7 @@ public class QuotationFragment extends Fragment {
         QuotationFragment fragment = new QuotationFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM_ID, param1);
+        args.putString(ARG_PARAM_ID2,param2);
         fragment.setArguments(args);
         return fragment;
     }
