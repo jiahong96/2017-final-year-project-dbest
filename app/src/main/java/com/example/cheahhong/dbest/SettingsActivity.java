@@ -37,9 +37,8 @@ public class SettingsActivity extends BaseActivity {
     public static final String URL_ABOUT = "https://www.facebook.com/Dbestcompanykuching/";
     public static final String URL_CONTACT = "dbestkchonline@gmail.com";
 
-    Button   logout;
     TextView txtPoint;
-    LinearLayout layoutFeedback,layoutFont,layoutAbout,layoutContact;
+    LinearLayout layoutFeedback,layoutFont,layoutAbout,layoutContact,layoutLogout;
     String[]          fontItems;
     FirebaseAuth      mAuth;
     FirebaseUser      user;
@@ -68,11 +67,11 @@ public class SettingsActivity extends BaseActivity {
         fontItems = getResources().getStringArray(R.array.font);
 
         txtPoint = (TextView)findViewById(R.id.txt_point);
-        logout = (Button)findViewById(R.id.btn_logout);
         layoutFeedback = (LinearLayout) findViewById(R.id.layout_feedback);
         layoutFont = (LinearLayout) findViewById(R.id.layout_font);
         layoutAbout = (LinearLayout) findViewById(R.id.layout_about);
         layoutContact = (LinearLayout) findViewById(R.id.layout_contact);
+        layoutLogout = (LinearLayout) findViewById(R.id.layout_logout);
 
         Animation anim = new AlphaAnimation(0.05f, 1.0f);
         anim.setDuration(1500); //You can manage the time of the blink with this parameter
@@ -174,10 +173,10 @@ public class SettingsActivity extends BaseActivity {
             }
         });
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        layoutLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                            Log.d("logout","yes");
+                Log.d("logout","yes");
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
                 builder.setMessage("Are you sure you want to Logout?")
                         .setCancelable(false)
@@ -195,6 +194,7 @@ public class SettingsActivity extends BaseActivity {
                 logoutDialog.show();
             }
         });
+
     }
 
     void fontDialog(){

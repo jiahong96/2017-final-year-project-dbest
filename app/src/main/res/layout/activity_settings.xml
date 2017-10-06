@@ -31,7 +31,7 @@
             android:id="@+id/txt_point"
             android:layout_below="@+id/txt_head"
             android:text="322"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorAccent"
             android:textSize="56sp"
             android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
@@ -152,18 +152,44 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_logout"
+        <LinearLayout
+            android:id="@+id/layout_logout"
+            android:background="@drawable/settings_selector"
+            android:gravity="center_vertical"
+            android:layout_below="@id/layout_about"
+            android:orientation="horizontal"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:text="Logout"
-            android:textAlignment="center"
-            android:theme="@style/AppTheme.Button"
-            android:layout_above="@id/navigation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_logout"
+                android:src="@drawable/ic_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/txt_logout"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="Logout"
+                android:textSize="16sp"
+                android:textColor="@color/subTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_logout"-->
+            <!--android:layout_marginTop="@dimen/activity_vertical_margin"-->
+            <!--android:layout_marginLeft="@dimen/activity_horizontal_margin"-->
+            <!--android:layout_marginRight="@dimen/activity_horizontal_margin"-->
+            <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+            <!--android:text="Logout"-->
+            <!--android:textAlignment="center"-->
+            <!--android:theme="@style/AppTheme.Button"-->
+            <!--android:layout_above="@id/navigation"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"/>-->
 
         <android.support.design.widget.BottomNavigationView
             xmlns:android="http://schemas.android.com/apk/res/android"

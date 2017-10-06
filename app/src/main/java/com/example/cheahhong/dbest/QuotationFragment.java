@@ -177,18 +177,6 @@ public class QuotationFragment extends Fragment {
 
     }
 
-    public static class QuoteBearingViewHolder extends RecyclerView.ViewHolder{
-        TextView total,serialNo,quantity,pricePerUnit;
-
-        public QuoteBearingViewHolder(View itemView) {
-            super(itemView);
-            total = (TextView) itemView.findViewById(R.id.totalprice);
-            serialNo = (TextView) itemView.findViewById(R.id.serialNo);
-            quantity = (TextView) itemView.findViewById(R.id.quantity);
-            pricePerUnit = (TextView) itemView.findViewById(R.id.price);
-        }
-    }
-
     private void displayQuotations() {
 
         adapter = new FirebaseRecyclerAdapter<Quotation, QuotationViewHolder>(
