@@ -221,7 +221,7 @@ public class LoginActivity extends AppCompatActivity {
 //                            FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
                         } else {
-                            onLoginFailed();
+                            onLoginFailed(task.getException().getMessage());
                         }
                     }
                 });
@@ -268,9 +268,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void onLoginFailed() {
+    public void onLoginFailed(String errorMsg) {
         progressDialog.dismiss();
-        Toast.makeText(LoginActivity.this, "Invalid email or password", Toast.LENGTH_LONG).show();
+        Toast.makeText(LoginActivity.this, errorMsg, Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
         _signupLink.setEnabled(true);

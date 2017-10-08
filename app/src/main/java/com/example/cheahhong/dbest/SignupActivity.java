@@ -196,7 +196,7 @@ public class SignupActivity extends AppCompatActivity {
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            onSignupFailed();
+                            onSignupFailed(task.getException().getMessage());
                         }
                     }
                 });
@@ -224,8 +224,8 @@ public class SignupActivity extends AppCompatActivity {
         finish();
     }
 
-    public void onSignupFailed() {
-        Toast.makeText(SignupActivity.this, "Sign Up failed", Toast.LENGTH_LONG).show();
+    public void onSignupFailed(String errorMsg) {
+        Toast.makeText(SignupActivity.this, errorMsg, Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
         _loginLink.setEnabled(true);
         progressDialog.dismiss();
