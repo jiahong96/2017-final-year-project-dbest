@@ -194,7 +194,7 @@ public class BackgroundService extends Service {
                     msgArray = inquiry.getJSONArray("messages");
                     Log.d("yolomsgObj", msgArray.toString());
                     mBuilder.setStyle(inboxStyle);
-                    inboxStyle.setBigContentTitle("Replies from Kuching Bearings");
+                    inboxStyle.setBigContentTitle("D'Best");
                     for (int j=0; j < msgArray.length(); j++) {
                         Log.d("yoloinq", "dd");
                         inboxStyle.addLine(inquiry.getString("inquiryTitle")+": "+msgArray.get(j).toString());
@@ -212,7 +212,7 @@ public class BackgroundService extends Service {
         }
 
         mBuilder.setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Kuching Bearings ")
+                .setContentTitle("D'Best")
                 .setColor(ResourcesCompat.getColor(getResources(), R.color.colorPrimary, null))
                 .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                 .setAutoCancel(true)// clear issued notification when clicked
