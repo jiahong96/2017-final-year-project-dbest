@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -160,7 +162,7 @@ public class QuotationFragment extends Fragment {
     }
 
     public static class QuotationViewHolder extends RecyclerView.ViewHolder{
-        TextView gTotal;
+        TextView gTotal,rTotal,discount;
         RecyclerView quoteBearings;
         Button payment;
         ImageView imgExpandCollapse;
@@ -169,6 +171,8 @@ public class QuotationFragment extends Fragment {
         public QuotationViewHolder(View itemView) {
             super(itemView);
             gTotal = (TextView) itemView.findViewById(R.id.gtotal);
+            rTotal = (TextView) itemView.findViewById(R.id.rtotal);
+            discount = (TextView) itemView.findViewById(R.id.discount);
             quoteBearings = (RecyclerView) itemView.findViewById(R.id.recyclerView2);
             imgExpandCollapse = (ImageView) itemView.findViewById(R.id.expand_collapse);
             payment = (Button) itemView.findViewById(R.id.payment);
@@ -202,7 +206,21 @@ public class QuotationFragment extends Fragment {
                     viewHolder.quoteBearings.setAdapter(qAdapter);
 
                     hideQuotation(viewHolder);
-                    viewHolder.gTotal.setText("RM "+String.format("%.2f", model.getgTotal()));
+                    if(model.getDiscountAmount()>0 && model.getDiscountPercent()>0){
+                        viewHolder.discount.setVisibility(View.VISIBLE);
+                        viewHolder.discount.setText(String.format("%.0f", model.getDiscountPercent())+"% OFF");
+                        viewHolder.rTotal.setVisibility(View.VISIBLE);
+                        viewHolder.rTotal.setTextColor(Color.parseColor("#424242"));
+                        viewHolder.rTotal.setText("RM "+String.format("%.2f", model.getrTotal()));
+                        viewHolder.rTotal.setPaintFlags(viewHolder.gTotal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                        viewHolder.gTotal.setText("RM "+String.format("%.2f", model.getgTotal()));
+                    }else{
+                        viewHolder.gTotal.setText("RM "+String.format("%.2f", model.getgTotal()));
+                        viewHolder.rTotal.setVisibility(View.GONE);
+                        viewHolder.discount.setVisibility(View.GONE);
+                    }
+
                     viewHolder.rl.setOnClickListener(new View.OnClickListener() {
                         int count = 1;
                         int rotationAngle=0;
@@ -313,9 +331,7 @@ public class QuotationFragment extends Fragment {
             public void showQuotation(QuotationViewHolder viewHolder){
                 viewHolder.quoteBearings.setVisibility(View.VISIBLE);
             }
-
         };
-
         mRecyclerView.setAdapter(adapter);
     }
 
