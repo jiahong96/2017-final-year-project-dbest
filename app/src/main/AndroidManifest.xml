@@ -28,10 +28,12 @@
         <receiver
             android:name=".BootUpReceiver"
             android:enabled="true"
+            android:exported="true"
             android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
             <intent-filter>
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="com.example.cheahhong.dbest.RestartSensor"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -65,9 +67,12 @@
         </activity>
         <activity android:name=".BaseActivity">
         </activity>
-        <activity android:name=".ProductActivity">
-        </activity>
         <activity android:name=".SettingsActivity">
+        </activity>
+        <activity
+            android:name=".ProductActivity"
+            android:label="@string/title_activity_product"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

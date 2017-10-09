@@ -52,6 +52,8 @@ import static com.example.cheahhong.dbest.LoginActivity.database;
 
 public class MainActivity extends BaseActivity{
 
+    Intent mServiceIntent;
+    private BackgroundService mNotifyService;
     private FirebaseAuth mAuth;
     static String[] fontItems;
     static String[] menuItems;
@@ -94,8 +96,10 @@ public class MainActivity extends BaseActivity{
         }
 
         //initialize notification
+        mNotifyService = new BackgroundService();
+        mServiceIntent = new Intent(MainActivity.this, mNotifyService.getClass());
         if(!isMyServiceRunning(BackgroundService.class)){
-            startService(new Intent(this,BackgroundService.class));
+            startService(mServiceIntent);
         }
 
         //initialize recyclerview
@@ -167,6 +171,12 @@ public class MainActivity extends BaseActivity{
         super.onPause();
     }
 
+    @Override
+    protected void onDestroy() {
+        stopService(mServiceIntent);
+        Log.i("MAINACT", "onDestroy!");
+        super.onDestroy();
+    }
     @Override
     int getContentViewId() {
         return R.layout.activity_main;
