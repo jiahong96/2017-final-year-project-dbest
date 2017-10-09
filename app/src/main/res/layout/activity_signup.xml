@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-                                             android:background="@color/colorBackground"
+                                             android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.cheahhong.dbest.SignupActivity">
@@ -22,8 +22,8 @@
             android:paddingRight="24dp">
 
             <ImageView android:src="@drawable/dbest"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_marginBottom="24dp"
                 android:layout_gravity="center_horizontal" />
 
