@@ -1,105 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/main_inquiry_selector"
-    android:orientation="vertical"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:id="@+id/relativeContent"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
+    <android.support.v7.widget.CardView
+        android:id="@+id/CardView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardElevation="4dp"
+        card_view:cardCornerRadius="3dp"
+        >
 
-        <!--<android.support.v7.widget.CardView-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="50dp"-->
-            <!--android:layout_marginRight="@dimen/activity_horizontal_margin"-->
-            <!--android:id="@+id/CardView"-->
-            <!--app:cardCornerRadius="2dp"-->
-            <!--app:cardBackgroundColor="#EEEEEE"-->
-            <!--android:innerRadius="0dp"-->
-            <!--android:shape="ring"-->
-            <!--android:thicknessRatio="1.9">-->
-            <!--<ImageView-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_width="50dp"-->
-                <!--android:id="@+id/imageView1"-->
-                <!--android:src="@drawable/dog"-->
-                <!--&gt;-->
-            <!--</ImageView>-->
-        <!--</android.support.v7.widget.CardView>-->
+        <RelativeLayout
+            android:id="@+id/relativeContent"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="aaaaaaaaaaaaaaaaaaaa"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_large"
+                android:id="@+id/title"
+                android:layout_alignParentTop="true"
+                />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="aaaaaaaaaaaaaaaaaaaa"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_large"
-            android:id="@+id/title"
-            android:layout_alignParentTop="true"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sep 17, 08:33"
+                android:textColor="@color/subTextColor"
+                android:textSize="@dimen/text_small"
+                android:layout_alignTop="@+id/title"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/time"
+                />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sep 17, 08:33"
-            android:textColor="@color/subTextColor"
-            android:textSize="@dimen/text_small"
-            android:layout_alignTop="@+id/title"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:id="@+id/time"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LastMessage: @@"
+                android:textColor="@color/subTextColor"
+                android:textSize="@dimen/text_medium"
+                android:layout_alignLeft="@+id/title"
+                android:layout_below="@+id/title"
+                android:id="@+id/content"
+                android:layout_marginTop="5dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LastMessage: @@"
-            android:textColor="@color/subTextColor"
-            android:textSize="@dimen/text_medium"
-            android:layout_alignLeft="@+id/title"
-            android:layout_below="@+id/title"
-            android:id="@+id/content"
-            android:layout_marginTop="5dp" />
+            <TextView
+                android:layout_height="20dp"
+                android:layout_width="20dp"
+                android:text="2"
+                android:textSize="@dimen/text_small"
+                android:textColor="@color/white"
+                android:gravity="center_vertical|center_horizontal"
+                android:id="@+id/notification"
+                android:background="@drawable/round"
+                android:layout_alignTop="@+id/content"
+                android:layout_alignRight="@+id/time"
+                />
+        </RelativeLayout>
 
-        <!--<ImageView-->
-            <!--android:layout_height="20dp"-->
-            <!--android:layout_width="20dp"-->
-            <!--android:src="@mipmap/ic_tick"-->
-            <!--android:id="@+id/status"-->
-            <!--android:layout_alignTop="@+id/content"-->
-            <!--android:layout_toLeftOf="@+id/notification"-->
-            <!--/>-->
-
-        <TextView
-            android:layout_height="20dp"
-            android:layout_width="20dp"
-            android:text="2"
-            android:textSize="@dimen/text_small"
-            android:textColor="@color/white"
-            android:gravity="center_vertical|center_horizontal"
-            android:id="@+id/notification"
-            android:background="@drawable/round"
-            android:layout_alignTop="@+id/content"
-            android:layout_alignRight="@+id/time"
-            />
-    </RelativeLayout>
-
+    </android.support.v7.widget.CardView>
     <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_height="0.3dp"-->
-        <!--android:layout_below="@+id/relativeContent"-->
-        <!--android:background="@android:color/darker_gray"/>-->
-
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:layout_height="0.3dp"-->
+    <!--android:layout_below="@+id/relativeContent"-->
+    <!--android:background="@android:color/darker_gray"/>-->
 </RelativeLayout>
