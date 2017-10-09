@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
@@ -32,6 +33,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -47,8 +49,9 @@ public class InquiryActivity extends AppCompatActivity {
     private ItemAdapter     mAdapter;
     RecyclerView.LayoutManager mLayoutManager;
 
-    View previousView;
-    Utility utility;
+    ScrollView      scrollView;
+    View            previousView;
+    Utility         utility;
     ImageProcessing imgProcessor;
 
     TextInputLayout lay_InqTitle;
@@ -91,6 +94,8 @@ public class InquiryActivity extends AppCompatActivity {
         btnAddItem = (Button) findViewById(R.id.btn_add);
         btnCreateItem = (Button) findViewById(R.id.btn_create);
         editTxtTitle = (EditText) findViewById(R.id.inquiryTitle);
+
+        scrollView = (ScrollView) findViewById(R.id.scroll);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mAdapter = new ItemAdapter(itemList);
 
@@ -99,6 +104,25 @@ public class InquiryActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
+        mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(final int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Do something after
+                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                }, 200);
+
+            }
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+            }
+        });
 
         // Restore instance state
         if (savedInstanceState != null) {
@@ -173,6 +197,7 @@ public class InquiryActivity extends AppCompatActivity {
 
                 if(!validate()){
                     errorCount++;
+                    scrollView.fullScroll(ScrollView.FOCUS_UP);
                 }else{
                     validateItems();
                 }

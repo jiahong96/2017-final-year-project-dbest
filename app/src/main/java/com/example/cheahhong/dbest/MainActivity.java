@@ -65,6 +65,7 @@ public class MainActivity extends BaseActivity{
     RecyclerView      mRecyclerView;
     TextView          quoteDefault;
     ImageView         defaultPic;
+    LinearLayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,9 +99,10 @@ public class MainActivity extends BaseActivity{
         }
 
         //initialize recyclerview
+        layoutManager = new LinearLayoutManager(this.getBaseContext());
         mRecyclerView = (RecyclerView)findViewById(R.id.recyclerViewMain);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getBaseContext()));
+        mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
         //initialize firebase database references
@@ -340,6 +342,19 @@ public class MainActivity extends BaseActivity{
             }
         };
         mRecyclerView.setAdapter(adapter);
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onItemRangeInserted(final int positionStart, int itemCount) {
+                super.onItemRangeInserted(positionStart, itemCount);
+                if (positionStart == 0)  {
+                    layoutManager.scrollToPosition(positionStart);
+                }
+            }
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount) {
+                super.onItemRangeChanged(positionStart, itemCount);
+            }
+        });
         registerForContextMenu(mRecyclerView);
     }
 
