@@ -49,18 +49,18 @@
 
         <LinearLayout
             android:id="@+id/layout_feedback"
-            android:background="@drawable/settings_selector"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_below="@id/line"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/img_feedback"
                 android:src="@drawable/ic_feedback"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -76,18 +76,18 @@
 
         <LinearLayout
             android:id="@+id/layout_font"
-            android:background="@drawable/settings_selector"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_below="@id/layout_feedback"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/img_font"
                 android:src="@drawable/ic_text"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -102,18 +102,18 @@
 
         <LinearLayout
             android:id="@+id/layout_contact"
-            android:background="@drawable/settings_selector"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_below="@id/layout_font"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/img_contact"
                 android:src="@drawable/ic_mail"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -128,18 +128,18 @@
 
         <LinearLayout
             android:id="@+id/layout_about"
-            android:background="@drawable/settings_selector"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_below="@id/layout_contact"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/img_about"
                 android:src="@drawable/ic_about"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -154,18 +154,18 @@
 
         <LinearLayout
             android:id="@+id/layout_logout"
-            android:background="@drawable/settings_selector"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:layout_below="@id/layout_about"
             android:orientation="horizontal"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/img_logout"
                 android:src="@drawable/ic_logout"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -192,12 +192,11 @@
             <!--android:layout_height="wrap_content"/>-->
 
         <android.support.design.widget.BottomNavigationView
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/navigation"
+            android:background="@color/white"
+            app:elevation="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/windowBackground"
             android:layout_alignParentBottom="true"
             app:menu="@menu/menu_home"
             />
