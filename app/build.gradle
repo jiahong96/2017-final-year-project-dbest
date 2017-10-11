@@ -40,6 +40,7 @@ dependencies {
     compile 'com.firebaseui:firebase-ui:1.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.paypal.sdk:paypal-android-sdk:2.15.3'
+    compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.1.1'
 }
