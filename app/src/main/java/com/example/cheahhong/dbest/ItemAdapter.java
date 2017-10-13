@@ -56,7 +56,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
 
             itemImage = (ImageView)view.findViewById(R.id.imgView);
             imgTakePhoto = (ImageView)view.findViewById(R.id.imgIcon);
-            expandIcon = (ImageView)view.findViewById(R.id.expand_collapse);
+            //expandIcon = (ImageView)view.findViewById(R.id.expand_collapse);
 
             editTxtCode = (EditText)view.findViewById(R.id.code);
             editTxtQuantity = (EditText)view.findViewById(R.id.quantity);
@@ -66,7 +66,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
             txtLayoutHeight = (TextInputLayout) view.findViewById(R.id.quantityLayout);
             txtLayoutComment = (TextInputLayout) view.findViewById(R.id.commentLayout);
 
-            rotateIcon();
+            //rotateIcon();
 
             //take photo
             imgTakePhoto.setOnClickListener(new View.OnClickListener() {
@@ -93,24 +93,24 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
             });
 
             //rotate expand ICON and hide/expand views
-            form.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(count>0){
-                        Log.d("count", String.valueOf(count));
-                        count++;
-                        if(count%2==0){
-                            Log.d("hide","ya");
-                            rotateIcon();
-                            hideBearingForm();
-                        }else{
-                            Log.d("expand","ya");
-                            rotateIcon();
-                            expandBearingForm();
-                        }
-                    }
-                }
-            });
+//            form.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    if(count>0){
+//                        Log.d("count", String.valueOf(count));
+//                        count++;
+//                        if(count%2==0){
+//                            Log.d("hide","ya");
+//                            rotateIcon();
+//                            hideBearingForm();
+//                        }else{
+//                            Log.d("expand","ya");
+//                            rotateIcon();
+//                            expandBearingForm();
+//                        }
+//                    }
+//                }
+//            });
         }
 
 

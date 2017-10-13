@@ -65,21 +65,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ImageView
-        android:src="@drawable/expand_collapse"
-        android:id="@+id/expand_collapse"
-        android:layout_alignTop="@+id/frameLayout"
-        android:layout_alignParentRight="true"
-        android:layout_width="27dp"
-        android:layout_height="27dp" />
+    <!--<ImageView-->
+        <!--android:src="@drawable/expand_collapse"-->
+        <!--android:id="@+id/expand_collapse"-->
+        <!--android:layout_alignTop="@+id/frameLayout"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_width="27dp"-->
+        <!--android:layout_height="27dp" />-->
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/codeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/frameLayout"
-        android:layout_alignBottom="@+id/frameLayout"
-        android:layout_marginTop="3dp"
+        android:layout_alignTop="@+id/frameLayout"
+        android:layout_marginTop="25dp"
         >
         <EditText
             android:id="@+id/code"
@@ -95,6 +95,7 @@
         android:id="@+id/quantityLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/frameLayout"
         android:layout_below="@id/codeLayout"
         android:layout_marginTop="3dp"
         >
@@ -155,7 +156,7 @@
         android:id="@+id/commentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/quantityLayout"
+        android:layout_below="@+id/frameLayout"
         android:layout_marginTop="3dp"
         >
         <EditText
