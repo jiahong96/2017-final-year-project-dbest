@@ -540,16 +540,19 @@ public class ChatFragment extends Fragment {
                             })
                             .into(viewHolder.imgView);
 
+                    Glide.with(getActivity())
+                            .load(model.getLink())
+                            .into(viewHolder.hiddenImgView);
+
                     viewHolder.imgView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
-                            if(viewHolder.imgView.getDrawable() != null) {
+                            if(viewHolder.hiddenImgView.getDrawable() != null) {
                                 LayoutInflater factory = LayoutInflater.from(getActivity());
                                 final View view = factory.inflate(R.layout.dialog_photo, null);
 
                                 PhotoView photo = (PhotoView) view.findViewById(R.id.imgView);
-                                Bitmap bitmap1 = ((BitmapDrawable) viewHolder.imgView.getDrawable()).getBitmap();
+                                Bitmap bitmap1 = ((BitmapDrawable) viewHolder.hiddenImgView.getDrawable()).getBitmap();
                                 photo.setImageBitmap(bitmap1);
 
                                 final AlertDialog alertadd =
@@ -737,7 +740,7 @@ public class ChatFragment extends Fragment {
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder{
         TextView messageText,messageUser,messageTime,unreadMessages;
-        ImageView    imgView;
+        ImageView    imgView,hiddenImgView;
         ProgressBar progress;
         LinearLayout content, contentwithBG,mainLayout;
         RelativeLayout unreadLayout,msgRelativeLayout;
@@ -753,6 +756,7 @@ public class ChatFragment extends Fragment {
             messageText = (TextView)itemView.findViewById(R.id.message_text);
             messageTime = (TextView)itemView.findViewById(R.id.messageTime);
             imgView = (ImageView) itemView.findViewById(R.id.imgView);
+            hiddenImgView = (ImageView) itemView.findViewById(R.id.hiddenImgView);
             progress = (ProgressBar) itemView.findViewById(R.id.progress);
             cardView = (CardView) itemView.findViewById(R.id.cardView);
 

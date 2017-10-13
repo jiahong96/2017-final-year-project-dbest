@@ -104,7 +104,7 @@ public class InquiryFragment extends Fragment {
 
     public static class InquiryViewHolder extends RecyclerView.ViewHolder {
         TextView txtItemName, txtQuantity, txtHiddenName, txtComment;
-        ImageView      imgItem;
+        ImageView      imgItem,hiddenImgView;
         ProgressBar    progressBar;
         CardView       cv;
         RelativeLayout rl;
@@ -119,6 +119,7 @@ public class InquiryFragment extends Fragment {
             rl = (RelativeLayout) itemView.findViewById(R.id.bearingLayout);
 
             cv = (CardView) itemView.findViewById(R.id.formCardView);
+            hiddenImgView = (ImageView) itemView.findViewById(R.id.hiddenImgView);
             imgItem = (ImageView) itemView.findViewById(R.id.imgView);
         }
     }
@@ -171,18 +172,22 @@ public class InquiryFragment extends Fragment {
                                 }
                             })
                             .into(viewHolder.imgItem);
+
+                    Glide.with(getActivity())
+                            .load(model.getImageUrl())
+                            .into(viewHolder.hiddenImgView);
                 }
 
 
                 viewHolder.imgItem.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (viewHolder.imgItem.getDrawable() != null) {
+                        if (viewHolder.hiddenImgView.getDrawable() != null) {
                             LayoutInflater factory = LayoutInflater.from(getActivity());
                             final View view = factory.inflate(R.layout.dialog_photo, null);
 
                             PhotoView photo = (PhotoView) view.findViewById(R.id.imgView);
-                            Bitmap bitmap1 = ((BitmapDrawable) viewHolder.imgItem.getDrawable()).getBitmap();
+                            Bitmap bitmap1 = ((BitmapDrawable) viewHolder.hiddenImgView.getDrawable()).getBitmap();
                             photo.setImageBitmap(bitmap1);
 
                             final AlertDialog alertadd =
