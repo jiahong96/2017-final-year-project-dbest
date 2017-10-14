@@ -31,11 +31,11 @@ public class SignupActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private final String userType = "member";
 
-    TextInputLayout layout_email,layout_password,layout_name,layout_repassword;
-    EditText _nameText, _emailText,_passwordText,_reEnterPasswordText;
+    TextInputLayout layout_email,layout_password,layout_name,layout_repassword,layout_contact,layout_address;;
+    EditText _nameText, _emailText,_passwordText,_reEnterPasswordText,_contactText, _addressText;
     Button _signupButton;
     TextView _loginLink;
-    String email,name;
+    String email,name,contact,address;
     ProgressDialog progressDialog;
     Utility utility;
 
@@ -58,10 +58,35 @@ public class SignupActivity extends AppCompatActivity {
         layout_password = (TextInputLayout)findViewById(R.id.lay_password);
         layout_name = (TextInputLayout)findViewById(R.id.lay_name);
         layout_repassword = (TextInputLayout)findViewById(R.id.lay_repassword);
+        layout_contact = (TextInputLayout)findViewById(R.id.lay_contact);
+        layout_address = (TextInputLayout)findViewById(R.id.lay_address);
         _nameText= (EditText)findViewById(R.id.input_name);
         _emailText= (EditText)findViewById(R.id.input_email);
         _passwordText= (EditText)findViewById(R.id.input_password);
         _reEnterPasswordText= (EditText)findViewById(R.id.input_reEnterPassword);
+        _contactText = (EditText)findViewById(R.id.input_contact);
+        _addressText = (EditText)findViewById(R.id.input_address);
+
+
+        _contactText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (_contactText.getText().length() > 0) {
+                    layout_contact.setError(null);
+                    layout_contact.setErrorEnabled(false);
+                }
+            }
+        });
 
         _nameText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -180,6 +205,8 @@ public class SignupActivity extends AppCompatActivity {
 
         name = _nameText.getText().toString();
         email = _emailText.getText().toString();
+        contact = _contactText.getText().toString();
+        address = _addressText.getText().toString();
         // String mobile = _mobileText.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
@@ -192,7 +219,7 @@ public class SignupActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            saveUser(email,name,user.getUid());
+                            saveUser(email,name,contact,address,user.getUid());
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -203,8 +230,8 @@ public class SignupActivity extends AppCompatActivity {
 
     }
 
-    public void saveUser(String email,String name,String uid){
-        User user = new User(email,name,userType,322);
+    public void saveUser(String email,String name,String contact,String address,String uid){
+        User user = new User(email,name,contact,address,userType,322);
 
         mDatabase.child("users").child(uid).setValue(user, new DatabaseReference.CompletionListener(){
             @Override
@@ -236,6 +263,7 @@ public class SignupActivity extends AppCompatActivity {
 
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
+        String contact = _contactText.getText().toString();
 //        String mobile = _mobileText.getText().toString();
         String password = _passwordText.getText().toString();
         String reEnterPassword = _reEnterPasswordText.getText().toString();
@@ -249,6 +277,12 @@ public class SignupActivity extends AppCompatActivity {
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             layout_email.setErrorEnabled(true);
             layout_email.setError("enter a valid email address");
+            valid = false;
+        }
+
+        if (contact.isEmpty() || contact.length() <9){
+            layout_contact.setErrorEnabled(true);
+            layout_contact.setError("Please input a valid number");
             valid = false;
         }
 

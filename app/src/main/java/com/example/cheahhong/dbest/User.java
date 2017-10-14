@@ -5,14 +5,19 @@ package com.example.cheahhong.dbest;
  */
 
 public class User {
+
     String email;
     String name;
-    String  type;
-    int memberPoint;
+    String contact;
+    String address;
+    String type;
+    int    memberPoint;
 
-    public User(String email, String name,String type,int memberPoint) {
+    public User(String email, String name,String contact,String address,String type,int memberPoint) {
         this.email = email;
         this.name = name;
+        this.contact = contact;
+        this.address = address;
         this.type = type;
         this.memberPoint = memberPoint;
     }
@@ -44,11 +49,27 @@ public class User {
         this.type = type;
     }
 
-    public Integer getMemberPoint() {
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getMemberPoint() {
         return memberPoint;
     }
 
-    public void setMemberPoint(Integer memberPoint) {
+    public void setMemberPoint(int memberPoint) {
         this.memberPoint = memberPoint;
     }
 }

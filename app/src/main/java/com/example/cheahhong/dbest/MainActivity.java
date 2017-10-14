@@ -134,7 +134,7 @@ public class MainActivity extends BaseActivity{
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 Log.d("inquiryRemoved","removed one inquiry-"+dataSnapshot);
                 Log.d("inquiryRemoved","removed one inquiry-"+dataSnapshot.child("inquiryName").getValue());
-                Toast.makeText(MainActivity.this, "removed inquiry - "+dataSnapshot.child("inquiryName").getValue(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(MainActivity.this, "removed inquiry - "+dataSnapshot.child("inquiryName").getValue(), Toast.LENGTH_LONG).show();
             }
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
