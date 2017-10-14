@@ -33,6 +33,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
@@ -68,6 +69,7 @@ public class QuotationFragment extends Fragment {
     private FirebaseAuth mAuth;
     FirebaseUser user;
     DatabaseReference ref,ref2;
+    Query queryRef;
     static FirebaseRecyclerAdapter<Quotation, QuotationViewHolder> adapter;
 
     RecyclerView mRecyclerView;
@@ -115,31 +117,8 @@ public class QuotationFragment extends Fragment {
         ref = database.getReference("adinquiries").child(user.getUid()).child(inquiryID).child("quotations");
         ref2 = database.getReference("inquiries").child(inquiryID).child("quotations");
 
-        ref2.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        queryRef = database.getReference("adinquiries").child(user.getUid()).child(inquiryID).child("quotations").orderByChild("time");
+        queryRef.keepSynced(true);
     }
 
     @Override
@@ -187,7 +166,7 @@ public class QuotationFragment extends Fragment {
                 Quotation.class,
                 R.layout.quotation,
                 QuotationViewHolder.class,
-                ref2
+                queryRef
         ) {
             @Override
             protected void populateViewHolder(final QuotationViewHolder viewHolder, final Quotation model, final int position) {
@@ -214,9 +193,9 @@ public class QuotationFragment extends Fragment {
                         viewHolder.rTotal.setText("RM "+String.format("%.2f", model.getrTotal()));
                         viewHolder.rTotal.setPaintFlags(viewHolder.gTotal.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-                        viewHolder.gTotal.setText("RM "+String.format("%.2f", model.getgTotal()));
+                        viewHolder.gTotal.setText("RM "+String.format("%.2f", model.getgTotal()) + "(#"+ (adapter.getItemCount()-position) + ")");
                     }else{
-                        viewHolder.gTotal.setText("RM "+String.format("%.2f", model.getgTotal()));
+                        viewHolder.gTotal.setText("RM "+String.format("%.2f", model.getgTotal()) + "(#"+ (adapter.getItemCount()-position) + ")");
                         viewHolder.rTotal.setVisibility(View.GONE);
                         viewHolder.discount.setVisibility(View.GONE);
                     }
@@ -373,22 +352,22 @@ public class QuotationFragment extends Fragment {
 
                         database.getReference("adconversations").child(user.getUid()).child(inquiryID+"?"+inquiryName).child(messageID)
                                 .setValue(new ChatMessage
-                                        (messageID,"I have paid MYR "+amount+" at Quotation "+(pos+1),
+                                        (messageID,"I have paid MYR "+amount+" at Quotation "+(adapter.getItemCount()-pos),
                                                 user.getUid(),new Date().getTime(),user.getUid(),"payment",""));
 
                         database.getReference("conversations").child(inquiryID).child(messageID)
                                 .setValue(new ChatMessage
-                                        (messageID,"I have paid MYR "+amount+" at Quotation "+(pos+1),
+                                        (messageID,"I have paid MYR "+amount+" at Quotation "+(adapter.getItemCount()-pos),
                                                 user.getUid(),new Date().getTime(),user.getUid(),"payment",""));;
 
                         database.getReference().child("adinquiries").child(user.getUid()).child(inquiryID).child("lastMessage")
                                 .setValue(new ChatMessage
-                                        (messageID,"I have paid MYR "+amount+" at Quotation "+(pos+1),
+                                        (messageID,"I have paid MYR "+amount+" at Quotation "+(adapter.getItemCount()-pos),
                                                 user.getUid(),new Date().getTime(),user.getUid(),"payment",""));
 
                         database.getReference().child("inquiries").child(inquiryID).child("lastMessage")
                                 .setValue(new ChatMessage
-                                        (messageID,"I have paid MYR "+amount+" at Quotation "+(pos+1),
+                                        (messageID,"I have paid MYR "+amount+" at Quotation "+(adapter.getItemCount()-pos),
                                                 user.getUid(),new Date().getTime(),user.getUid(),"payment",""));
 
                         Log.d("currency",currency);
@@ -402,8 +381,8 @@ public class QuotationFragment extends Fragment {
                         payment.setPaymentState(payState);
 
 
-                        ref.child(String.valueOf(position)).child("payment").setValue(payment);
-                        ref2.child(String.valueOf(position)).child("payment").setValue(payment);
+                        ref.child(String.valueOf((adapter.getItemCount()-1) - pos)).child("payment").setValue(payment);
+                        ref2.child(String.valueOf((adapter.getItemCount()-1) - pos)).child("payment").setValue(payment);
                         Toast.makeText(getActivity(),"Payment received successfully", Toast.LENGTH_LONG).show();
 
                     } catch ( JSONException e) {

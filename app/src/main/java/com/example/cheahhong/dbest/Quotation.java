@@ -16,7 +16,9 @@ public class Quotation implements Parcelable {
     double       discountAmount  = 0.0;
     double       gTotal          = 0.0;
     double       rTotal          = 0.0;
-    Payment payment=null;
+    long    time       = 0;
+    String  userStatus = null;
+    Payment payment    =null;
 
     public Quotation(){}
 
@@ -68,6 +70,22 @@ public class Quotation implements Parcelable {
         this.payment = payment;
     }
 
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public String getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -80,6 +98,8 @@ public class Quotation implements Parcelable {
         dest.writeDouble(this.gTotal);
         dest.writeDouble(this.discountAmount);
         dest.writeDouble(this.discountPercent);
+        dest.writeLong(this.time);
+        dest.writeString(this.userStatus);
         dest.writeParcelable(this.payment, flags);
     }
 
@@ -89,6 +109,8 @@ public class Quotation implements Parcelable {
         this.rTotal = in.readDouble();
         this.discountAmount = in.readDouble();
         this.discountPercent = in.readDouble();
+        this.time = in.readLong();
+        this.userStatus = in.readString();
         this.payment = in.readParcelable(Payment.class.getClassLoader());
     }
 
