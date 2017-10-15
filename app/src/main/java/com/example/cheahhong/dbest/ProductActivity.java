@@ -104,9 +104,9 @@ public class ProductActivity extends BaseActivity {
             if(position==0){
                 return PaintFragment.newInstance("Paint","fragment");
             }else if(position==1){
-                return PaintFragment.newInstance("Paint","fragment");
+                return PaintFragment.newInstance("Drill","fragment");
             }else{
-                return PaintFragment.newInstance("Paint","fragment");
+                return PaintFragment.newInstance("Others","fragment");
             }
         }
 

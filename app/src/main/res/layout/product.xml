@@ -1,8 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                >
+
+    >
 
     <android.support.v7.widget.CardView
         android:id="@+id/productCardView"
@@ -17,63 +18,100 @@
             android:id="@+id/relativeContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
             >
-
-            <ImageView
-                android:id="@+id/imgView"
+            <RelativeLayout
+                android:id="@+id/layoutTitle"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/product1"/>
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/CardView"
+                    android:layout_height="60dp"
+                    android:layout_width="60dp"
+                    android:layout_marginRight="@dimen/activity_horizontal_margin"
+                    android:src="@drawable/dbest"
+                    >
+                </ImageView>
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/imgView"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Drill - Colex"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_large"
-                android:textStyle="bold"
-                />
+                <ImageView
+                    android:id="@+id/fireView"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_height="30dp"
+                    android:layout_width="30dp"
+                    android:src="@drawable/ic_fire"
+                    >
+                </ImageView>
 
-            <TextView
-                android:id="@+id/promo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@id/title"
-                android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:text=""
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/text_large"
-                />
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/CardView"
+                    android:maxWidth="230dp"
+                    android:text="Drill - Colex Rolex Ab"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    />
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo"
+                    android:maxWidth="230dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_toRightOf="@id/CardView"
+                    android:text="September 28, 2017 at 12:33pm"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/text_small"
+                    />
+
+                <TextView
+                    android:id="@+id/promo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/title"
+                    android:layout_below="@+id/title"
+                    android:text="25% OFF"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/text_small"
+                    />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/title"
-                android:layout_below="@+id/title"
-                android:maxWidth="220dp"
+                android:layout_below="@+id/layoutTitle"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:text="This drill is a special germany edition"
                 android:textColor="@color/subTextColor"
                 android:textSize="@dimen/text_medium"/>
 
+            <ImageView
+                android:id="@+id/imgView"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@id/content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/product1"/>
+
             <Button
                 android:id="@+id/btn_add"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
+                android:layout_marginTop="8dp"
+                android:layout_below="@+id/imgView"
                 android:text="Order Now"
                 android:theme="@style/AppTheme.Button"
                 />
+
 
         </RelativeLayout>
 
