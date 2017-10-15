@@ -119,6 +119,29 @@ public class QuotationFragment extends Fragment {
 
         queryRef = database.getReference("adinquiries").child(user.getUid()).child(inquiryID).child("quotations").orderByChild("time");
         queryRef.keepSynced(true);
+
+        queryRef.addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Log.d("new quote","hi");
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                Log.d("new quote change","hi");
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            }
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
     }
 
     @Override
@@ -171,6 +194,11 @@ public class QuotationFragment extends Fragment {
             @Override
             protected void populateViewHolder(final QuotationViewHolder viewHolder, final Quotation model, final int position) {
                 if(model.getgTotal()> 0){
+
+                    viewHolder.rl.setVisibility(View.VISIBLE);
+                    viewHolder.gTotal.setVisibility(View.VISIBLE);
+                    viewHolder.imgExpandCollapse.setVisibility(View.VISIBLE);
+
                     count++;
                     if(count==1){
                         quoteDefault.setVisibility(View.GONE);
@@ -233,7 +261,7 @@ public class QuotationFragment extends Fragment {
                 if(model.getPayment() != null) {
                     if (model.getPayment().getPaymentState().equalsIgnoreCase("approved")) {
 
-                        viewHolder.payment.setText("Show Receipt");
+                        viewHolder.payment.setText("SHOW RECEIPT");
 
                         mContext = getActivity().getApplicationContext();
                         mActivity = getActivity();
@@ -276,6 +304,8 @@ public class QuotationFragment extends Fragment {
                         });
                     }
                 }else{
+                    viewHolder.payment.setText("PAY");
+
                     viewHolder.payment.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -288,9 +318,9 @@ public class QuotationFragment extends Fragment {
 
                                 intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
                                 intent.putExtra(PaymentActivity.EXTRA_PAYMENT, makePayment);
-                                pos = position;
+                                pos = viewHolder.getAdapterPosition();
                                 Log.d("pos",String.valueOf(pos));
-                                Log.d("position",String.valueOf(position));
+                                Log.d("position",String.valueOf(viewHolder.getAdapterPosition()));
                                 startActivityForResult(intent, REQUEST_CODE_PAYMENT);
                             }
                         }
