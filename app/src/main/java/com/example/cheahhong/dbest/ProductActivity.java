@@ -104,16 +104,22 @@ public class ProductActivity extends BaseActivity {
             if(position==0){
                 return PaintFragment.newInstance("Paint","fragment");
             }else if(position==1){
-                return PaintFragment.newInstance("Drill","fragment");
+                return PowerToolFragment.newInstance("Power Tool","fragment");
+            }else if(position==2){
+                return HandToolFragment.newInstance("Hand Tool","fragment");
+            }else if(position==3){
+                return WaterSeriesFragment.newInstance("Water Series","fragment");
+            }else if(position==4){
+                return ElectricalSeriesFragment.newInstance("Electrical Series","fragment");
             }else{
-                return PaintFragment.newInstance("Others","fragment");
+                return OthersFragment.newInstance("Others","fragment");
             }
         }
 
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 6;
         }
 
         @Override
@@ -122,8 +128,14 @@ public class ProductActivity extends BaseActivity {
                 case 0:
                     return "Paint";
                 case 1:
-                    return "Drill";
+                    return "Power Tool";
                 case 2:
+                    return "Hand Tool";
+                case 3:
+                    return "Water Series";
+                case 4:
+                    return "Electrical Series";
+                case 5:
                     return "Others";
             }
             return null;

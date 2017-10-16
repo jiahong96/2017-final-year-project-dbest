@@ -39,8 +39,8 @@
                     android:id="@+id/fireView"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_height="30dp"
-                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:layout_width="40dp"
                     android:src="@drawable/ic_fire"
                     >
                 </ImageView>
@@ -50,8 +50,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/CardView"
-                    android:maxWidth="230dp"
-                    android:text="Drill - Colex Rolex Ab"
+                    android:maxWidth="220dp"
+                    android:text="Drill -asdf Colex Rolex Ab"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_large"
                     android:textStyle="bold"
@@ -101,6 +101,12 @@
                 android:layout_below="@id/content"
                 android:scaleType="centerCrop"
                 android:src="@drawable/product1"/>
+
+            <ImageView
+                android:id="@+id/hiddenImgView"
+                android:visibility="gone"
+                android:layout_width="120dp"
+                android:layout_height="120dp"/>
 
             <Button
                 android:id="@+id/btn_add"
