@@ -146,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
         // go to mainactivity if logged in
         if(mAuth.getCurrentUser()!=null){
             finish();
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
             startActivity(intent);
             this.overridePendingTransition(0, 0);
         }
