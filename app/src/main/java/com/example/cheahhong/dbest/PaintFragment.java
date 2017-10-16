@@ -2,7 +2,10 @@ package com.example.cheahhong.dbest;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -28,6 +31,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.github.chrisbanes.photoview.PhotoView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -92,8 +96,9 @@ public class PaintFragment extends Fragment {
             calledPersistance = true;
         }
 
-        ref = database.getReference("promo");
-        ref.addChildEventListener(new ChildEventListener() {
+        queryRef = database.getReference("promo").orderByChild("productType").equalTo("paint");
+        queryRef.keepSynced(true);
+        queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Log.d("snapshot","dfasdfa");
@@ -138,7 +143,7 @@ public class PaintFragment extends Fragment {
     public static class ProductViewHolder extends RecyclerView.ViewHolder{
         TextView title,description,discount,time;
         Button         order;
-        ImageView      imgProduct,fireView;
+        ImageView      imgProduct,fireView,hiddenImgView;
         RelativeLayout rlContent;
         CardView productCardView;
 
@@ -151,6 +156,7 @@ public class PaintFragment extends Fragment {
             order = (Button) itemView.findViewById(R.id.btn_add);
             rlContent =(RelativeLayout) itemView.findViewById(R.id.relativeContent);
             imgProduct = (ImageView) itemView.findViewById(R.id.imgView);
+            hiddenImgView = (ImageView) itemView.findViewById(R.id.hiddenImgView);
             fireView = (ImageView) itemView.findViewById(R.id.fireView);
             productCardView = (CardView) itemView.findViewById(R.id.productCardView);
         }
@@ -162,12 +168,10 @@ public class PaintFragment extends Fragment {
                 Product.class,
                 R.layout.product,
                 ProductViewHolder.class,
-                ref
+                queryRef
         ) {
             @Override
             protected void populateViewHolder(final ProductViewHolder viewHolder, final Product model, final int position) {
-                Log.d("fragment paint", "fragment paint");
-
                 if(model.getListing().equals("true")){
                     viewHolder.productCardView.setVisibility(View.VISIBLE);
 
@@ -205,7 +209,45 @@ public class PaintFragment extends Fragment {
                                     }
                                 })
                                 .into(viewHolder.imgProduct);
+
+                        Glide.with(getActivity())
+                                .load(model.getImageFileUrl())
+                                .into(viewHolder.hiddenImgView);
                     }
+
+                    viewHolder.imgProduct.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (viewHolder.hiddenImgView.getDrawable() != null) {
+                                LayoutInflater factory = LayoutInflater.from(getActivity());
+                                final View view = factory.inflate(R.layout.dialog_photo, null);
+
+                                PhotoView photo = (PhotoView) view.findViewById(R.id.imgView);
+                                Bitmap bitmap1 = ((BitmapDrawable) viewHolder.hiddenImgView.getDrawable()).getBitmap();
+                                photo.setImageBitmap(bitmap1);
+
+                                final AlertDialog alertadd =
+                                        new AlertDialog.Builder(getActivity(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+                                                .setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+
+                                                    }
+                                                })
+                                                .setView(view)
+                                                .create();
+
+                                alertadd.setOnShowListener(new DialogInterface.OnShowListener() {
+                                    @Override
+                                    public void onShow(DialogInterface dialog) {
+                                        ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextSize(20);
+                                        ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
+                                    }
+                                });
+                                alertadd.show();
+                            }
+                        }
+                    });
 
                     viewHolder.order.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -221,7 +263,7 @@ public class PaintFragment extends Fragment {
                                             List<String> inquiryPeoples = new ArrayList<String>(Arrays.asList(peoples));
 
                                             ArrayList<Item> itemList = new ArrayList<>();
-                                            itemList.add(new Item(model.getProductName(), "N/A", "produce inquiry", model.getImageFileUrl(), "", ""));
+                                            itemList.add(new Item(model.getProductName(), "N/A", "product inquiry", model.getImageFileUrl(), "", ""));
 
                                             Long positiveNow = new Date().getTime();
                                             Long negativeNow = -(new Date().getTime());
