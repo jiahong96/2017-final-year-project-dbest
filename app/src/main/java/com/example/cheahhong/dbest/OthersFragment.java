@@ -97,7 +97,7 @@ public class OthersFragment extends Fragment {
             calledPersistance = true;
         }
 
-        queryRef = database.getReference("promo").orderByChild("productType").equalTo("others");
+        queryRef = database.getReference("product").orderByChild("productType").equalTo("others");
         queryRef.keepSynced(true);
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
