@@ -30,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.github.chrisbanes.photoview.PhotoView;
@@ -211,22 +212,20 @@ public class PowerToolFragment extends Fragment {
                                     }
                                 })
                                 .into(viewHolder.imgProduct);
-
-                        Glide.with(getActivity())
-                                .load(model.getImageFileUrl())
-                                .into(viewHolder.hiddenImgView);
                     }
 
                     viewHolder.imgProduct.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (viewHolder.hiddenImgView.getDrawable() != null) {
+                            if (viewHolder.imgProduct.getDrawable() != null) {
                                 LayoutInflater factory = LayoutInflater.from(getActivity());
                                 final View view = factory.inflate(R.layout.dialog_photo, null);
 
                                 PhotoView photo = (PhotoView) view.findViewById(R.id.imgView);
-                                Bitmap bitmap1 = ((BitmapDrawable) viewHolder.hiddenImgView.getDrawable()).getBitmap();
-                                photo.setImageBitmap(bitmap1);
+
+                                Glide.with(getActivity())
+                                        .load(model.getImageFileUrl())
+                                        .into(photo);
 
                                 final AlertDialog alertadd =
                                         new AlertDialog.Builder(getActivity(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)

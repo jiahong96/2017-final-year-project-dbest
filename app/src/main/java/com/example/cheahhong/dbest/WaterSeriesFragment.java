@@ -210,21 +210,19 @@ public class WaterSeriesFragment extends Fragment {
                                     }
                                 })
                                 .into(viewHolder.imgProduct);
-                        Glide.with(getActivity())
-                                .load(model.getImageFileUrl())
-                                .into(viewHolder.hiddenImgView);
                     }
 
                     viewHolder.imgProduct.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (viewHolder.hiddenImgView.getDrawable() != null) {
+                            if (viewHolder.imgProduct.getDrawable() != null) {
                                 LayoutInflater factory = LayoutInflater.from(getActivity());
                                 final View view = factory.inflate(R.layout.dialog_photo, null);
 
                                 PhotoView photo = (PhotoView) view.findViewById(R.id.imgView);
-                                Bitmap bitmap1 = ((BitmapDrawable) viewHolder.hiddenImgView.getDrawable()).getBitmap();
-                                photo.setImageBitmap(bitmap1);
+                                Glide.with(getActivity())
+                                        .load(model.getImageFileUrl())
+                                        .into(photo);
 
                                 final AlertDialog alertadd =
                                         new AlertDialog.Builder(getActivity(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)

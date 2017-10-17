@@ -469,7 +469,7 @@ public class ChatFragment extends Fragment {
         )
         {
             @Override
-            protected void populateViewHolder(final MessageViewHolder viewHolder, ChatMessage model, int position) {
+            protected void populateViewHolder(final MessageViewHolder viewHolder, final ChatMessage model, int position) {
 
                 viewHolder.unreadLayout.setVisibility(View.GONE);
                 viewHolder.unreadMessages.setVisibility(View.GONE);
@@ -540,20 +540,17 @@ public class ChatFragment extends Fragment {
                             })
                             .into(viewHolder.imgView);
 
-                    Glide.with(getActivity())
-                            .load(model.getLink())
-                            .into(viewHolder.hiddenImgView);
-
                     viewHolder.imgView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(viewHolder.hiddenImgView.getDrawable() != null) {
+                            if(viewHolder.imgView.getDrawable() != null) {
                                 LayoutInflater factory = LayoutInflater.from(getActivity());
                                 final View view = factory.inflate(R.layout.dialog_photo, null);
 
                                 PhotoView photo = (PhotoView) view.findViewById(R.id.imgView);
-                                Bitmap bitmap1 = ((BitmapDrawable) viewHolder.hiddenImgView.getDrawable()).getBitmap();
-                                photo.setImageBitmap(bitmap1);
+                                Glide.with(getActivity())
+                                        .load(model.getLink())
+                                        .into(photo);
 
                                 final AlertDialog alertadd =
                                         new AlertDialog.Builder(getActivity(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
