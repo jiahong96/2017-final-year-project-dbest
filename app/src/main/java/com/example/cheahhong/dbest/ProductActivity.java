@@ -1,5 +1,8 @@
 package com.example.cheahhong.dbest;
 
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,6 +34,8 @@ public class ProductActivity extends BaseActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+    Intent mServiceIntent;
+    private BackgroundService mNotifyService;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -43,6 +48,14 @@ public class ProductActivity extends BaseActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //initialize notification
+        mNotifyService = new BackgroundService();
+        mServiceIntent = new Intent(ProductActivity.this, mNotifyService.getClass());
+        if(!isMyServiceRunning(BackgroundService.class)){
+            startService(mServiceIntent);
+        }
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -53,6 +66,22 @@ public class ProductActivity extends BaseActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        stopService(mServiceIntent);
+        super.onDestroy();
     }
 
     @Override
@@ -140,5 +169,15 @@ public class ProductActivity extends BaseActivity {
             }
             return null;
         }
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

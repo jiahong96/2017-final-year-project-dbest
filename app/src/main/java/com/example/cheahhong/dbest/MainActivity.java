@@ -52,8 +52,7 @@ import static com.example.cheahhong.dbest.LoginActivity.database;
 
 public class MainActivity extends BaseActivity{
 
-    Intent mServiceIntent;
-    private BackgroundService mNotifyService;
+
     private FirebaseAuth mAuth;
     static String[] fontItems;
     static String[] menuItems;
@@ -93,13 +92,6 @@ public class MainActivity extends BaseActivity{
             database = FirebaseDatabase.getInstance();
             database.setPersistenceEnabled(true);
             calledPersistance = true;
-        }
-
-        //initialize notification
-        mNotifyService = new BackgroundService();
-        mServiceIntent = new Intent(MainActivity.this, mNotifyService.getClass());
-        if(!isMyServiceRunning(BackgroundService.class)){
-            startService(mServiceIntent);
         }
 
         //initialize recyclerview
@@ -172,12 +164,6 @@ public class MainActivity extends BaseActivity{
     }
 
     @Override
-    protected void onDestroy() {
-        stopService(mServiceIntent);
-        Log.i("MAINACT", "onDestroy!");
-        super.onDestroy();
-    }
-    @Override
     int getContentViewId() {
         return R.layout.activity_main;
     }
@@ -215,16 +201,6 @@ public class MainActivity extends BaseActivity{
             intent.putExtra("Logout","Logout");
             startActivity(intent);
         }
-    }
-
-    private boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private void startMessageActivity(int position){
