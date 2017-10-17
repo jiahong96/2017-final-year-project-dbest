@@ -281,6 +281,7 @@ public class ElectricalSeriesFragment extends Fragment {
                                             inquiry.setMsgUnreadCountForMobile(0);
                                             inquiry.setItems(itemList);
                                             inquiry.setStatus("none");
+                                            inquiry.setUserStatus("Active");
 
                                             // push a new instance of inquiry to the Firebase database
                                             //refKey = ref.push().getKey();

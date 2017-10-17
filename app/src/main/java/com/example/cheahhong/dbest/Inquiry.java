@@ -16,9 +16,10 @@ public class Inquiry {
     private String               inquiryName             =null;
     private String               inquiryOwner            =null;
     private String               status                  =null;
-    private long                 inquiryTime             =0;
-    private ChatMessage          lastMessage             =null;
-    private int                  msgUnreadCountForMobile =0;
+    private String      userStatus              =null;
+    private long        inquiryTime             =0;
+    private ChatMessage lastMessage             =null;
+    private int         msgUnreadCountForMobile =0;
 
     public Inquiry(List<String> inquiryPeoples, ArrayList<Item> items, ArrayList<Quotation> quotations, String inquiryID, String inquiryName, String inquiryOwner, ChatMessage lastMessage, long time, int msgUnreadCountForMobile, String status) {
         this.inquiryID = inquiryID;
@@ -114,5 +115,13 @@ public class Inquiry {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(String userStatus) {
+        this.userStatus = userStatus;
     }
 }

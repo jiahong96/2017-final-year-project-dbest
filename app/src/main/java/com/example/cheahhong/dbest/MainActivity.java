@@ -427,6 +427,7 @@ public class MainActivity extends BaseActivity{
                 inquiry.setItems(arraylist);
                 //inquiry.setQuotations(quotelist);
                 inquiry.setStatus("none");
+                inquiry.setUserStatus("Active");
 
                 // push a new instance of inquiry to the Firebase database
                 //refKey = ref.push().getKey();
