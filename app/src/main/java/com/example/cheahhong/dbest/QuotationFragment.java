@@ -197,6 +197,10 @@ public class QuotationFragment extends Fragment {
 
                     viewHolder.rl.setVisibility(View.VISIBLE);
                     viewHolder.gTotal.setVisibility(View.VISIBLE);
+                    viewHolder.rTotal.setVisibility(View.VISIBLE);
+                    viewHolder.discount.setVisibility(View.VISIBLE);
+                    viewHolder.quoteBearings.setVisibility(View.VISIBLE);
+                    viewHolder.payment.setVisibility(View.VISIBLE);
                     viewHolder.imgExpandCollapse.setVisibility(View.VISIBLE);
 
                     count++;
@@ -258,81 +262,83 @@ public class QuotationFragment extends Fragment {
                         }
                     });
 
-                if(model.getPayment() != null) {
-                    if (model.getPayment().getPaymentState().equalsIgnoreCase("approved")) {
+                    if(model.getPayment() != null) {
+                        if (model.getPayment().getPaymentState().equalsIgnoreCase("approved")) {
 
-                        viewHolder.payment.setText("SHOW RECEIPT");
+                            viewHolder.payment.setText("SHOW RECEIPT");
 
-                        mContext = getActivity().getApplicationContext();
-                        mActivity = getActivity();
+                            mContext = getActivity().getApplicationContext();
+                            mActivity = getActivity();
 
-                        mRelativeLayout = (RelativeLayout) getView().findViewById(R.id.receipt_layout);
+                            mRelativeLayout = (RelativeLayout) getView().findViewById(R.id.receipt_layout);
+                            viewHolder.payment.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                                    builder.setTitle("Receipt");
+
+                                    LayoutInflater inflater = getActivity().getLayoutInflater();
+                                    View customView = inflater.inflate(R.layout.receipt_pop,null);
+                                    TextView rID, rAmount, rState, rDate;
+
+                                    rID = (TextView) customView.findViewById(R.id.receipt_pay_id);
+                                    rAmount = (TextView) customView.findViewById(R.id.receipt_pay_amount);
+                                    rState = (TextView) customView.findViewById(R.id.receipt_pay_state);
+                                    rDate = (TextView) customView.findViewById(R.id.receipt_pay_date);
+                                    //Button dismiss = (Button) customView.findViewById(R.id.button_dismiss);
+
+                                    rID.setText(model.getPayment().getPaymentID());
+                                    rAmount.setText(model.getPayment().getCurrency() + " " + model.getPayment().getAmount());
+                                    rState.setText(model.getPayment().getPaymentState());
+                                    rDate.setText(model.getPayment().getPaymentDate());
+
+                                    builder.setView(customView)
+                                            .setNegativeButton("Close", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialog, int which) {
+                                                    dialog.dismiss();
+                                                }
+                                            });
+
+                                    builder.create().show();
+                                }
+                            });
+                        }
+                    }else{
+                        viewHolder.payment.setText("PAY");
                         viewHolder.payment.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                builder.setTitle("Receipt");
+                                if(!utility.isNetworkAvailable(getActivity())){
+                                    Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    PayPalPayment makePayment = product(PayPalPayment.PAYMENT_INTENT_SALE, String.valueOf(model.getgTotal()));
 
-                                LayoutInflater inflater = getActivity().getLayoutInflater();
-                                View customView = inflater.inflate(R.layout.receipt_pop,null);
-                                TextView rID, rAmount, rState, rDate;
+                                    Intent intent = new Intent(getActivity(), PaymentActivity.class);
 
-                                rID = (TextView) customView.findViewById(R.id.receipt_pay_id);
-                                rAmount = (TextView) customView.findViewById(R.id.receipt_pay_amount);
-                                rState = (TextView) customView.findViewById(R.id.receipt_pay_state);
-                                rDate = (TextView) customView.findViewById(R.id.receipt_pay_date);
-                                //Button dismiss = (Button) customView.findViewById(R.id.button_dismiss);
-
-                                rID.setText(model.getPayment().getPaymentID());
-                                rAmount.setText(model.getPayment().getCurrency() + " " + model.getPayment().getAmount());
-                                rState.setText(model.getPayment().getPaymentState());
-                                rDate.setText(model.getPayment().getPaymentDate());
-
-
-                                builder.setView(customView)
-                                        .setNegativeButton("Close", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                dialog.dismiss();
-                                            }
-                                        });
-
-
-                                builder.create().show();
-
+                                    intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+                                    intent.putExtra(PaymentActivity.EXTRA_PAYMENT, makePayment);
+                                    pos = viewHolder.getAdapterPosition();
+                                    Log.d("pos",String.valueOf(pos));
+                                    Log.d("position",String.valueOf(viewHolder.getAdapterPosition()));
+                                    startActivityForResult(intent, REQUEST_CODE_PAYMENT);
+                                }
                             }
                         });
                     }
+
                 }else{
-                    viewHolder.payment.setText("PAY");
-
-                    viewHolder.payment.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(!utility.isNetworkAvailable(getActivity())){
-                                Toast.makeText(getActivity(), "No internet connection", Toast.LENGTH_SHORT).show();
-                            }else{
-                                PayPalPayment makePayment = product(PayPalPayment.PAYMENT_INTENT_SALE, String.valueOf(model.getgTotal()));
-
-                                Intent intent = new Intent(getActivity(), PaymentActivity.class);
-
-                                intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
-                                intent.putExtra(PaymentActivity.EXTRA_PAYMENT, makePayment);
-                                pos = viewHolder.getAdapterPosition();
-                                Log.d("pos",String.valueOf(pos));
-                                Log.d("position",String.valueOf(viewHolder.getAdapterPosition()));
-                                startActivityForResult(intent, REQUEST_CODE_PAYMENT);
-                            }
-                        }
-                    });
+                        viewHolder.rl.setVisibility(View.GONE);
+                        viewHolder.gTotal.setVisibility(View.GONE);
+                        viewHolder.rTotal.setVisibility(View.GONE);
+                        viewHolder.discount.setVisibility(View.GONE);
+                        viewHolder.quoteBearings.setVisibility(View.GONE);
+                        viewHolder.payment.setVisibility(View.GONE);
+                        viewHolder.imgExpandCollapse.setVisibility(View.GONE);
                 }
-            }else{
-                    viewHolder.rl.setVisibility(View.GONE);
-                    viewHolder.gTotal.setVisibility(View.GONE);
-                    viewHolder.imgExpandCollapse.setVisibility(View.GONE);
-            }
 
             }
+
             public void hideQuotation(QuotationViewHolder viewHolder){
                 viewHolder.quoteBearings.setVisibility(View.GONE);
             }
