@@ -23,7 +23,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -35,6 +39,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
+
+    Query           queryRef;
 
     TextInputLayout layout_email,layout_password;
     EditText _emailText, _passwordText;
@@ -205,26 +211,68 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton.setEnabled(false);
         _signupLink.setEnabled(false);
 
-        String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
+        final String email = _emailText.getText().toString();
+        final String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own authentication logic here.
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            progressDialog.dismiss();
+        queryRef = database.getReference("users").orderByChild("email").equalTo(email);
+        queryRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
-                            onLoginSuccess();
-                            // Sign in success, update UI with the signed-in user's information
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                if(dataSnapshot.getValue()!=null){
+                    User user = dataSnapshot.getChildren().iterator().next().getValue(User.class);
+
+                    Log.d("dataSnap",dataSnapshot.getValue().toString());
+                    if(user.getType()!=null){
+                        if(user.getType().equals("admin")){
+                            onLoginFailed("Admin account detected");
+                        }
+                    }else{
+                        //Toast.makeText(LoginActivity.this, "Normal account detected", Toast.LENGTH_SHORT).show();
+                        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    progressDialog.dismiss();
+
+                                    onLoginSuccess();
+
+                                    // Sign in success, update UI with the signed-in user's information
 //                            FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
-                        } else {
-                            onLoginFailed(task.getException().getMessage());
-                        }
+                                } else {
+                                    onLoginFailed(task.getException().getMessage());
+                                }
+                            }
+                        });
                     }
-                });
+                }else{
+                    onLoginFailed("Account doesn't exist");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+//        mAuth.signInWithEmailAndPassword(email, password)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            progressDialog.dismiss();
+//
+//                            onLoginSuccess();
+//                            // Sign in success, update UI with the signed-in user's information
+////                            FirebaseUser user = mAuth.getCurrentUser();
+////                            updateUI(user);
+//                        } else {
+//                            onLoginFailed(task.getException().getMessage());
+//                        }
+//                    }
+//                });
     }
 
 
