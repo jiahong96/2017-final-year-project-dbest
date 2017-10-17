@@ -377,28 +377,30 @@ public class QuotationFragment extends Fragment {
                         currency = paymentJSON.getString("currency_code");
                         amount = Double.valueOf(paymentJSON.getString("amount"));
 
+                        long pmillis = new Date().getTime();
+                        long nmillis = -(new Date().getTime());
 
                         String messageID = database.getReference("adconversations").child(user.getUid()).child(inquiryID).push().getKey();
 
                         database.getReference("adconversations").child(user.getUid()).child(inquiryID+"?"+inquiryName).child(messageID)
                                 .setValue(new ChatMessage
                                         (messageID,"I have paid MYR "+amount+" at Quotation "+(adapter.getItemCount()-pos),
-                                                user.getUid(),new Date().getTime(),user.getUid(),"payment",""));
+                                                user.getUid(),pmillis,user.getUid(),"payment",""));
 
                         database.getReference("conversations").child(inquiryID).child(messageID)
                                 .setValue(new ChatMessage
                                         (messageID,"I have paid MYR "+amount+" at Quotation "+(adapter.getItemCount()-pos),
-                                                user.getUid(),new Date().getTime(),user.getUid(),"payment",""));;
+                                                user.getUid(),pmillis,user.getUid(),"payment",""));;
 
                         database.getReference().child("adinquiries").child(user.getUid()).child(inquiryID).child("lastMessage")
                                 .setValue(new ChatMessage
                                         (messageID,"I have paid MYR "+amount+" at Quotation "+(adapter.getItemCount()-pos),
-                                                user.getUid(),new Date().getTime(),user.getUid(),"payment",""));
+                                                user.getUid(),nmillis,user.getUid(),"payment",""));
 
                         database.getReference().child("inquiries").child(inquiryID).child("lastMessage")
                                 .setValue(new ChatMessage
                                         (messageID,"I have paid MYR "+amount+" at Quotation "+(adapter.getItemCount()-pos),
-                                                user.getUid(),new Date().getTime(),user.getUid(),"payment",""));
+                                                user.getUid(),pmillis,user.getUid(),"payment",""));
 
                         Log.d("currency",currency);
                         Log.d("amount",String.valueOf(amount));
