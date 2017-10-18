@@ -99,7 +99,7 @@ public class ElectricalSeriesFragment extends Fragment {
             calledPersistance = true;
         }
 
-        queryRef = database.getReference("product").orderByChild("productType").equalTo("electricalseries");
+        queryRef = database.getReference("product").child("electricalseries").orderByChild("latestUpdated");
         queryRef.keepSynced(true);
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override

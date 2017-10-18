@@ -98,7 +98,7 @@ public class PowerToolFragment extends Fragment {
             calledPersistance = true;
         }
 
-        queryRef = database.getReference("product").orderByChild("productType").equalTo("powertool");
+        queryRef = database.getReference("product").child("powertool").orderByChild("latestUpdated");
         queryRef.keepSynced(true);
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override

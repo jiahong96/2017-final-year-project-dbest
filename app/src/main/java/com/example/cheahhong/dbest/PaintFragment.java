@@ -97,7 +97,7 @@ public class PaintFragment extends Fragment {
             calledPersistance = true;
         }
 
-        queryRef = database.getReference("product").orderByChild("productType").equalTo("paint");
+        queryRef = database.getReference("product").child("paint").orderByChild("latestUpdated");
         queryRef.keepSynced(true);
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override

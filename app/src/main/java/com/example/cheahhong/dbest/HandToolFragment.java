@@ -97,7 +97,7 @@ public class HandToolFragment extends Fragment {
             calledPersistance = true;
         }
 
-        queryRef = database.getReference("product").orderByChild("productType").equalTo("handtool");
+        queryRef = database.getReference("product").child("handtool").orderByChild("latestUpdated");
         queryRef.keepSynced(true);
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override

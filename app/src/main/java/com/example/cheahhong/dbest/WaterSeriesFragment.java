@@ -96,7 +96,7 @@ public class WaterSeriesFragment extends Fragment {
             calledPersistance = true;
         }
 
-        queryRef = database.getReference("product").orderByChild("productType").equalTo("waterseries");
+        queryRef = database.getReference("product").child("waterseries").orderByChild("latestUpdated");
         queryRef.keepSynced(true);
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
