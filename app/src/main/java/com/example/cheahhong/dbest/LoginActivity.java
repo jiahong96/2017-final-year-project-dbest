@@ -188,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(){
-
+        Log.d("dataSnap","login");
         utility = new Utility();
 
         progressDialog = new ProgressDialog(LoginActivity.this);
@@ -224,11 +224,12 @@ public class LoginActivity extends AppCompatActivity {
                     User user = dataSnapshot.getChildren().iterator().next().getValue(User.class);
 
                     Log.d("dataSnap",dataSnapshot.getValue().toString());
-                    if(user.getType()!=null){
-                        if(user.getType().equals("admin")){
-                            onLoginFailed("Admin account detected");
-                        }
-                    }else{
+
+                    if(user.getType().equals("admin")){
+                        Log.d("dataSnap","loginAdmin");
+                        onLoginFailed("Admin account detected");
+                    } else{
+                        Log.d("dataSnap","loginNormal");
                         //Toast.makeText(LoginActivity.this, "Normal account detected", Toast.LENGTH_SHORT).show();
                         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -248,13 +249,14 @@ public class LoginActivity extends AppCompatActivity {
                         });
                     }
                 }else{
+
                     onLoginFailed("Account doesn't exist");
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                onLoginFailed("database error");
             }
         });
 //        mAuth.signInWithEmailAndPassword(email, password)
@@ -311,7 +313,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         finish();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ProductActivity.class);
         startActivity(intent);
 
     }
