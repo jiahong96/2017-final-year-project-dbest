@@ -143,7 +143,7 @@ public class WaterSeriesFragment extends Fragment {
     public static class ProductViewHolder extends RecyclerView.ViewHolder{
         TextView title,description,discount,time;
         Button    order;
-        ImageView imgProduct,fireView,hiddenImgView;
+        ImageView imgProduct,fireView,hiddenImgView,logo;
         RelativeLayout rlContent;
         CardView       productCardView;
 
@@ -159,6 +159,7 @@ public class WaterSeriesFragment extends Fragment {
             hiddenImgView = (ImageView) itemView.findViewById(R.id.hiddenImgView);
             fireView = (ImageView) itemView.findViewById(R.id.fireView);
             productCardView = (CardView) itemView.findViewById(R.id.productCardView);
+            logo = (ImageView) itemView.findViewById(R.id.CardView);
         }
     }
 
@@ -174,6 +175,7 @@ public class WaterSeriesFragment extends Fragment {
             protected void populateViewHolder(final ProductViewHolder viewHolder, final Product model, final int position) {
 
                 if(model.getListing().equals("true")){
+                    Glide.with(getActivity()).load(getImage("dbest")).into(viewHolder.logo);
                     viewHolder.productCardView.setVisibility(View.VISIBLE);
 
                     viewHolder.title.setText(model.getProductName());
@@ -327,5 +329,12 @@ public class WaterSeriesFragment extends Fragment {
             }
         };
         mRecyclerView.setAdapter(adapter);
+    }
+
+    public int getImage(String imageName) {
+
+        int drawableResourceId = getActivity().getResources().getIdentifier(imageName, "drawable", getActivity().getPackageName());
+
+        return drawableResourceId;
     }
 }

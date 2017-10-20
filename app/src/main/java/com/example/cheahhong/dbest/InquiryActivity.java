@@ -312,7 +312,7 @@ public class InquiryActivity extends AppCompatActivity {
                     selectedImagePath = getAbsolutePath(imgFileUri);
                     itemList.get(savedPosition).setImageFileUrl(selectedImagePath);
                     try {
-                        imgItem.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(this,imgFileUri,selectedImagePath));
+                        imgItem.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(500,500,this,imgFileUri,selectedImagePath));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -334,7 +334,7 @@ public class InquiryActivity extends AppCompatActivity {
                     itemList.get(savedPosition).setImageFileUrl(captureImagePath);
                     Log.d("imgFIleURI", String.valueOf(imgFileUri));
                     try {
-                        imgItem.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(this,imgFileUri,captureImagePath));
+                        imgItem.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(500,500,this,imgFileUri,captureImagePath));
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

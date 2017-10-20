@@ -10,6 +10,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+
 public class SplashScreen extends Activity {
 
     public void onAttachedToWindow() {
@@ -24,6 +26,9 @@ public class SplashScreen extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        ImageView iv = (ImageView) findViewById(R.id.splash);
+        Glide.with(this).load(getImage("dbest")).into(iv);
         StartAnimations();
     }
     private void StartAnimations() {
@@ -63,5 +68,12 @@ public class SplashScreen extends Activity {
         };
         splashTread.start();
 
+    }
+
+    public int getImage(String imageName) {
+
+        int drawableResourceId = this.getResources().getIdentifier(imageName, "drawable", this.getPackageName());
+
+        return drawableResourceId;
     }
 }

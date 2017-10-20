@@ -172,47 +172,55 @@ public class InquiryFragment extends Fragment {
                                 }
                             })
                             .into(viewHolder.imgItem);
-                }
 
+                    viewHolder.imgItem.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (viewHolder.imgItem.getDrawable() != null) {
+                                LayoutInflater factory = LayoutInflater.from(getActivity());
+                                final View view = factory.inflate(R.layout.dialog_photo, null);
 
-                viewHolder.imgItem.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (viewHolder.imgItem.getDrawable() != null) {
-                            LayoutInflater factory = LayoutInflater.from(getActivity());
-                            final View view = factory.inflate(R.layout.dialog_photo, null);
+                                PhotoView photo = (PhotoView) view.findViewById(R.id.imgView);
+                                Glide.with(getActivity())
+                                        .load(model.getImageUrl())
+                                        .into(photo);
 
-                            PhotoView photo = (PhotoView) view.findViewById(R.id.imgView);
-                            Glide.with(getActivity())
-                                    .load(model.getImageUrl())
-                                    .into(photo);
+                                final AlertDialog alertadd =
+                                        new AlertDialog.Builder(getActivity(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+                                                .setNegativeButton("Back", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
 
-                            final AlertDialog alertadd =
-                                    new AlertDialog.Builder(getActivity(), android.R.style.Theme_Black_NoTitleBar_Fullscreen)
-                                            .setNegativeButton("Back", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
+                                                    }
+                                                })
+                                                .setView(view)
+                                                .create();
 
-                                                }
-                                            })
-                                            .setView(view)
-                                            .create();
-
-                            alertadd.setOnShowListener(new DialogInterface.OnShowListener() {
-                                @Override
-                                public void onShow(DialogInterface dialog) {
-                                    ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextSize(20);
-                                    ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
-                                }
-                            });
-                            alertadd.show();
+                                alertadd.setOnShowListener(new DialogInterface.OnShowListener() {
+                                    @Override
+                                    public void onShow(DialogInterface dialog) {
+                                        ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextSize(20);
+                                        ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.WHITE);
+                                    }
+                                });
+                                alertadd.show();
+                            }
                         }
-                    }
-                });
+                    });
+                }else{
+                    Glide.with(getActivity()).load(getImage("placeholder")).into(viewHolder.imgItem);
+                }
             }
 
         };
 
         mRecyclerView.setAdapter(adapter);
+    }
+
+    public int getImage(String imageName) {
+
+        int drawableResourceId = getActivity().getResources().getIdentifier(imageName, "drawable", getActivity().getPackageName());
+
+        return drawableResourceId;
     }
 }
