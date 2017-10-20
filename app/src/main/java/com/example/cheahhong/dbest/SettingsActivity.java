@@ -33,7 +33,7 @@ import static com.example.cheahhong.dbest.LoginActivity.database;
 
 public class SettingsActivity extends BaseActivity {
 
-    public static final String URL_FEEDBACK = "https://goo.gl/ZXEum8";
+    public static final String URL_FEEDBACK = "https://goo.gl/forms/zro9jlfa5jGAqDex2";
     public static final String URL_ABOUT = "https://www.facebook.com/Dbestcompanykuching/";
     public static final String URL_CONTACT = "dbestkchonline@gmail.com";
 
