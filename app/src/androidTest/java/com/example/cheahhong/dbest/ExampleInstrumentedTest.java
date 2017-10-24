@@ -1,4 +1,4 @@
-package com.example.cheahhong.dbest;
+package com.developer.cheahhong.dbest;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.example.cheahhong.dbest.MessageActivity">
+    tools:context="com.developer.cheahhong.dbest.MessageActivity">
 
     <android.support.design.widget.FloatingActionButton
         android:layout_alignParentBottom="true"

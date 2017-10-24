@@ -1,4 +1,4 @@
-package com.example.cheahhong.dbest;
+package com.developer.cheahhong.dbest;
 
 import org.junit.Test;
 

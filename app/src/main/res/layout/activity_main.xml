@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.cheahhong.dbest.MainActivity"
+    tools:context="com.developer.cheahhong.dbest.MainActivity"
     android:id="@+id/coordLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
