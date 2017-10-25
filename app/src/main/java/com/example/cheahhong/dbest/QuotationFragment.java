@@ -57,7 +57,7 @@ public class QuotationFragment extends Fragment {
     private int pos;
 
     private static final String        CONFIG_ENVIRONMENT   = PayPalConfiguration.ENVIRONMENT_PRODUCTION;
-    private static final String        CLIENT_ID            ="AVlEgZG39eDQw6vS5E5rExAtFcwVirfQwFfZrbqVg8tmn-TVJN1Smw8vGa7M50-fiyuXM8EMM6csipAP";
+    private static final String        CLIENT_ID            ="AVOBQn0KHVnEcVojvVXLjeQHQP-uMX7A82piwPqOKQRJsPBkAw6EEh0c91QWkbWpESYPdQCwmLd3mRy8";
     private static final int           REQUEST_CODE_PAYMENT = 1;
 
     private static final PayPalConfiguration config = new PayPalConfiguration()
