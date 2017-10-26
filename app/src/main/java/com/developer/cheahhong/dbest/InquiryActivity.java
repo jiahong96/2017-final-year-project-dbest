@@ -126,7 +126,7 @@ public class InquiryActivity extends AppCompatActivity {
 
         // Restore instance state
         if (savedInstanceState != null) {
-            Log.d("savedInstance?", "yes");
+            //Log.d("savedInstance?", "yes");
             imgFileUri = savedInstanceState.getParcelable(KEY_FILE_URI);
             imgDownloadUri = savedInstanceState.getParcelable(KEY_DOWNLOAD_URL);
             savedPosition = savedInstanceState.getInt("position");
@@ -139,7 +139,7 @@ public class InquiryActivity extends AppCompatActivity {
         mBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.d("InquiryActivity", "onReceive:" + intent);
+                //Log.d("InquiryActivity", "onReceive:" + intent);
 
                 switch (intent.getAction()) {
                     case MyUploadService.UPLOAD_COMPLETED:
@@ -186,7 +186,7 @@ public class InquiryActivity extends AppCompatActivity {
                     }
                 }
 
-                Log.d("itemSize", String.valueOf(itemList.size()));
+                //Log.d("itemSize", String.valueOf(itemList.size()));
             }
         });
 
@@ -212,14 +212,14 @@ public class InquiryActivity extends AppCompatActivity {
             @Override
             public void onTakeImgClick(Item item, View v, int position) {
                 savedPosition = position;
-                Log.d("Takepicposition", String.valueOf(savedPosition));
+                //Log.d("Takepicposition", String.valueOf(savedPosition));
                 takePicture();
             }
 
             @Override
             public void onSelectImgClick(Item item, View v, int position) {
                 savedPosition = position;
-                Log.d("selectPIcposition", String.valueOf(savedPosition));
+                //Log.d("selectPIcposition", String.valueOf(savedPosition));
                 launchPhotoStorage();
             }
 
@@ -262,7 +262,7 @@ public class InquiryActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle out) {
         super.onSaveInstanceState(out);
-        Log.d("OnSave","yes");
+        //Log.d("OnSave","yes");
         out.putParcelable(KEY_FILE_URI, imgFileUri);
         out.putParcelable(KEY_DOWNLOAD_URL, imgDownloadUri);
         out.putInt("position", savedPosition);
@@ -301,12 +301,12 @@ public class InquiryActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RC_TAKE_PICTURE) {
-            Log.d("PhotoSelected", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
+            //Log.d("PhotoSelected", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
             if (resultCode == RESULT_OK) {
                 imgFileUri = data.getData();
                 imgItem = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.imgView);
-                Log.d("PhotoSelected", "resultok");
-                Log.d("savedItemPosition", String.valueOf(savedPosition));
+                //Log.d("PhotoSelected", "resultok");
+                //Log.d("savedItemPosition", String.valueOf(savedPosition));
                 if (imgFileUri != null) {
                     itemList.get(savedPosition).setImageFileUri(imgFileUri.toString());
                     selectedImagePath = getAbsolutePath(imgFileUri);
@@ -323,16 +323,16 @@ public class InquiryActivity extends AppCompatActivity {
                 Toast.makeText(this, "No picture selected", Toast.LENGTH_SHORT).show();
             }
         }else if(requestCode == RC_CAPTURE_PICTURE){
-            Log.d("PhotoCaptured", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
+            //Log.d("PhotoCaptured", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
             if (resultCode == RESULT_OK) {
-                Log.d("PhotoCaptured", "resultok");
-                Log.d("savedItemPosition", String.valueOf(savedPosition));
+                //Log.d("PhotoCaptured", "resultok");
+                //Log.d("savedItemPosition", String.valueOf(savedPosition));
 
                 imgItem = (ImageView)mLayoutManager.findViewByPosition(savedPosition).findViewById(R.id.imgView);
                 if (imgFileUri != null) {
                     itemList.get(savedPosition).setImageFileUri(imgFileUri.toString());
                     itemList.get(savedPosition).setImageFileUrl(captureImagePath);
-                    Log.d("imgFIleURI", String.valueOf(imgFileUri));
+                    //Log.d("imgFIleURI", String.valueOf(imgFileUri));
                     try {
                         imgItem.setImageBitmap(imgProcessor.handleSamplingAndRotationBitmap(500,500,this,imgFileUri,captureImagePath));
                     } catch (IOException e) {
@@ -343,16 +343,16 @@ public class InquiryActivity extends AppCompatActivity {
                 }
             } else {
                 Toast.makeText(this, "No picture captured", Toast.LENGTH_SHORT).show();
-                Log.d("PhotoCaptured", captureImagePath);
+                //Log.d("PhotoCaptured", captureImagePath);
                 File file = new File(captureImagePath);
                 boolean deleted = file.delete();
-                Log.d("PhotoDeleted", String.valueOf(deleted));
+                //Log.d("PhotoDeleted", String.valueOf(deleted));
             }
         }
     }
 
     private void launchPhotoStorage() {
-        Log.d("PhotoStorage", "launch");
+        //Log.d("PhotoStorage", "launch");
 
         // Pick an image from storage
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -373,20 +373,20 @@ public class InquiryActivity extends AppCompatActivity {
             // Ensure that there's a camera activity to handle the intent
             if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
 
-                Log.d("camera?","yes");
+                //Log.d("camera?","yes");
                 // Create the File where the photo should go
                 File photoFile = null;
                 try {
-                    Log.d("created","yes");
+                    //Log.d("created","yes");
                     photoFile = createImageFile();
                 } catch (IOException ex) {
                     // Error occurred while creating the File
                 }
                 // Continue only if the File was successfully created
                 if (photoFile != null) {
-                    Log.d("created","yes");
+                    //Log.d("created","yes");
                     imgFileUri = Uri.fromFile(photoFile);
-                    Log.d("imgFIleURI", String.valueOf(imgFileUri));
+                    //Log.d("imgFIleURI", String.valueOf(imgFileUri));
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
                     startActivityForResult(takePictureIntent, RC_CAPTURE_PICTURE);
                 }
@@ -441,7 +441,7 @@ public class InquiryActivity extends AppCompatActivity {
     }
 
     private void uploadFromUri() {
-        //Log.d("MainActivity", "uploadFromUri:src:" + imgFileUri.toString());
+        ////Log.d("MainActivity", "uploadFromUri:src:" + imgFileUri.toString());
         //imgDownloadUri = null;
 
         // Start MyUploadService to upload the file, so that the file is uploaded
@@ -474,12 +474,12 @@ public class InquiryActivity extends AppCompatActivity {
 
     private void onUploadResultIntent(Intent intent) {
         // Got a new intent from MyUploadService with a success or failure
-        Log.d("uploadSuccess", String.valueOf(intent.getIntExtra(MyUploadService.EXTRA_BEARING_POSITION,0)));
+        //Log.d("uploadSuccess", String.valueOf(intent.getIntExtra(MyUploadService.EXTRA_BEARING_POSITION,0)));
         imgDownloadUri = intent.getParcelableExtra(MyUploadService.EXTRA_DOWNLOAD_URL);
         itemList.get(intent.getIntExtra(MyUploadService.EXTRA_BEARING_POSITION,0)).setImageUrl(imgDownloadUri.toString());
         count2++;
         if(count==count2){
-            Log.d("setActivityResult", "yes");
+            //Log.d("setActivityResult", "yes");
             hideProgressDialog();
             setActivityResult();
         }
@@ -488,7 +488,7 @@ public class InquiryActivity extends AppCompatActivity {
 
     private void setActivityResult (){
         //data return
-        Log.d("bearingSizeSet", String.valueOf(itemList.size()));
+        //Log.d("bearingSizeSet", String.valueOf(itemList.size()));
         Intent returnIntent = new Intent();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("bearingList", itemList);

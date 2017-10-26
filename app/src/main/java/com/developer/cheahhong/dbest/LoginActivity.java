@@ -77,13 +77,13 @@ public class LoginActivity extends AppCompatActivity {
 
 	    //logged out
         if(logout!=null){
-            Log.d("Logout","yy");
+            //Log.d("Logout","yy");
             Toast.makeText(LoginActivity.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
             SharedPreferences sp=getSharedPreferences("Login", 0);
             SharedPreferences.Editor Ed=sp.edit();
             Ed.putString("login","false");
             Ed.commit();
-            Log.d("new setting",sp.getString("login",null));
+            //Log.d("new setting",sp.getString("login",null));
         }
 
 	    //permission for mashmallow
@@ -188,7 +188,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void login(){
-        Log.d("dataSnap","login");
+        //Log.d("dataSnap","login");
         utility = new Utility();
 
         progressDialog = new ProgressDialog(LoginActivity.this);
@@ -223,13 +223,13 @@ public class LoginActivity extends AppCompatActivity {
                 if(dataSnapshot.getValue()!=null){
                     User user = dataSnapshot.getChildren().iterator().next().getValue(User.class);
 
-                    Log.d("dataSnap",dataSnapshot.getValue().toString());
+                    //Log.d("dataSnap",dataSnapshot.getValue().toString());
 
                     if(user.getType().equals("admin")){
-                        Log.d("dataSnap","loginAdmin");
+                        //Log.d("dataSnap","loginAdmin");
                         onLoginFailed("Admin account detected");
                     } else{
-                        Log.d("dataSnap","loginNormal");
+                        //Log.d("dataSnap","loginNormal");
                         //Toast.makeText(LoginActivity.this, "Normal account detected", Toast.LENGTH_SHORT).show();
                         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
@@ -264,7 +264,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    @Override
 //                    public void onComplete(@NonNull Task<AuthResult> task) {
 //                        if (task.isSuccessful()) {
-//                            progressDialog.dismiss();
+//                            progressDia//Log.dismiss();
 //
 //                            onLoginSuccess();
 //                            // Sign in success, update UI with the signed-in user's information

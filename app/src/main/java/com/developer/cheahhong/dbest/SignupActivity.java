@@ -181,7 +181,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     public void signup() {
-        // Log.d(TAG, "Signup");
+        // //Log.d(TAG, "Signup");
         utility = new Utility();
         progressDialog = new ProgressDialog(SignupActivity.this,
                 R.style.Theme_AppCompat_DayNight_Dialog);

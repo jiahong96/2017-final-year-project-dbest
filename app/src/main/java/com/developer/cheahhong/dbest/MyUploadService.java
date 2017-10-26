@@ -56,12 +56,12 @@ public class MyUploadService extends MyBaseTaskService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(TAG, "onStartCommand:" + intent + ":" + startId);
+        //Log.d(TAG, "onStartCommand:" + intent + ":" + startId);
 
         if (ACTION_UPLOAD_BEARING.equals(intent.getAction())) {
             //Uri fileUri = intent.getParcelableExtra(EXTRA_FILE_URI);
             int position = intent.getIntExtra(EXTRA_BEARING_POSITION,0);
-            Log.d("serviceStartPosition", String.valueOf(position));
+            //Log.d("serviceStartPosition", String.valueOf(position));
             imageUri = intent.getStringExtra(EXTRA_FILE_URI);
             uploadFromUri(position);
         }else if(ACTION_UPLOAD.equals(intent.getAction())){
@@ -75,7 +75,7 @@ public class MyUploadService extends MyBaseTaskService {
 
     // [START upload_from_uri]
     private void uploadFromUri(final int bearingPosition) {
-        //Log.d(TAG, "uploadFromUri:src:" + imageUri);
+        ////Log.d(TAG, "uploadFromUri:src:" + imageUri);
 
         // [START_EXCLUDE]
         taskStarted();
@@ -95,7 +95,7 @@ public class MyUploadService extends MyBaseTaskService {
         // [END get_child_ref]
 
         // Upload file to Firebase Storage
-        //Log.d(TAG, "uploadFromUri:dst:" + photoRef.getPath());
+        ////Log.d(TAG, "uploadFromUri:dst:" + photoRef.getPath());
 //        addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
 //            @Override
 //            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
@@ -109,12 +109,12 @@ public class MyUploadService extends MyBaseTaskService {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Upload succeeded
-                        //Log.d(TAG, "uploadFromUri:onSuccess");
+                        ////Log.d(TAG, "uploadFromUri:onSuccess");
 
                         // Get the public download URL
                         Uri downloadUri = taskSnapshot.getMetadata().getDownloadUrl();
-                        Log.d("onSuccessDownloadUri",downloadUri.toString());
-                        Log.d("onSuccessPosition", String.valueOf(bearingPosition));
+                        //Log.d("onSuccessDownloadUri",downloadUri.toString());
+                        //Log.d("onSuccessPosition", String.valueOf(bearingPosition));
                         // [START_EXCLUDE]
                         broadcastUploadFinished(downloadUri, Uri.parse(imageUri),bearingPosition);
                         showUploadFinishedNotification(downloadUri, Uri.parse(imageUri));
@@ -145,7 +145,7 @@ public class MyUploadService extends MyBaseTaskService {
     private boolean broadcastUploadFinished(@Nullable Uri downloadUrl, @Nullable Uri fileUri,@Nullable int bPosition) {
         boolean success = downloadUrl != null;
 
-        Log.d("finishBearingPosition", String.valueOf(bPosition));
+        //Log.d("finishBearingPosition", String.valueOf(bPosition));
         String action = success ? UPLOAD_COMPLETED : UPLOAD_ERROR;
         Intent broadcast = new Intent(action)
                 .putExtra(EXTRA_DOWNLOAD_URL, downloadUrl)

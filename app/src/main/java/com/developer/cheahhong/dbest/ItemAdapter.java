@@ -97,14 +97,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
 //                @Override
 //                public void onClick(View view) {
 //                    if(count>0){
-//                        Log.d("count", String.valueOf(count));
+//                        //Log.d("count", String.valueOf(count));
 //                        count++;
 //                        if(count%2==0){
-//                            Log.d("hide","ya");
+//                            //Log.d("hide","ya");
 //                            rotateIcon();
 //                            hideBearingForm();
 //                        }else{
-//                            Log.d("expand","ya");
+//                            //Log.d("expand","ya");
 //                            rotateIcon();
 //                            expandBearingForm();
 //                        }
@@ -120,7 +120,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder>{
             anim.start();
             rotationAngle += 180;
             rotationAngle = rotationAngle%360;
-            Log.d("expand", String.valueOf(rotationAngle));
+            //Log.d("expand", String.valueOf(rotationAngle));
         }
 
         public void hideBearingForm(){

@@ -79,7 +79,7 @@ public class SettingsActivity extends BaseActivity {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 appUser = dataSnapshot.getValue(User.class);
                 txtPoint.setText(String.valueOf(appUser.getMemberPoint()));
-                Log.d("userData",dataSnapshot.toString());
+                //Log.d("userData",dataSnapshot.toString());
             }
 
             @Override
@@ -170,7 +170,7 @@ public class SettingsActivity extends BaseActivity {
         layoutLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("logout","yes");
+                //Log.d("logout","yes");
                 AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
                 builder.setMessage("Are you sure you want to Logout?")
                         .setCancelable(false)
@@ -213,15 +213,15 @@ public class SettingsActivity extends BaseActivity {
                 .OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
                 if(item==0){
-                    Log.d("fontSize",fontItems[item]);
+                    //Log.d("fontSize",fontItems[item]);
                     Ed.putString("font","small");
                     Ed.commit();
                 }else if(item==1){
-                    Log.d("fontSize",fontItems[item]);
+                    //Log.d("fontSize",fontItems[item]);
                     Ed.putString("font","medium");
                     Ed.commit();
                 }else if(item==2){
-                    Log.d("fontSize",fontItems[item]);
+                    //Log.d("fontSize",fontItems[item]);
                     Ed.putString("font","large");
                     Ed.commit();
                 }
@@ -234,7 +234,7 @@ public class SettingsActivity extends BaseActivity {
     void updateUI(){
         if(mAuth.getCurrentUser()!=null){
             user= mAuth.getCurrentUser();
-            Log.d("userrrrr",user.getUid());
+            //Log.d("userrrrr",user.getUid());
         } else{
             finish();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

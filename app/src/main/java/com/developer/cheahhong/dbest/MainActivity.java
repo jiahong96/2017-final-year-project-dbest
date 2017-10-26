@@ -98,25 +98,25 @@ public class MainActivity extends BaseActivity{
         refNormalInquiry = database.getReference("inquiries");
         refAdInquiry = database.getReference("adinquiries");
         refAdInquiry.keepSynced(true);
-        Log.d("database Reference",queryRef.toString());
+        //Log.d("database Reference",queryRef.toString());
 
         queryRef.addChildEventListener(new ChildEventListener() {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("inquiryAdded","added one new inquiry-"+dataSnapshot.getKey());
+                //Log.d("inquiryAdded","added one new inquiry-"+dataSnapshot.getKey());
                 quoteDefault.setVisibility(View.GONE);
                 defaultPic.setVisibility(View.GONE);
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Log.d("inquiryChanged","changed one inquiry-"+dataSnapshot.getKey());
+                //Log.d("inquiryChanged","changed one inquiry-"+dataSnapshot.getKey());
                 adapter.notifyDataSetChanged();
             }
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d("inquiryRemoved","removed one inquiry-"+dataSnapshot);
-                Log.d("inquiryRemoved","removed one inquiry-"+dataSnapshot.child("inquiryName").getValue());
+                //Log.d("inquiryRemoved","removed one inquiry-"+dataSnapshot);
+                //Log.d("inquiryRemoved","removed one inquiry-"+dataSnapshot.child("inquiryName").getValue());
                 //Toast.makeText(MainActivity.this, "removed inquiry - "+dataSnapshot.child("inquiryName").getValue(), Toast.LENGTH_LONG).show();
             }
             @Override
@@ -185,7 +185,7 @@ public class MainActivity extends BaseActivity{
     void updateUI(){
         if(mAuth.getCurrentUser()!=null){
             user= mAuth.getCurrentUser();
-            Log.d("userrrrr",user.getUid());
+            //Log.d("userrrrr",user.getUid());
         } else{
             finish();
             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -224,18 +224,18 @@ public class MainActivity extends BaseActivity{
                             (msg.getMessageTime()*-1)));
                     viewHolder.time.setTextColor(Color.parseColor("#808080"));
                     if(model.getMsgUnreadCountForMobile()>0) {
-                        Log.d("count", String.valueOf(model.getMsgUnreadCountForMobile()));
+                        //Log.d("count", String.valueOf(model.getMsgUnreadCountForMobile()));
                         viewHolder.notification.setVisibility(View.VISIBLE);
                         viewHolder.notification.setText(String.valueOf(model.getMsgUnreadCountForMobile()));
                         viewHolder.time.setTextColor(Color.parseColor("#40C4FF"));
                     }
 
                     previewText = msg.getMessageText();
-                    Log.d("containN",previewText);
+                    //Log.d("containN",previewText);
                     if(previewText.contains("\n")){
-                        Log.d("containN",previewText);
+                        //Log.d("containN",previewText);
                         previewText = previewText.replaceAll("\n"," ");
-                        Log.d("removeN",previewText);
+                        //Log.d("removeN",previewText);
                     }
 
                     if(previewText.equals("Image")){
@@ -255,11 +255,11 @@ public class MainActivity extends BaseActivity{
 //                int countBreak = 0;
 //                File imgFile;
 //                for(int i=0;i<model.getItems().size();i++){
-//                    Log.d("imgpath","count");
+//                    //Log.d("imgpath","count");
 //                    imgFile = new File(model.getItems().get(i).getImageFileUrl());
-//                    Log.d("imgpath",imgFile.toString());
+//                    //Log.d("imgpath",imgFile.toString());
 //                    if(imgFile.exists()){
-//                        Log.d("imgpath","exist");
+//                        //Log.d("imgpath","exist");
 //                        countBreak++;
 //                        try {
 //                            viewHolder.img.setImageBitmap(handleSamplingAndRotationBitmap(getApplicationContext(),Uri.parse(model.getItems().get(0).getImageFileUri()),model.getItems().get(0).getImageFileUrl()));
@@ -277,7 +277,7 @@ public class MainActivity extends BaseActivity{
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d("OnClick", "You clicked on "+ inquiryName);
+                        //Log.d("OnClick", "You clicked on "+ inquiryName);
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -293,7 +293,7 @@ public class MainActivity extends BaseActivity{
                 viewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View v) {
-                        Log.d("OnClick", "You Long clicked on "+ inquiryName);
+                        //Log.d("OnClick", "You Long clicked on "+ inquiryName);
                         final Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -311,7 +311,7 @@ public class MainActivity extends BaseActivity{
                 viewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        Log.d("OnClick", "You touch on "+ inquiryName);
+                        //Log.d("OnClick", "You touch on "+ inquiryName);
 //                        v.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.main_inquiry_background));
                         return false;
                     }
@@ -342,8 +342,8 @@ public class MainActivity extends BaseActivity{
         int menuItemIndex = item.getItemId();
         String menuItemName = menuItems[menuItemIndex];
         if(menuItemName.equals("Delete")){
-            Log.d("Delete", "You choose to delete position"+item.getGroupId());
-            Log.d("Delete", "You choose to delete "+adapter.getItem(item.getGroupId()).getInquiryName());
+            //Log.d("Delete", "You choose to delete position"+item.getGroupId());
+            //Log.d("Delete", "You choose to delete "+adapter.getItem(item.getGroupId()).getInquiryName());
             adapter.getRef(item.getGroupId()).removeValue();
             // database.getReference("conversations/"+adapter.getItem(item.getGroupId()).getInquiryID()).removeValue();
             database.getReference("adconversations/"+user.getUid()+"/"+adapter.getItem(item.getGroupId()).getInquiryID()+"?"+adapter.getItem(item.getGroupId()).getInquiryName()).removeValue();
@@ -436,7 +436,7 @@ public class MainActivity extends BaseActivity{
 //            itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
 //                @Override
 //                public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-//                    Log.d("Position", "You long clicked on position "+getAdapterPosition());
+//                    //Log.d("Position", "You long clicked on position "+getAdapterPosition());
 //                    Log.w("OnLongClick", "You long clicked on "+adapter.getItem(getAdapterPosition()).getInquiryName());
 //                    for (int i = 0; i<menuItems.length; i++) {
 //                        contextMenu.add(getAdapterPosition(), i, i, menuItems[i]); //groupId, itemId, order, title

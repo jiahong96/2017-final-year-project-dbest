@@ -148,7 +148,7 @@ public class ChatFragment extends Fragment {
         mBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                Log.d("InquiryActivity", "onReceive:" + intent);
+                //Log.d("InquiryActivity", "onReceive:" + intent);
 
                 switch (intent.getAction()) {
                     case MyUploadService.UPLOAD_COMPLETED:
@@ -166,13 +166,13 @@ public class ChatFragment extends Fragment {
         refAdConv = database.getReference("adconversations").child(user.getUid()).child(inquiryID+"?"+inquiryName);
         refNormalConv = database.getReference("conversations").child(inquiryID);
         refAdConv.keepSynced(true);
-        Log.d("database RefMsg",refAdConv.toString());
+        //Log.d("database RefMsg",refAdConv.toString());
 
 	    //listen to conversations
         refAdConv.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("new Messages",dataSnapshot.getKey());
+                //Log.d("new Messages",dataSnapshot.getKey());
                 if(isInFront){
                     database.getReference().child("inquiries").child(inquiryID).
                             child("msgUnreadCountForMobile").setValue(0);
@@ -192,7 +192,7 @@ public class ChatFragment extends Fragment {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d("removedMessage",dataSnapshot.getKey());
+                //Log.d("removedMessage",dataSnapshot.getKey());
                 refAdConv.child(dataSnapshot.getKey()).child("lastMessage").removeValue();
                 if(isInFront) {
                     Toast.makeText(getActivity(), "message deleted", Toast.LENGTH_SHORT).show();
@@ -218,11 +218,11 @@ public class ChatFragment extends Fragment {
         lastMessageQuery.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("lastMsgKeyAdd",dataSnapshot.getKey());
+                //Log.d("lastMsgKeyAdd",dataSnapshot.getKey());
                 lastMessage = dataSnapshot.getValue(ChatMessage.class);
                 lastMessageKey = dataSnapshot.getKey();
-                Log.d("lastMsgIntentID", String.valueOf(lastMessageID));
-                Log.d("lastMsgSnapID", String.valueOf(lastMessage.getMessageID()));
+                //Log.d("lastMsgIntentID", String.valueOf(lastMessageID));
+                //Log.d("lastMsgSnapID", String.valueOf(lastMessage.getMessageID()));
                 if(deletedLastItem){
                     database.getReference().child("inquiries").child(inquiryID).
                             child("lastMessage").setValue(dataSnapshot.getValue(ChatMessage.class));
@@ -233,12 +233,12 @@ public class ChatFragment extends Fragment {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Log.d("lastMsgKeyChng",dataSnapshot.getKey());
+                //Log.d("lastMsgKeyChng",dataSnapshot.getKey());
             }
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-                Log.d("lastMsgKeyRemove",dataSnapshot.getKey());
+                //Log.d("lastMsgKeyRemove",dataSnapshot.getKey());
             }
 
             @Override
@@ -268,7 +268,7 @@ public class ChatFragment extends Fragment {
             @Override
             public void onFocusChange(View view, boolean b) {
                 if(b){
-                    Log.d("keypadAppear","yes");
+                    //Log.d("keypadAppear","yes");
                     isEditTextFocused = true;
                 }
             }
@@ -302,7 +302,7 @@ public class ChatFragment extends Fragment {
             @Override
             public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
                 if(isEditTextFocused){
-                    Log.d("keypadAppear","yes");
+                    //Log.d("keypadAppear","yes");
                     mRecyclerView.smoothScrollToPosition(mRecyclerView.getAdapter().getItemCount());
                 }
             }
@@ -320,16 +320,16 @@ public class ChatFragment extends Fragment {
                 Long negativeNow = -(new Date().getTime());
 
                 if(tMsg.matches("")){
-                    Log.d("empty msg","empty msg");
+                    //Log.d("empty msg","empty msg");
                     inputMsg.setText("");
                 }else{
                     if(tMsg.contains("\n")){
-                        Log.d("new line",tMsg);
+                        //Log.d("new line",tMsg);
 
 //                        tMsg = tMsg.replaceAll("\n","\r\n");
-//                        Log.d("r new line",tMsg);
+//                        //Log.d("r new line",tMsg);
 //                        tMsg = tMsg.replaceAll("\r\n"," ");
-//                        Log.d("r1 new line",tMsg);
+//                        //Log.d("r1 new line",tMsg);
                     }
                     // Read the input field and push a new instance
                     // of ChatMessage to the Firebase database
@@ -383,11 +383,11 @@ public class ChatFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RC_TAKE_PICTURE) {
-            Log.d("PhotoSelected", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
+            //Log.d("PhotoSelected", "onActivityResult:" + requestCode + ":" + resultCode + ":" + data);
             if (resultCode == RESULT_OK) {
                 imgFileUri = data.getData();
 
-                Log.d("PhotoSelected", "resultok");
+                //Log.d("PhotoSelected", "resultok");
                 if (imgFileUri != null) {
                     uploadFromUri(imgFileUri);
                     //bearingList.get(savedPosition).setImageFileUri(imgFileUri.toString());
@@ -417,7 +417,7 @@ public class ChatFragment extends Fragment {
 
     private void onUploadResultIntent(Intent intent) {
         // Got a new intent from MyUploadService with a success or failure
-        //Log.d("uploadSuccess", String.valueOf(intent.getIntExtra(MyUploadService.EXTRA_DOWNLOAD_URL,0)));
+        ////Log.d("uploadSuccess", String.valueOf(intent.getIntExtra(MyUploadService.EXTRA_DOWNLOAD_URL,0)));
         imgDownloadUri = intent.getParcelableExtra(MyUploadService.EXTRA_DOWNLOAD_URL);
         String imgUrl = imgDownloadUri.toString();
         // Read the input field and push a new instance
@@ -473,12 +473,12 @@ public class ChatFragment extends Fragment {
                 viewHolder.unreadMessages.setVisibility(View.GONE);
 
                 if(lastMessage!=null && lastMessageID!=null && lastMessageID.equals(lastMessage.getMessageID())){
-//                    Log.d("updatedToLatestMessage?", "yes");
-//                    Log.d("position?", String.valueOf(position));
-//                    Log.d("getcount?", String.valueOf(adapter.getItemCount()));
+//                    //Log.d("updatedToLatestMessage?", "yes");
+//                    //Log.d("position?", String.valueOf(position));
+//                    //Log.d("getcount?", String.valueOf(adapter.getItemCount()));
 
                     if(unreadCount>0 && unreadCount <= adapter.getItemCount() && position == (adapter.getItemCount()-unreadCount)){
-                        Log.d("setUnreadTitle","yes");
+                        //Log.d("setUnreadTitle","yes");
                         viewHolder.unreadLayout.setVisibility(View.VISIBLE);
                         viewHolder.unreadMessages.setVisibility(View.VISIBLE);
                         viewHolder.unreadMessages.setText(String.valueOf(unreadCount)+" Unread messages");
@@ -597,7 +597,7 @@ public class ChatFragment extends Fragment {
                 // If the recycler view is initially being loaded or the
                 // user is at the bottom of the list, scroll to the bottom
                 // of the list to show the newly added message.
-                //Log.d("scroll to latest", String.valueOf(positionStart));
+                ////Log.d("scroll to latest", String.valueOf(positionStart));
                 if (lastVisiblePosition == -1 ||
                         (positionStart >= (friendlyMessageCount - 1) &&
                                 lastVisiblePosition == (positionStart - 1))) {
@@ -607,13 +607,13 @@ public class ChatFragment extends Fragment {
                 if(lastMessageID!=null && lastMessage!=null && lastMessageID.equals(lastMessage.getMessageID())) {
                     if(unreadCount>0){
                         if(positionStart>10 && (positionStart-unreadCount)>6){
-//                            Log.d("scroll to unread1", String.valueOf(positionStart));
-//                            Log.d("scroll to unreadCount1", String.valueOf(unreadCount));
-//                            Log.d("scrolltounreadCount1Po", String.valueOf(positionStart-(unreadCount)));
+//                            //Log.d("scroll to unread1", String.valueOf(positionStart));
+//                            //Log.d("scroll to unreadCount1", String.valueOf(unreadCount));
+//                            //Log.d("scrolltounreadCount1Po", String.valueOf(positionStart-(unreadCount)));
                             layoutManager.scrollToPositionWithOffset((positionStart-unreadCount), 20);
                         }else{
-//                            Log.d("scroll to unread2", String.valueOf(positionStart));
-//                            Log.d("scroll to unreadCount2", String.valueOf(unreadCount));
+//                            //Log.d("scroll to unread2", String.valueOf(positionStart));
+//                            //Log.d("scroll to unreadCount2", String.valueOf(unreadCount));
                             layoutManager.scrollToPositionWithOffset((positionStart-unreadCount),0);
                         }
                     }
@@ -623,7 +623,7 @@ public class ChatFragment extends Fragment {
             @Override
             public void onItemRangeChanged(int positionStart, int itemCount) {
                 super.onItemRangeChanged(positionStart, itemCount);
-//                Log.d("hi range","bb");
+//                //Log.d("hi range","bb");
             }
         });
     }
@@ -654,20 +654,20 @@ public class ChatFragment extends Fragment {
         ClipboardManager clipboard = (ClipboardManager)
                 getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
 //        if(menuItemName.equals("Delete")){
-//            Log.d("Delete", "You choose to delete position"+item.getGroupId());
-////            Log.d("Delete", "You choose to delete "+adapter.getItem(item.getGroupId()).getMessageText());
+//            //Log.d("Delete", "You choose to delete position"+item.getGroupId());
+////            //Log.d("Delete", "You choose to delete "+adapter.getItem(item.getGroupId()).getMessageText());
 //            if(lastMessageKey.equals(adapter.getRef(item.getGroupId()).getKey())){
-////                Log.d("Delete", "You choose to delete last item");
+////                //Log.d("Delete", "You choose to delete last item");
 //                adapter.getRef(item.getGroupId()).removeValue();
 //                inquiryRef.child("lastMessage").setValue(null);
 //                deletedLastItem = true;
 //            }else{
-////                Log.d("Delete", "You choose to delete normal item");
+////                //Log.d("Delete", "You choose to delete normal item");
 //                adapter.getRef(item.getGroupId()).removeValue();
 //            }
 //        }
         if(menuItemName.equals("Copy")){
-            Log.d("Copy", "You choose to copy normal item");
+            //Log.d("Copy", "You choose to copy normal item");
             // Gets a handle to the clipboard service.
             ClipData clip = ClipData.newPlainText("messageText", adapter.getItem(item.getGroupId()).getMessageText());
 
@@ -703,7 +703,7 @@ public class ChatFragment extends Fragment {
 
             // If the string contains data, then the paste operation is done
             if (pasteData != null) {
-                Log.d("paste",pasteData);
+                //Log.d("paste",pasteData);
                 inputMsg.setText(pasteData);
             }
         }
@@ -711,7 +711,7 @@ public class ChatFragment extends Fragment {
     }
 
     private void launchPhotoStorage() {
-        Log.d("PhotoStorage", "launch");
+        //Log.d("PhotoStorage", "launch");
 
         // Pick an image from storage
         Intent intent = new Intent(Intent.ACTION_PICK);
@@ -765,8 +765,8 @@ public class ChatFragment extends Fragment {
             itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
                 @Override
                 public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
-                    Log.d("Position", "You long clicked on position "+getAdapterPosition());
-                    Log.w("OnLongClick", "You long clicked on "+adapter.getItem(getAdapterPosition()).getMessageText());
+//                    //Log.d("Position", "You long clicked on position "+getAdapterPosition());
+//                    Log.w("OnLongClick", "You long clicked on "+adapter.getItem(getAdapterPosition()).getMessageText());
 //                    for (int i = 0; i<menuItems.length; i++) {
                     contextMenu.add(getAdapterPosition(), 0, 0, menuItems[0]); //groupId, itemId, order, title
 //                    }

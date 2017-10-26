@@ -124,12 +124,12 @@ public class QuotationFragment extends Fragment {
 
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("new quote","hi");
+                //Log.d("new quote","hi");
                 adapter.notifyDataSetChanged();
             }
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Log.d("new quote change","hi");
+                //Log.d("new quote change","hi");
                 adapter.notifyDataSetChanged();
             }
             @Override
@@ -237,12 +237,12 @@ public class QuotationFragment extends Fragment {
                         int rotationAngle=0;
                         @Override
                         public void onClick(View view) {
-                            Log.d("expand/collapse", String.valueOf(viewHolder.getAdapterPosition()));
+                            //Log.d("expand/collapse", String.valueOf(viewHolder.getAdapterPosition()));
                             if (count > 0) {
-                                Log.d("count", String.valueOf(count));
+                                //Log.d("count", String.valueOf(count));
                                 count++;
                                 if (count % 2 == 0) {
-                                    Log.d("hide", "ya");
+                                    //Log.d("hide", "ya");
                                     showQuotation(viewHolder);
                                     ObjectAnimator anim = ObjectAnimator.ofFloat(viewHolder.imgExpandCollapse, "rotation",rotationAngle, rotationAngle + 180);
                                     anim.setDuration(30);
@@ -250,7 +250,7 @@ public class QuotationFragment extends Fragment {
                                     rotationAngle += 180;
                                     rotationAngle = rotationAngle%360;
                                 } else {
-                                    Log.d("expand", "ya");
+                                    //Log.d("expand", "ya");
                                     hideQuotation(viewHolder);
                                     ObjectAnimator anim = ObjectAnimator.ofFloat(viewHolder.imgExpandCollapse, "rotation",rotationAngle, rotationAngle + 180);
                                     anim.setDuration(30);
@@ -319,8 +319,8 @@ public class QuotationFragment extends Fragment {
                                     intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
                                     intent.putExtra(PaymentActivity.EXTRA_PAYMENT, makePayment);
                                     pos = viewHolder.getAdapterPosition();
-                                    Log.d("pos",String.valueOf(pos));
-                                    Log.d("position",String.valueOf(viewHolder.getAdapterPosition()));
+                                    //Log.d("pos",String.valueOf(pos));
+                                    //Log.d("position",String.valueOf(viewHolder.getAdapterPosition()));
                                     startActivityForResult(intent, REQUEST_CODE_PAYMENT);
                                 }
                             }
@@ -362,7 +362,7 @@ public class QuotationFragment extends Fragment {
         String payID, payDate, currency,payState;
 //        int position = data.getIntExtra("quotation",0);
         int position = pos;
-        Log.d("result",String.valueOf(position));
+        //Log.d("result",String.valueOf(position));
         double amount;
 
         if (requestCode == REQUEST_CODE_PAYMENT){
@@ -375,9 +375,9 @@ public class QuotationFragment extends Fragment {
                         payDate = confirmJSON.getJSONObject("response").getString("create_time");
                         payID = confirmJSON.getJSONObject("response").getString("id");
                         payState = confirmJSON.getJSONObject("response").getString("state");
-                        Log.d("Date",payDate);
-                        Log.d("ID", payID);
-                        Log.d("PayState", payState);
+                        //Log.d("Date",payDate);
+                        //Log.d("ID", payID);
+                        //Log.d("PayState", payState);
 
                         JSONObject paymentJSON = new JSONObject(confirm.getPayment().toJSONObject().toString());
                         currency = paymentJSON.getString("currency_code");
@@ -408,8 +408,8 @@ public class QuotationFragment extends Fragment {
                                         (messageID,"I have paid MYR "+amount+" at Quotation "+(adapter.getItemCount()-pos),
                                                 user.getUid(),pmillis,user.getUid(),"payment",""));
 
-                        Log.d("currency",currency);
-                        Log.d("amount",String.valueOf(amount));
+                        //Log.d("currency",currency);
+                        //Log.d("amount",String.valueOf(amount));
 
                         Payment payment = new Payment();
                         payment.setPaymentID(payID);

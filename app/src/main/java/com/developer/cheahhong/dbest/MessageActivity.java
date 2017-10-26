@@ -61,7 +61,7 @@ public class MessageActivity extends AppCompatActivity {
         adapter.addFragment(InquiryFragment.newInstance(inquiryID),"Inquiry");
         adapter.addFragment(QuotationFragment.newInstance(inquiryID,inquiryName),"Quotation");
         viewPager.setAdapter(adapter);
-        Log.d("amount of fragment", Integer.toString(adapter.getCount()));
+        //Log.d("amount of fragment", Integer.toString(adapter.getCount()));
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {

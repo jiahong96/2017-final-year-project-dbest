@@ -79,7 +79,7 @@ public class PaintFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d("fragmentpaint","oncreate");
+        //Log.d("fragmentpaint","oncreate");
 
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -99,7 +99,7 @@ public class PaintFragment extends Fragment {
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("snapshot","dfasdfa");
+                //Log.d("snapshot","dfasdfa");
             }
 
             @Override
@@ -127,7 +127,7 @@ public class PaintFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("fragmentpaint","yolo");
+        //Log.d("fragmentpaint","yolo");
         View view = inflater.inflate(R.layout.fragment_paint, container, false);
         mRecyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
         layoutManager = new LinearLayoutManager(getActivity().getBaseContext());

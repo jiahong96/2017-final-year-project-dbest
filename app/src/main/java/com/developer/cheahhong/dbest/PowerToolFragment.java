@@ -100,7 +100,7 @@ public class PowerToolFragment extends Fragment {
         queryRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.d("snapshot","dfasdfa");
+                //Log.d("snapshot","dfasdfa");
             }
 
             @Override

@@ -163,7 +163,7 @@ public class ImageProcessing {
         if(file!=null){
             FileOutputStream out = null;
             try {
-                Log.d("hi resize","aa");
+                //Log.d("hi resize","aa");
                 file.createNewFile();
                 out = new FileOutputStream(file);
                 bmp.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance

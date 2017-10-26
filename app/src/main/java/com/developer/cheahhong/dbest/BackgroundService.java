@@ -91,7 +91,7 @@ public class BackgroundService extends Service {
 
         if(user!=null){
             userID = user.getUid();
-            Log.d("firstID",userID);
+            ////Log.d("firstID",userID);
         }
 
         mAuth.addAuthStateListener(new FirebaseAuth.AuthStateListener() {
@@ -102,7 +102,7 @@ public class BackgroundService extends Service {
                 if(user!=null){
                     userID = user.getUid();
                     //myRef = database.getReference("adconversations").child(user.getUid());
-                    Log.d("listenUserID",userID);
+                    ////Log.d("listenUserID",userID);
                 }
             }
         });
@@ -110,7 +110,7 @@ public class BackgroundService extends Service {
         //notification logic
         if(sp1!=null &&sp1.getString("login",null)!=null ){
             if(sp1.getString("login",null).equals("true")&& user!= null){
-                Log.d("refUserID",userID);
+                ////Log.d("refUserID",userID);
                 count = 0;
                 myRef = database.getReference("adconversations").child(userID);
                 myRef.addValueEventListener(new ValueEventListener() {
@@ -119,24 +119,24 @@ public class BackgroundService extends Service {
 
                         inquiryMessages = new JSONArray();
                         messages = new ArrayList<String>();
-                        Log.d("inquiryCountInq", String.valueOf(dataSnapshot.getChildrenCount()));
+                        ////Log.d("inquiryCountInq", String.valueOf(dataSnapshot.getChildrenCount()));
                         inquiryCount = (int) dataSnapshot.getChildrenCount();
 
                         for(DataSnapshot c : dataSnapshot.getChildren())
                         {
                             ArrayList<String> currentMsges = new ArrayList<String>();
-                            Log.d("notificationInquiry",c.toString());
+                            ////Log.d("notificationInquiry",c.toString());
                             for(DataSnapshot b : c.getChildren())
                             {
-                                //   Log.d("messageKey",b.toString());
-                                //   Log.d("aaaaa",b.child("messageText").toString());
+                                //   ////Log.d("messageKey",b.toString());
+                                //   ////Log.d("aaaaa",b.child("messageText").toString());
 
                                 if(b.child("messageRead").getValue().toString().equalsIgnoreCase("false") && b.child("messageUser").getValue().toString().equalsIgnoreCase("admin")){
                                     if(b.child("inquiryOwner").getValue().toString().equalsIgnoreCase(userID)){
-                                        Log.d("notificationKeyMsg",b.child("messageText").getValue().toString());
+                                        ////Log.d("notificationKeyMsg",b.child("messageText").getValue().toString());
 
                                         inquiryTitle = (c.getKey().toString()).split("\\?")[1];
-                                        Log.d("notificationKey",inquiryTitle);
+                                        //Log.d("notificationKey",inquiryTitle);
 
                                         messages.add(b.child("messageText").getValue().toString());
                                         currentMsges.add(b.child("messageText").getValue().toString());
@@ -144,8 +144,8 @@ public class BackgroundService extends Service {
                                 }
                             }
                             if(currentMsges.size()!=0){
-                                Log.d("notification length is", String.valueOf(currentMsges.size()));
-                                Log.d("notification",currentMsges.toString());
+                                //Log.d("notification length is", String.valueOf(currentMsges.size()));
+                                //Log.d("notification",currentMsges.toString());
 
                                 JSONObject inquiry = new JSONObject();
                                 try {
@@ -156,10 +156,10 @@ public class BackgroundService extends Service {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
-                                Log.d("mainInq",inquiryMessages.toString());
+                                //Log.d("mainInq",inquiryMessages.toString());
                             }
                         //   ChatMessage m = (ChatMessage) child.getValue();
-                        //   Log.d("aaaaa",m.getMessageText());
+                        //   //Log.d("aaaaa",m.getMessageText());
                         }
                         if(messages.size()!=0) {
                             //if not in front of activity, send notifications
@@ -237,20 +237,20 @@ public class BackgroundService extends Service {
             }
         }
         else{
-            Log.d("aainquiryCount", String.valueOf(inquiryCount));
-            Log.d("unreadinquiryCount", String.valueOf(inquiryMessages.length()));
+            //Log.d("aainquiryCount", String.valueOf(inquiryCount));
+            //Log.d("unreadinquiryCount", String.valueOf(inquiryMessages.length()));
             for(int i =0;i<inquiryMessages.length();i++) {
                 JSONObject inquiry;
                 JSONArray msgArray;
                 try {
                     inquiry = inquiryMessages.getJSONObject(i);
-                    Log.d("yoloinqObj", inquiry.toString());
+                    //Log.d("yoloinqObj", inquiry.toString());
                     msgArray = inquiry.getJSONArray("messages");
-                    Log.d("yolomsgObj", msgArray.toString());
+                    //Log.d("yolomsgObj", msgArray.toString());
                     mBuilder.setStyle(inboxStyle);
                     inboxStyle.setBigContentTitle("D'Best");
                     for (int j=0; j < msgArray.length(); j++) {
-                        Log.d("yoloinq", "dd");
+                        //Log.d("yoloinq", "dd");
                         inboxStyle.addLine(inquiry.getString("inquiryTitle")+": "+msgArray.get(j).toString());
                     }
                 } catch (JSONException e) {

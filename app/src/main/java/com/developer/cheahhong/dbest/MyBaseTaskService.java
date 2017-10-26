@@ -28,12 +28,12 @@ public abstract class MyBaseTaskService extends Service {
     }
 
     private synchronized void changeNumberOfTasks(int delta) {
-        Log.d(TAG, "changeNumberOfTasks:" + mNumTasks + ":" + delta);
+        //Log.d(TAG, "changeNumberOfTasks:" + mNumTasks + ":" + delta);
         mNumTasks += delta;
 
         // If there are no tasks left, stop the service
         if (mNumTasks <= 0) {
-            Log.d(TAG, "stopping");
+            //Log.d(TAG, "stopping");
             stopSelf();
         }
     }
