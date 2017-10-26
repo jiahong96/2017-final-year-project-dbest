@@ -278,7 +278,7 @@ public class ChatFragment extends Fragment {
             @Override
             public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
                 Log.w("OnLongClick", "You long clicked on input box");
-                contextMenu.add(111, 1, 1, menuItems[1]); //groupId, itemId, order, title
+                contextMenu.add(1, 1, 0, menuItems[1]); //groupId, itemId, order, title
             }
         });
 
@@ -649,7 +649,10 @@ public class ChatFragment extends Fragment {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         //get selected menu item (delete, edit etc)
-        int menuItemIndex = item.getItemId();
+        Log.d("itemID", String.valueOf(item.getItemId()));
+        Log.d("groupID", String.valueOf(item.getGroupId()));
+        final String keyText = adapter.getItem(item.getItemId()).getMessageText();
+        int menuItemIndex = item.getGroupId();
         String menuItemName = menuItems[menuItemIndex];
         ClipboardManager clipboard = (ClipboardManager)
                 getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
@@ -669,7 +672,7 @@ public class ChatFragment extends Fragment {
         if(menuItemName.equals("Copy")){
             //Log.d("Copy", "You choose to copy normal item");
             // Gets a handle to the clipboard service.
-            ClipData clip = ClipData.newPlainText("messageText", adapter.getItem(item.getGroupId()).getMessageText());
+            ClipData clip = ClipData.newPlainText("messageText",keyText );
 
             // Set the clipboard's primary clip.
             clipboard.setPrimaryClip(clip);
@@ -762,13 +765,15 @@ public class ChatFragment extends Fragment {
             }else if(sp.getString("font",null)!=null && sp.getString("font",null).equals("medium")){
                 messageText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             }
+
             itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
                 @Override
                 public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
 //                    //Log.d("Position", "You long clicked on position "+getAdapterPosition());
 //                    Log.w("OnLongClick", "You long clicked on "+adapter.getItem(getAdapterPosition()).getMessageText());
 //                    for (int i = 0; i<menuItems.length; i++) {
-                    contextMenu.add(getAdapterPosition(), 0, 0, menuItems[0]); //groupId, itemId, order, title
+                    Log.d("adapter pos", String.valueOf(getAdapterPosition()));
+                    contextMenu.add(0, getAdapterPosition(), 0, menuItems[0]); //groupId, itemId, order, title
 //                    }
                 }
             });
