@@ -51,7 +51,7 @@
         android:id="@+id/content_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.example.cheahhong.dbest.FixScrollingFooterBehavior"
+        app:layout_behavior="com.developer.cheahhong.dbest.FixScrollingFooterBehavior"
         >
 
         <android.support.design.widget.BottomNavigationView
