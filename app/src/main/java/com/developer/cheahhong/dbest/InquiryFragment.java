@@ -94,6 +94,7 @@ public class InquiryFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setMotionEventSplittingEnabled(false);
 
         displayInquiries();
         return view;

@@ -103,6 +103,8 @@ public class InquiryActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(getBaseContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setMotionEventSplittingEnabled(false);
+
         recyclerView.setAdapter(mAdapter);
         mAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override

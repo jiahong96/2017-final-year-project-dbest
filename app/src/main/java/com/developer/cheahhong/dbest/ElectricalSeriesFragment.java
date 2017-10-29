@@ -136,6 +136,8 @@ public class ElectricalSeriesFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setMotionEventSplittingEnabled(false);
+
         displayProducts();
         return view;
     }

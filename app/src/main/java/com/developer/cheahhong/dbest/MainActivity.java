@@ -91,6 +91,7 @@ public class MainActivity extends BaseActivity{
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setMotionEventSplittingEnabled(false);
 
         //initialize firebase database references
         queryRef = database.getReference("adinquiries").child(user.getUid()).orderByChild("lastMessage/messageTime");

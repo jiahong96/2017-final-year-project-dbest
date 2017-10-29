@@ -135,6 +135,7 @@ public class PowerToolFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setMotionEventSplittingEnabled(false);
         displayProducts();
         return view;
     }
