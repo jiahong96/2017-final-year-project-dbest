@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 /**
  * Base class for Services that keep track of the number of active jobs and self-stop when the
