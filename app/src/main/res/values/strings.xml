@@ -15,7 +15,7 @@
     <string name="upload_failure">upload failed</string>
     <string name="progress_auth">signing in..</string>
     <string-array name="menu">
-        <item>Delete</item>
+        <item>Remove</item>
     </string-array>
     <string-array name="font">
         <item>Small</item>
