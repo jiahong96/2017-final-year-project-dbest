@@ -200,6 +200,7 @@ public class MainActivity extends BaseActivity{
         if(adapter.getItem(position).getLastMessage()!=null){
             message.putExtra("last_MessageID", adapter.getItem(position).getLastMessage().getMessageID());
         }
+        message.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         message.putExtra("inquiry_Ref", adapter.getItem(position).getInquiryID());
         message.putExtra("inquiry_Name", adapter.getItem(position).getInquiryName());
         message.putExtra("unread_Count", adapter.getItem(position).getMsgUnreadCountForMobile());
@@ -279,15 +280,7 @@ public class MainActivity extends BaseActivity{
                     @Override
                     public void onClick(View view) {
                         //Log.d("OnClick", "You clicked on "+ inquiryName);
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                //Do something after
-                                startMessageActivity(viewHolder.getAdapterPosition());
-                            }
-                        }, 1000);
-//                        startColorAnimation(view,viewHolder.getAdapterPosition());
+                        startMessageActivity(viewHolder.getAdapterPosition());
                     }
                 });
 
@@ -295,16 +288,7 @@ public class MainActivity extends BaseActivity{
                     @Override
                     public boolean onLongClick(View v) {
                         //Log.d("OnClick", "You Long clicked on "+ inquiryName);
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                //Do something after
-                                startMessageActivity(viewHolder.getAdapterPosition());
-                            }
-                        }, 1000);
-
-//                        startColorAnimation(v,viewHolder.getAdapterPosition());
+                        startMessageActivity(viewHolder.getAdapterPosition());
                         return false;
                     }
                 });
@@ -313,7 +297,6 @@ public class MainActivity extends BaseActivity{
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         //Log.d("OnClick", "You touch on "+ inquiryName);
-//                        v.setBackground(ContextCompat.getDrawable(MainActivity.this, R.drawable.main_inquiry_background));
                         return false;
                     }
                 });
