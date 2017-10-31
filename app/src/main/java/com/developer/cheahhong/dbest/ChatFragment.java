@@ -193,10 +193,10 @@ public class ChatFragment extends Fragment {
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
                 //Log.d("removedMessage",dataSnapshot.getKey());
-                refAdConv.child(dataSnapshot.getKey()).child("lastMessage").removeValue();
-                if(isInFront) {
-                    Toast.makeText(getActivity(), "message deleted", Toast.LENGTH_SHORT).show();
-                }
+                //refAdConv.child(dataSnapshot.getKey()).child("lastMessage").removeValue();
+                //if(isInFront) {
+                //    Toast.makeText(getActivity(), "message deleted", Toast.LENGTH_SHORT).show();
+                //}
             }
 
             @Override
