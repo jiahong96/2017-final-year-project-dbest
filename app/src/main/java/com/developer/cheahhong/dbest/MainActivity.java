@@ -372,8 +372,6 @@ public class MainActivity extends BaseActivity{
                 //inquiryID = UUID.randomUUID().toString();
                 //String [] peoples = {"testUser","Admin"};
 
-                FirebaseUser user=  mAuth.getCurrentUser();
-
                 String [] peoples = {user.getUid()};
                 List<String> inquiryPeoples = new ArrayList<String>(Arrays.asList(peoples));
 
