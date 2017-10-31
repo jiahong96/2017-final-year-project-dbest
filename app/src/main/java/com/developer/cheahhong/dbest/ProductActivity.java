@@ -121,15 +121,17 @@ public class ProductActivity extends BaseActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            if(position==0){
+            if(position ==0){
+                return PromoFragment.newInstance("Paint","fragment");
+            } else if(position==1){
                 return PaintFragment.newInstance("Paint","fragment");
-            }else if(position==1){
-                return PowerToolFragment.newInstance("Power Tool","fragment");
             }else if(position==2){
-                return HandToolFragment.newInstance("Hand Tool","fragment");
+                return PowerToolFragment.newInstance("Power Tool","fragment");
             }else if(position==3){
-                return WaterSeriesFragment.newInstance("Water Series","fragment");
+                return HandToolFragment.newInstance("Hand Tool","fragment");
             }else if(position==4){
+                return WaterSeriesFragment.newInstance("Water Series","fragment");
+            }else if(position==5){
                 return ElectricalSeriesFragment.newInstance("Electrical Series","fragment");
             }else{
                 return OthersFragment.newInstance("Others","fragment");
@@ -138,24 +140,26 @@ public class ProductActivity extends BaseActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 6;
+            // Show 7 total pages.
+            return 7;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "Paint";
+                    return "Promotion";
                 case 1:
-                    return "Power Tool";
+                    return "Paint";
                 case 2:
-                    return "Hand Tool";
+                    return "Power Tool";
                 case 3:
-                    return "Water Series";
+                    return "Hand Tool";
                 case 4:
-                    return "Electrical Series";
+                    return "Water Series";
                 case 5:
+                    return "Electrical Series";
+                case 6:
                     return "Others";
             }
             return null;
