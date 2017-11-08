@@ -133,7 +133,9 @@ public class ProductActivity extends BaseActivity {
                 return WaterSeriesFragment.newInstance("Water Series","fragment");
             }else if(position==5){
                 return ElectricalSeriesFragment.newInstance("Electrical Series","fragment");
-            }else{
+            }else if(position == 6){
+                return DoorFragment.newInstance("Door Accessories","fragment");
+            } else{
                 return OthersFragment.newInstance("Others","fragment");
             }
         }
@@ -141,7 +143,7 @@ public class ProductActivity extends BaseActivity {
         @Override
         public int getCount() {
             // Show 7 total pages.
-            return 7;
+            return 8;
         }
 
         @Override
@@ -160,6 +162,8 @@ public class ProductActivity extends BaseActivity {
                 case 5:
                     return "Electrical Series";
                 case 6:
+                    return "Door Accessories";
+                case 7:
                     return "Others";
             }
             return null;
